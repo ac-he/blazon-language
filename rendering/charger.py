@@ -2,7 +2,7 @@
 # and outputs an IMAGE GUID
 import cairo
 from const import canvas, tinctures
-from rendering._util_images import supply_guid
+from rendering.z_util_images import supply_guid
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
 context = cairo.Context(surface)

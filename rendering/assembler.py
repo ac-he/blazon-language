@@ -6,7 +6,7 @@ import cairo
 from PIL import Image
 
 from const import canvas
-from rendering._util_images import delete_image_path, supply_guid
+from rendering.z_util_images import delete_image_path, supply_guid
 from rendering.trimmer import make_trimmed_image
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])

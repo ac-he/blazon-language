@@ -3,7 +3,7 @@
 import cairo
 
 from const import canvas
-from rendering._util_images import supply_guid, delete_image_path
+from rendering.z_util_images import supply_guid, delete_image_path
 from rendering.compositor import make_parted_image
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
@@ -17,6 +17,8 @@ def make_trimmed_image(shape_dict):
 
     shape = shape_dict.get("shape")
     field = shape_dict.get("field")
+
+    field["shape"] = shape
 
     match shape:
         case "banner":

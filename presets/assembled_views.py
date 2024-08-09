@@ -23,11 +23,11 @@ ci = 0
 mi = 0
 
 
-def make_default_test_data(charge):
+def make_default_test_data(charge, quantity=1):
     global default_view, ci, mi
 
     for shape in shapes:
-        for quantity in range(1, 4):
+        for quantity in range(1, quantity+1):
             default_view["crests"].append(add_per_bend(charge, shape, quantity))
             default_view["crests"].append(add_per_bend_sinister(charge, shape, quantity))
             default_view["crests"].append(add_per_chevron(charge, shape, quantity))
