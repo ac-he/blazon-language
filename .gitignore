@@ -1,3 +1,7 @@
 
 .idea/workspace.xml
 *.pyc
+/rendering/img
+/rendering/__pycache__
+/rendering/__pycache__
+/.idea
