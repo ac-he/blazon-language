@@ -22,11 +22,13 @@ def delete_all_images(base="\\rendering\\img"):
 
 
 def configure_svg_assets():
-    png_path = os.getcwd() + "\\rendering\\assets\\png\\"
+    png_path = "\\rendering\\assets\\png\\"
 
     delete_all_images(png_path + "l")
     delete_all_images(png_path + "m")
     delete_all_images(png_path + "s")
+
+    png_path = os.getcwd() + png_path
 
     for i in os.listdir(png_path + "f"):
         for letter, size in charge_size.items():

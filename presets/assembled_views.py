@@ -15,7 +15,7 @@ default_view = {
     ]
 }
 
-shapes = ["rect", "banner", "pennant", "shield", "heater"]
+shapes = ["banner", "heater", "pennant", "rect", "shield"]
 
 colors = ["g", "s", "v", "a", "p"]
 metals = ["o", "r"]
