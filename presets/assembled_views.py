@@ -1,12 +1,29 @@
+# default_view = {
+#     "w": 1600,
+#     "h": 900,
+#     "background": "mid-grey.png",
+#     "crest-scale-width": 220,
+#     "kerning": 30,
+#     "line-spacing": 40,
+#     "override-shapes": False,
+#     "margin": 50,
+#     "shapes": [
+#         "rect"
+#     ],
+#     "crests": [
+#
+#     ]
+# }
+
 default_view = {
-    "w": 1600,
-    "h": 900,
-    "background": "mid-grey.png",
-    "crest-scale-width": 220,
+    "w": 3820,
+    "h": 2100,
+    "background": "bigmonitor-mid-grey.png",
+    "crest-scale-width": 330,
     "kerning": 30,
     "line-spacing": 40,
     "override-shapes": False,
-    "margin": 50,
+    "margin": 100,
     "shapes": [
         "rect"
     ],
@@ -26,19 +43,24 @@ mi = 0
 def make_default_test_data(charge, quantity=1):
     global default_view, ci, mi
 
-    for shape in shapes:
-        for quantity in range(1, quantity+1):
-            default_view["crests"].append(add_per_bend(charge, shape, quantity))
-            default_view["crests"].append(add_per_bend_sinister(charge, shape, quantity))
-            default_view["crests"].append(add_per_chevron(charge, shape, quantity))
-            default_view["crests"].append(add_per_cross(charge, shape, quantity))
-            default_view["crests"].append(add_per_fess(charge, shape, quantity))
-            default_view["crests"].append(add_per_pale(charge, shape, quantity))
-            default_view["crests"].append(add_per_pall(charge, shape, quantity))
-            default_view["crests"].append(add_per_saltire(charge, shape, quantity))
+    charges = charge
+    if isinstance(charge, str):
+        charges = [charge]
 
-        mi = mi + 1
-        ci = ci + 1
+    for stamp in charges:
+        for shape in shapes:
+            for quantity in range(quantity, quantity+1):
+                default_view["crests"].append(add_per_bend(stamp, shape, quantity))
+                default_view["crests"].append(add_per_bend_sinister(stamp, shape, quantity))
+                default_view["crests"].append(add_per_chevron(stamp, shape, quantity))
+                default_view["crests"].append(add_per_cross(stamp, shape, quantity))
+                default_view["crests"].append(add_per_fess(stamp, shape, quantity))
+                default_view["crests"].append(add_per_pale(stamp, shape, quantity))
+                default_view["crests"].append(add_per_pall(stamp, shape, quantity))
+                default_view["crests"].append(add_per_saltire(stamp, shape, quantity))
+
+            mi = mi + 1
+            ci = ci + 1
 
 
 def add_per_bend(charge, shape, quantity):

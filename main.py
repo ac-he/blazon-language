@@ -8,7 +8,7 @@ from rendering.assembler import make_assembled_image
 
 def main():
     # DEMO: These are just setup tasks
-    configure_svg_assets()
+    # configure_svg_assets()
     delete_all_images()
 
     mode = "set"
@@ -26,7 +26,7 @@ def main():
     #           the specified quantity. This is untested for values exceeding 3, because I don't plan on ever having
     #           the value exceed 3 "in real life".
     if mode == "set":
-        assembled_views.make_default_test_data("ztest", 1)
+        assembled_views.make_default_test_data(["sun", "ztest"], 2)
         make_assembled_image(assembled_views.default_view)
 
     # DEMO: The general rendering pipeline is:
@@ -92,7 +92,7 @@ def main():
     # nonexistent or broken for some of them.
 
     if mode == "single":
-        pipeline1a = {"tincture": "g", "charge": "ztest"}
+        pipeline1a = {"tincture": "g", "charge": "sun"}
         print(f"Image 1a: {make_charge_image(pipeline1a)}")
 
 

@@ -25,10 +25,12 @@ def make_charge_image(charge_dict, shape="rect", dof="per fess", division="chief
     match charge:
         case "label":
             draw_feature_label(charge_dict.get("charge-tincture"), charge_dict.get("quantity"))
-        case "ztest":
-            stamp_feature(charge, charge_dict.get("tincture"), charge_dict["quantity"], shape, dof, division)
-        case _:
             pass
+        case None:
+            pass
+        case _:
+            stamp_feature(charge, charge_dict.get("tincture"), charge_dict["quantity"], shape, dof, division)
+
     pass
 
     guid = supply_guid()
@@ -49,8 +51,6 @@ def stamp_feature(charge, tincture, quantity, shape, dof, field):
     if tinctures[tincture].get("type") == "colour":
         suffix = "_c.png"
 
-    loc_x = charge_loc[dof][field][shape][quantity]["loc_x"][0]
-    loc_y = charge_loc[dof][field][shape][quantity]["loc_y"][0]
     size = charge_loc[dof][field][shape][quantity]["size"]
 
     size_d = "f"
@@ -60,11 +60,15 @@ def stamp_feature(charge, tincture, quantity, shape, dof, field):
 
     path = os.getcwd() + "\\rendering\\assets\\png\\" + size_d + "\\" + charge + suffix
 
-    surf1 = surface.create_from_png(path)
-    context.set_source_surface(surf1, loc_x, loc_y)
-    context.rectangle(loc_x, loc_y, size, size)
-    context.close_path()
-    context.fill()
+    for stamp in range(0, quantity):
+        loc_x = charge_loc[dof][field][shape][quantity]["loc_x"][stamp]
+        loc_y = charge_loc[dof][field][shape][quantity]["loc_y"][stamp]
+
+        surf1 = surface.create_from_png(path)
+        context.set_source_surface(surf1, loc_x, loc_y)
+        context.rectangle(loc_x, loc_y, size, size)
+        context.close_path()
+        context.fill()
 
 
 def draw_feature_label(feature_tincture, quantity):

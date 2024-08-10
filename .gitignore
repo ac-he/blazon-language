@@ -2,9 +2,6 @@
 .idea/workspace.xml
 *.pyc
 /rendering/img
-/rendering/__pycache__
-/rendering/__pycache__
+/rendering/__pycache__/
 /.idea
-/rendering/__pycache__
-/presets/__pycache__
-/presets/__pycache__
+/presets/__pycache__/
