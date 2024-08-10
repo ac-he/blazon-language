@@ -7,9 +7,11 @@ from rendering.assembler import make_assembled_image
 
 
 def main():
-    # DEMO: These are just setup tasks so that the img directory doesn't get too crowded.
-    # configure_svg_assets() # this one is broken
+    # DEMO: These are just setup tasks
+    configure_svg_assets()
     delete_all_images()
+
+    mode = "set"
 
     # DEMO: This will generate test flags, primarily to demonstrate division of field and charge arrangements.
     #       I have been -- and plan to continue -- using this to see what needs to be fixed at a glance.
@@ -23,8 +25,9 @@ def main():
     #           number of charges in each set incremented. Because of this, the number of flags printed is 40 times
     #           the specified quantity. This is untested for values exceeding 3, because I don't plan on ever having
     #           the value exceed 3 "in real life".
-    assembled_views.make_default_test_data("", 1)
-    make_assembled_image(assembled_views.default_view)
+    if mode == "set":
+        assembled_views.make_default_test_data("ztest", 1)
+        make_assembled_image(assembled_views.default_view)
 
     # DEMO: The general rendering pipeline is:
     #       User Input =dict=> Assembler =dict=> Trimmer =dict=> Compositor =dict=> Charger ===\
@@ -49,10 +52,11 @@ def main():
     #   "a"     azure       blue
     #   "s"     sable       black
     #   "p"     purpure     purple
-    pipeline1a = {"tincture": "g", "charge": "label", "quantity": 3, "charge-tincture": "o"}
-    pipeline1b = {"tincture": "a"}
-    print(f"Image 1a: {make_charge_image(pipeline1a)}")
-    print(f"Image 1b: {make_charge_image(pipeline1b)}")
+    if mode == "pipeline":
+        pipeline1a = {"tincture": "g", "charge": "label", "quantity": 3, "charge-tincture": "o"}
+        pipeline1b = {"tincture": "a"}
+        print(f"Image 1a: {make_charge_image(pipeline1a)}")
+        print(f"Image 1b: {make_charge_image(pipeline1b)}")
 
     # Compositor Level (Division of Field)
     # Supported Divisions:
@@ -64,10 +68,10 @@ def main():
     # "per pale"            dexter, sinister
     # "per pall"            dexter, sinister, chief
     # "per saltire"         dexter, sinister, chief, base
-    pipeline2a = {"party": "per fess", "chief": pipeline1a, "base": pipeline1b}
-    pipeline2b = {"party": "per pale", "dexter": pipeline1a, "sinister": pipeline1b}
-    print(f"Image 2a: {make_parted_image(pipeline2a)}")
-    print(f"Image 2b: {make_parted_image(pipeline2b)}")
+        pipeline2a = {"party": "per fess", "chief": pipeline1a, "base": pipeline1b}
+        pipeline2b = {"party": "per pale", "dexter": pipeline1a, "sinister": pipeline1b}
+        print(f"Image 2a: {make_parted_image(pipeline2a)}")
+        print(f"Image 2b: {make_parted_image(pipeline2b)}")
 
     # Trimmer Level
     # Supported Shapes:
@@ -76,16 +80,20 @@ def main():
     # "pennant"
     # "rect"
     # "shield"
-    pipeline3a = {"shape": "heater", "field": pipeline2a}
-    pipeline3b = {"shape": "banner", "field": pipeline2b}
-    print(f"Image 3a: {make_trimmed_image(pipeline3a)}")
-    print(f"Image 3b: {make_trimmed_image(pipeline3b)}")
+        pipeline3a = {"shape": "heater", "field": pipeline2a}
+        pipeline3b = {"shape": "banner", "field": pipeline2b}
+        print(f"Image 3a: {make_trimmed_image(pipeline3a)}")
+        print(f"Image 3b: {make_trimmed_image(pipeline3b)}")
 
     # In the future the Assembler will also have options, such as the ability to override flag shapes (to
     # randomize them, etc), change the background so that it looks like they're all hung up outdoors or in
     # front of a stone or wooden wall, specify a path and format to save to (pdf?) and determine the spacing.
     # Some of those features already exist to an extent in assembled_views.py but the implementation is
     # nonexistent or broken for some of them.
+
+    if mode == "single":
+        pipeline1a = {"tincture": "g", "charge": "ztest"}
+        print(f"Image 1a: {make_charge_image(pipeline1a)}")
 
 
 main()

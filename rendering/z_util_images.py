@@ -1,7 +1,9 @@
 import os
 from random import random
 import cairo
-from const import canvas
+from PIL import Image
+
+from const import canvas, charge_size
 
 
 def supply_guid():
@@ -20,19 +22,14 @@ def delete_all_images(base="\\rendering\\img"):
 
 
 def configure_svg_assets():
-    png_path = "\\rendering\\assets\\png"
-    svg_path = os.getcwd() + "\\rendering\\assets\\svg"
-    delete_all_images(png_path)
+    png_path = os.getcwd() + "\\rendering\\assets\\png\\"
 
-    for i in os.listdir(svg_path):
-        name = i[0:len(i)-4]
-        i_svg_path = svg_path + "\\" + i
-        i_svg2_path = svg_path + "\\2" + i
-        i_png_path = os.getcwd() + png_path + "\\" + name + ".png"
+    delete_all_images(png_path + "l")
+    delete_all_images(png_path + "m")
+    delete_all_images(png_path + "s")
 
-        # os.popen(f"cp {i_svg_path} {i_svg2_path}")
-        #
-        # surf = cairo.SVGSurface(i_svg2_path, canvas["w"], canvas["h"])
-        # surf.write_to_png(i_png_path)
-
-        # https://www.youtube.com/watch?v=QQtJOsIg8hs
+    for i in os.listdir(png_path + "f"):
+        for letter, size in charge_size.items():
+            if letter != "f":
+                image = Image.open(png_path + "f\\" + i).resize((int(size), int(size)))
+                image.save(png_path + letter + "\\" + i)

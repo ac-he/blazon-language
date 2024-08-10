@@ -51,7 +51,7 @@ def per_bend(dexter_base, sinister_chief, shape):
     if shape == "pennant":
         side_intersect = canvas["h"] * 5 / 8
 
-    db_guid = make_charge_image(dexter_base)
+    db_guid = make_charge_image(dexter_base, shape=shape, dof="per bend", division="dexter-base")
     surf1 = surface.create_from_png(db_guid)
     context.set_source_surface(surf1)
     context.move_to(0, 0)

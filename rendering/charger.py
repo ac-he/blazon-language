@@ -1,14 +1,17 @@
 # the charger takes in JSON
 # and outputs an IMAGE GUID
+import os
+
 import cairo
-from const import canvas, tinctures
+from PIL import Image
+from const import canvas, tinctures, charge_loc, charge_size
 from rendering.z_util_images import supply_guid
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
 context = cairo.Context(surface)
 
 
-def make_charge_image(charge_dict):
+def make_charge_image(charge_dict, shape="rect", dof="per fess", division="chief"):
     global surface, context
     surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
     context = cairo.Context(surface)
@@ -22,6 +25,8 @@ def make_charge_image(charge_dict):
     match charge:
         case "label":
             draw_feature_label(charge_dict.get("charge-tincture"), charge_dict.get("quantity"))
+        case "ztest":
+            stamp_feature(charge, charge_dict.get("tincture"), charge_dict["quantity"], shape, dof, division)
         case _:
             pass
     pass
@@ -36,6 +41,29 @@ def set_field_tincture(tincture):
     global surface, context
     context.set_source_rgb(tinctures[tincture]["r"], tinctures[tincture]["g"], tinctures[tincture]["b"])
     context.rectangle(0, 0, canvas["w"], canvas["h"])
+    context.fill()
+
+
+def stamp_feature(charge, tincture, quantity, shape, dof, field):
+    suffix = "_m.png"
+    if tinctures[tincture].get("type") == "colour":
+        suffix = "_c.png"
+
+    loc_x = charge_loc[dof][field][shape][quantity]["loc_x"][0]
+    loc_y = charge_loc[dof][field][shape][quantity]["loc_y"][0]
+    size = charge_loc[dof][field][shape][quantity]["size"]
+
+    size_d = "f"
+    for letter, value in charge_size.items():
+        if size is value:
+            size_d = letter
+
+    path = os.getcwd() + "\\rendering\\assets\\png\\" + size_d + "\\" + charge + suffix
+
+    surf1 = surface.create_from_png(path)
+    context.set_source_surface(surf1, loc_x, loc_y)
+    context.rectangle(loc_x, loc_y, size, size)
+    context.close_path()
     context.fill()
 
 
