@@ -30,7 +30,7 @@ def main():
         make_assembled_image(assembled_views.default_view)
 
     if mode == "div-set":
-        assembled_views.make_default_test_data_by_division("per cross", assembled_views.charges, 3)
+        assembled_views.make_default_test_data_by_division("per pale", assembled_views.charges, 3)
         make_assembled_image(assembled_views.default_view)
 
     # DEMO: The general rendering pipeline is:
@@ -96,8 +96,11 @@ def main():
     # nonexistent or broken for some of them.
 
     if mode == "single":
-        pipeline1a = {"tincture": "g", "charge": "sun"}
-        print(f"Image 1a: {make_charge_image(pipeline1a)}")
+        pipeline1a = {"shape": "pennant", "field": {"party": "per pale",
+                      "dexter": {"tincture": "v", "charge": "castle", "quantity": 3},
+                      "sinister": {"tincture": "a", "charge": "sun"}
+                      }}
+        print(f"Image 1a: {make_trimmed_image(pipeline1a)}")
 
 
 main()
