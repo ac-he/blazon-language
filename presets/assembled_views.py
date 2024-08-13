@@ -36,20 +36,27 @@ shapes = ["banner", "heater", "pennant", "rect", "shield"]
 
 colors = ["g", "s", "v", "a", "p"]
 metals = ["o", "r"]
+charges = ["sun", "castle", "clarion"]
+n = len(charges)
+
+
 ci = 0
 mi = 0
+si = 0
 
 
 def make_default_test_data(charge, quantity=1):
     global default_view, ci, mi
 
-    charges = charge
-    if isinstance(charge, str):
-        charges = [charge]
+    charge_set = charge
+    if charge == "mix":
+        mix_default(quantity)
+    elif isinstance(charge, str):
+        charge_set = [charge]
 
-    for stamp in charges:
+    for stamp in charge_set:
         for shape in shapes:
-            for quantity in range(quantity, quantity+1):
+            for quantity in range(1, quantity+1):
                 default_view["crests"].append(add_per_bend(stamp, shape, quantity))
                 default_view["crests"].append(add_per_bend_sinister(stamp, shape, quantity))
                 default_view["crests"].append(add_per_chevron(stamp, shape, quantity))
@@ -61,6 +68,57 @@ def make_default_test_data(charge, quantity=1):
 
             mi = mi + 1
             ci = ci + 1
+
+
+def mix_default(quantity=1):
+    global default_view, ci, mi, si
+
+    for shape in shapes:
+        for quantity in range(1, quantity+1):
+            default_view["crests"].append(add_per_bend(charges[si % n], shape, quantity))
+            default_view["crests"].append(add_per_bend_sinister(charges[si % n], shape, quantity))
+            default_view["crests"].append(add_per_chevron(charges[si % n], shape, quantity))
+            default_view["crests"].append(add_per_cross(charges[si % n], shape, quantity))
+            default_view["crests"].append(add_per_fess(charges[si % n], shape, quantity))
+            default_view["crests"].append(add_per_pale(charges[si % n], shape, quantity))
+            default_view["crests"].append(add_per_pall(charges[si % n], shape, quantity))
+            default_view["crests"].append(add_per_saltire(charges[si % n], shape, quantity))
+
+            si = si + 1
+
+        mi = mi + 1
+        ci = ci + 1
+
+
+def make_default_test_data_by_division(division, charge, quantity=1):
+    global default_view, ci, mi, si
+    charge_set = charge
+    if isinstance(charge, str):
+        charge_set = [charge]
+
+    for quantity in range(1, quantity + 1):
+        for shape in shapes:
+            for stamp in charge_set:
+                match division:
+                    case "per bend":
+                        default_view["crests"].append(add_per_bend(stamp, shape, quantity))
+                    case "per bend sinister":
+                        default_view["crests"].append(add_per_bend_sinister(stamp, shape, quantity))
+                    case "per chevron":
+                        default_view["crests"].append(add_per_chevron(stamp, shape, quantity))
+                    case "per cross":
+                        default_view["crests"].append(add_per_cross(stamp, shape, quantity))
+                    case "per fess":
+                        default_view["crests"].append(add_per_fess(stamp, shape, quantity))
+                    case "per pale":
+                        default_view["crests"].append(add_per_pale(stamp, shape, quantity))
+                    case "per pall":
+                        default_view["crests"].append(add_per_pall(stamp, shape, quantity))
+                    case "per saltire":
+                        default_view["crests"].append(add_per_saltire(stamp, shape, quantity))
+
+                mi = mi + 1
+                ci = ci + 1
 
 
 def add_per_bend(charge, shape, quantity):
