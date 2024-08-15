@@ -1520,86 +1520,86 @@ charge_loc = {
             "banner": {
                 1: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.55]
+                    "loc_x": [canvas["w"] * 0.400],
+                    "loc_y": [canvas["h"] * 0.560]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["xs"],
+                    "loc_x": [canvas["w"] * 0.330, canvas["w"] * 0.520],
+                    "loc_y": [canvas["h"] * 0.600, canvas["h"] * 0.600]
                 },
                 3: {
-                    "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["xs"],
+                    "loc_x": [canvas["w"] * 0.190, canvas["w"] * 0.425, canvas["w"] * 0.660],
+                    "loc_y": [canvas["h"] * 0.715, canvas["h"] * 0.550, canvas["h"] * 0.715]
                 }
             },
             "heater": {
                 1: {
                     "size": charge_size["l"],
-                    "loc_x": [canvas["w"] * 0.3],
-                    "loc_y": [canvas["h"] * 0.6]
+                    "loc_x": [canvas["w"] * 0.300],
+                    "loc_y": [canvas["h"] * 0.610]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.250, canvas["w"] * 0.550],
+                    "loc_y": [canvas["h"] * 0.700, canvas["h"] * 0.700]
                 },
                 3: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "loc_x": [canvas["w"] * 0.250, canvas["w"] * 0.400, canvas["w"] * 0.550],
+                    "loc_y": [canvas["h"] * 0.750, canvas["h"] * 0.550, canvas["h"] * 0.750]
                 }
             },
             "pennant": {
                 1: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.35],
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.4],
                     "loc_y": [canvas["h"] * 0.5]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.400, canvas["w"] * 0.400],
+                    "loc_y": [canvas["h"] * 0.445, canvas["h"] * 0.615]
                 },
                 3: {
-                    "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["xs"],
+                    "loc_x": [canvas["w"] * 0.335, canvas["w"] * 0.425, canvas["w"] * 0.515],
+                    "loc_y": [canvas["h"] * 0.500, canvas["h"] * 0.630, canvas["h"] * 0.500]
                 }
             },
             "rect": {
                 1: {
-                    "size": charge_size["l"],
-                    "loc_x": [canvas["w"] * 0.3],
-                    "loc_y": [canvas["h"] * 0.675]
+                    "size": charge_size["m"],
+                    "loc_x": [canvas["w"] * 0.350],
+                    "loc_y": [canvas["h"] * 0.700]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.280, canvas["w"] * 0.520],
+                    "loc_y": [canvas["h"] * 0.750, canvas["h"] * 0.750]
                 },
                 3: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "loc_x": [canvas["w"] * 0.250, canvas["w"] * 0.400, canvas["w"] * 0.550],
+                    "loc_y": [canvas["h"] * 0.815, canvas["h"] * 0.615, canvas["h"] * 0.815]
                 }
             },
             "shield": {
                 1: {
                     "size": charge_size["l"],
-                    "loc_x": [canvas["w"] * 0.3],
-                    "loc_y": [canvas["h"] * 0.6]
+                    "loc_x": [canvas["w"] * 0.300],
+                    "loc_y": [canvas["h"] * 0.605]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.250, canvas["w"] * 0.550],
+                    "loc_y": [canvas["h"] * 0.690, canvas["h"] * 0.690]
                 },
                 3: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "loc_x": [canvas["w"] * 0.250, canvas["w"] * 0.400, canvas["w"] * 0.550],
+                    "loc_y": [canvas["h"] * 0.725, canvas["h"] * 0.550, canvas["h"] * 0.725]
                 }
             }
         },
@@ -1607,86 +1607,86 @@ charge_loc = {
             "banner": {
                 1: {
                     "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.35],
-                    "loc_y": [canvas["h"] * 0.05]
+                    "loc_x": [canvas["w"] * 0.350],
+                    "loc_y": [canvas["h"] * 0.060]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.280, canvas["w"] * 0.520],
+                    "loc_y": [canvas["h"] * 0.060, canvas["h"] * 0.060]
                 },
                 3: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "loc_x": [canvas["w"] * 0.250, canvas["w"] * 0.400, canvas["w"] * 0.550],
+                    "loc_y": [canvas["h"] * 0.025, canvas["h"] * 0.200, canvas["h"] * 0.025]
                 }
             },
             "heater": {
                 1: {
                     "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.35],
-                    "loc_y": [canvas["h"] * 0.05]
+                    "loc_x": [canvas["w"] * 0.350],
+                    "loc_y": [canvas["h"] * 0.060]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.280, canvas["w"] * 0.520],
+                    "loc_y": [canvas["h"] * 0.060, canvas["h"] * 0.060]
                 },
                 3: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "loc_x": [canvas["w"] * 0.250, canvas["w"] * 0.400, canvas["w"] * 0.550],
+                    "loc_y": [canvas["h"] * 0.025, canvas["h"] * 0.200, canvas["h"] * 0.025]
                 }
             },
             "pennant": {
                 1: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.35],
-                    "loc_y": [canvas["h"] * 0.05]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.400],
+                    "loc_y": [canvas["h"] * 0.060]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.280, canvas["w"] * 0.520],
+                    "loc_y": [canvas["h"] * 0.030, canvas["h"] * 0.030]
                 },
                 3: {
-                    "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["xs"],
+                    "loc_x": [canvas["w"] * 0.290, canvas["w"] * 0.425, canvas["w"] * 0.560],
+                    "loc_y": [canvas["h"] * 0.040, canvas["h"] * 0.160, canvas["h"] * 0.040]
                 }
             },
             "rect": {
                 1: {
-                    "size": charge_size["l"],
-                    "loc_x": [canvas["w"] * 0.3],
-                    "loc_y": [canvas["h"] * 0.025]
+                    "size": charge_size["m"],
+                    "loc_x": [canvas["w"] * 0.350],
+                    "loc_y": [canvas["h"] * 0.075]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.400, canvas["w"] * 0.400],
+                    "loc_y": [canvas["h"] * 0.050, canvas["h"] * 0.225]
                 },
                 3: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "loc_x": [canvas["w"] * 0.250, canvas["w"] * 0.400, canvas["w"] * 0.550],
+                    "loc_y": [canvas["h"] * 0.050, canvas["h"] * 0.225, canvas["h"] * 0.050]
                 }
             },
             "shield": {
                 1: {
                     "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.35],
-                    "loc_y": [canvas["h"] * 0.05]
+                    "loc_x": [canvas["w"] * 0.350],
+                    "loc_y": [canvas["h"] * 0.060]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.280, canvas["w"] * 0.520],
+                    "loc_y": [canvas["h"] * 0.060, canvas["h"] * 0.060]
                 },
                 3: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "loc_x": [canvas["w"] * 0.250, canvas["w"] * 0.400, canvas["w"] * 0.550],
+                    "loc_y": [canvas["h"] * 0.025, canvas["h"] * 0.200, canvas["h"] * 0.025]
                 }
             }
         },
@@ -1694,86 +1694,86 @@ charge_loc = {
             "banner": {
                 1: {
                     "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.05],
+                    "loc_x": [canvas["w"] * 0.050],
                     "loc_y": [canvas["h"] * 0.325]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.075, canvas["w"] * 0.075],
+                    "loc_y": [canvas["h"] * 0.290, canvas["h"] * 0.460]
                 },
                 3: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "loc_x": [canvas["w"] * 0.025, canvas["w"] * 0.150, canvas["w"] * 0.025],
+                    "loc_y": [canvas["h"] * 0.183, canvas["h"] * 0.353, canvas["h"] * 0.523]
                 }
             },
             "heater": {
                 1: {
                     "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.05],
-                    "loc_y": [canvas["h"] * 0.35]
+                    "loc_x": [canvas["w"] * 0.050],
+                    "loc_y": [canvas["h"] * 0.325]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.075, canvas["w"] * 0.075],
+                    "loc_y": [canvas["h"] * 0.290, canvas["h"] * 0.460]
                 },
                 3: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "loc_x": [canvas["w"] * 0.025, canvas["w"] * 0.150, canvas["w"] * 0.025],
+                    "loc_y": [canvas["h"] * 0.183, canvas["h"] * 0.353, canvas["h"] * 0.523]
                 }
             },
             "pennant": {
                 1: {
-                    "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.225],
-                    "loc_y": [canvas["h"] * 0.3]
+                    "size": charge_size["xs"],
+                    "loc_x": [canvas["w"] * 0.230],
+                    "loc_y": [canvas["h"] * 0.300]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["xs"],
+                    "loc_x": [canvas["w"] * 0.180, canvas["w"] * 0.230],
+                    "loc_y": [canvas["h"] * 0.235, canvas["h"] * 0.345]
                 },
                 3: {
-                    "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["xs"],  # yeah i know it aint pretty :/
+                    "loc_x": [canvas["w"] * 0.125, canvas["w"] * 0.195, canvas["w"] * 0.265],
+                    "loc_y": [canvas["h"] * 0.150, canvas["h"] * 0.250, canvas["h"] * 0.350]
                 }
             },
             "rect": {
                 1: {
                     "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.05],
-                    "loc_y": [canvas["h"] * 0.375]
+                    "loc_x": [canvas["w"] * 0.050],
+                    "loc_y": [canvas["h"] * 0.378]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.075, canvas["w"] * 0.075],
+                    "loc_y": [canvas["h"] * 0.300, canvas["h"] * 0.550]
                 },
                 3: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "loc_x": [canvas["w"] * 0.025, canvas["w"] * 0.150, canvas["w"] * 0.025],
+                    "loc_y": [canvas["h"] * 0.228, canvas["h"] * 0.428, canvas["h"] * 0.628]
                 }
             },
             "shield": {
                 1: {
                     "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.05],
+                    "loc_x": [canvas["w"] * 0.050],
                     "loc_y": [canvas["h"] * 0.325]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.075, canvas["w"] * 0.075],
+                    "loc_y": [canvas["h"] * 0.290, canvas["h"] * 0.460]
                 },
                 3: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "loc_x": [canvas["w"] * 0.025, canvas["w"] * 0.150, canvas["w"] * 0.025],
+                    "loc_y": [canvas["h"] * 0.183, canvas["h"] * 0.353, canvas["h"] * 0.523]
                 }
             }
         },
@@ -1781,86 +1781,86 @@ charge_loc = {
             "banner": {
                 1: {
                     "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.65],
+                    "loc_x": [canvas["w"] * 0.650],
                     "loc_y": [canvas["h"] * 0.325]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.725, canvas["w"] * 0.725],
+                    "loc_y": [canvas["h"] * 0.290, canvas["h"] * 0.460]
                 },
                 3: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "loc_x": [canvas["w"] * 0.775, canvas["w"] * 0.650, canvas["w"] * 0.775],
+                    "loc_y": [canvas["h"] * 0.183, canvas["h"] * 0.353, canvas["h"] * 0.523]
                 }
             },
             "heater": {
                 1: {
                     "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.65],
+                    "loc_x": [canvas["w"] * 0.650],
                     "loc_y": [canvas["h"] * 0.325]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.725, canvas["w"] * 0.725],
+                    "loc_y": [canvas["h"] * 0.290, canvas["h"] * 0.460]
                 },
                 3: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "loc_x": [canvas["w"] * 0.775, canvas["w"] * 0.650, canvas["w"] * 0.775],
+                    "loc_y": [canvas["h"] * 0.183, canvas["h"] * 0.353, canvas["h"] * 0.523]
                 }
             },
             "pennant": {
                 1: {
-                    "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.575],
-                    "loc_y": [canvas["h"] * 0.3]
+                    "size": charge_size["xs"],
+                    "loc_x": [canvas["w"] * 0.620],
+                    "loc_y": [canvas["h"] * 0.300]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["xs"],
+                    "loc_x": [canvas["w"] * 0.670, canvas["w"] * 0.620],
+                    "loc_y": [canvas["h"] * 0.235, canvas["h"] * 0.345]
                 },
                 3: {
-                    "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["xs"],  # yeah i know it aint pretty :/
+                    "loc_x": [canvas["w"] * 0.725, canvas["w"] * 0.655, canvas["w"] * 0.585],
+                    "loc_y": [canvas["h"] * 0.150, canvas["h"] * 0.250, canvas["h"] * 0.350]
                 }
             },
             "rect": {
                 1: {
                     "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.65],
-                    "loc_y": [canvas["h"] * 0.375]
+                    "loc_x": [canvas["w"] * 0.650],
+                    "loc_y": [canvas["h"] * 0.378]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.725, canvas["w"] * 0.725],
+                    "loc_y": [canvas["h"] * 0.300, canvas["h"] * 0.550]
                 },
                 3: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "loc_x": [canvas["w"] * 0.775, canvas["w"] * 0.650, canvas["w"] * 0.775],
+                    "loc_y": [canvas["h"] * 0.228, canvas["h"] * 0.428, canvas["h"] * 0.628]
                 }
             },
             "shield": {
                 1: {
                     "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.65],
+                    "loc_x": [canvas["w"] * 0.650],
                     "loc_y": [canvas["h"] * 0.325]
                 },
                 2: {
-                    "size": charge_size["m"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.725, canvas["w"] * 0.725],
+                    "loc_y": [canvas["h"] * 0.290, canvas["h"] * 0.460]
                 },
                 3: {
                     "size": charge_size["s"],
-                    "loc_x": [canvas["w"] * 0.3, canvas["w"] * 0.4, canvas["w"] * 0.5],
-                    "loc_y": [canvas["h"] * 0.1, canvas["h"] * 0.1, canvas["h"] * 0.1]
+                    "loc_x": [canvas["w"] * 0.775, canvas["w"] * 0.650, canvas["w"] * 0.775],
+                    "loc_y": [canvas["h"] * 0.183, canvas["h"] * 0.353, canvas["h"] * 0.523]
                 }
             }
         }
