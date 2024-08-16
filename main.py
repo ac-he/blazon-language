@@ -30,7 +30,7 @@ def main():
         make_assembled_image(assembled_views.default_view)
 
     if mode == "div-set":
-        assembled_views.make_default_test_data_by_division("per pale", assembled_views.charges, 3)
+        assembled_views.make_default_test_data_by_division("per bend both", assembled_views.charges, 3)
         make_assembled_image(assembled_views.default_view)
 
     # DEMO: The general rendering pipeline is:

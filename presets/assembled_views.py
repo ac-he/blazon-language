@@ -104,6 +104,9 @@ def make_default_test_data_by_division(division, charge, quantity=1):
                         default_view["crests"].append(add_per_bend(stamp, shape, quantity))
                     case "per bend sinister":
                         default_view["crests"].append(add_per_bend_sinister(stamp, shape, quantity))
+                    case "per bend both":
+                        default_view["crests"].append(add_per_bend(stamp, shape, quantity))
+                        default_view["crests"].append(add_per_bend_sinister(stamp, shape, quantity))
                     case "per chevron":
                         default_view["crests"].append(add_per_chevron(stamp, shape, quantity))
                     case "per cross":
