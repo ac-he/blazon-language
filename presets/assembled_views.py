@@ -1,19 +1,7 @@
-# default_view = {
-#     "w": 1600,
-#     "h": 900,
-#     "background": "mid-grey.png",
-#     "crest-scale-width": 220,
-#     "kerning": 30,
-#     "line-spacing": 40,
-#     "override-shapes": False,
-#     "margin": 50,
-#     "shapes": [
-#         "rect"
-#     ],
-#     "crests": [
-#
-#     ]
-# }
+import random
+from math import floor
+
+from const import tinctures
 
 default_view = {
     "w": 3820,
@@ -33,9 +21,13 @@ default_view = {
 }
 
 shapes = ["banner", "heater", "pennant", "rect", "shield"]
+divisions = ["per bend", "per bend sinister", "per chevron", "per cross", "per fess", "per pale", "per pall",
+             "per saltire"]
 
 colors = ["g", "s", "v", "a", "p"]
 metals = ["o", "r"]
+all_tinctures = ["g", "s", "v", "a", "p", "o", "r"]
+
 charges = ["sun", "castle", "clarion"]
 n = len(charges)
 
@@ -43,6 +35,142 @@ n = len(charges)
 ci = 0
 mi = 0
 si = 0
+
+
+def make_randomized_test_data(total, charge_list="all", shape_list="all", division_list="all",
+                              quantity_list="all", quantity_frequencies="equal"):
+    cl = charge_list
+    if charge_list == "all":
+        cl = charges
+
+    sl = shape_list
+    if shape_list == "all":
+        sl = shapes
+
+    dl = division_list
+    if division_list == "all":
+        dl = divisions
+
+    ql = quantity_list
+    if quantity_list == "all":
+        ql = [1, 2, 3]
+
+    qf = quantity_frequencies
+    if quantity_frequencies == "equal":
+        qf = [1, 1, 1]
+    if len(quantity_frequencies) < len(quantity_list):
+        qf.append(0)
+        qf.append(0)
+
+    wql = []
+    for i in range(len(qf)):
+        for j in range(qf[i]):
+            wql.append(ql[i])
+
+    for i in range(total):
+        this_dl = dl[floor(random.random() * len(dl))]
+
+        s = sl[floor(random.random() * len(sl))]
+
+        a_rc = get_random_tincture_combo()
+        a_cl = cl[floor(random.random() * len(cl))]
+        a_ql = wql[floor(random.random() * len(wql))]
+
+        b_rc = get_random_tincture_combo()
+        b_cl = cl[floor(random.random() * len(cl))]
+        b_ql = wql[floor(random.random() * len(wql))]
+
+        c_rc = get_random_tincture_combo()
+        c_cl = cl[floor(random.random() * len(cl))]
+        c_ql = wql[floor(random.random() * len(wql))]
+
+        d_rc = get_random_tincture_combo()
+        d_cl = cl[floor(random.random() * len(cl))]
+        d_ql = wql[floor(random.random() * len(wql))]
+
+        if this_dl == "per bend":
+            default_view["crests"].append(add_per_bend(
+                [a_cl, b_cl],
+                s,
+                [a_ql, b_ql],
+                tincture=[a_rc["field"], b_rc["field"]],
+                c_tincture=[a_rc["charge"], b_rc["charge"]]
+            ))
+        elif this_dl == "per bend sinister":
+            default_view["crests"].append(add_per_bend_sinister(
+                [a_cl, b_cl],
+                s,
+                [a_ql, b_ql],
+                tincture=[a_rc["field"], b_rc["field"]],
+                c_tincture=[a_rc["charge"], b_rc["charge"]]
+            ))
+        elif this_dl == "per chevron":
+            default_view["crests"].append(add_per_chevron(
+                [a_cl, b_cl],
+                s,
+                [a_ql, b_ql],
+                tincture=[a_rc["field"], b_rc["field"]],
+                c_tincture=[a_rc["charge"], b_rc["charge"]]
+            ))
+        elif this_dl == "per cross":
+            default_view["crests"].append(add_per_cross(
+                [a_cl, b_cl, c_cl, d_cl],
+                s,
+                [a_ql, b_ql, c_ql, d_ql],
+                tincture=[a_rc["field"], b_rc["field"], c_rc["field"], d_rc["field"]],
+                c_tincture=[a_rc["charge"], b_rc["charge"], c_rc["charge"], d_rc["charge"]]
+            ))
+        elif this_dl == "per fess":
+            default_view["crests"].append(add_per_fess(
+                [a_cl, b_cl],
+                s,
+                [a_ql, b_ql],
+                tincture=[a_rc["field"], b_rc["field"]],
+                c_tincture=[a_rc["charge"], b_rc["charge"]]
+            ))
+        elif this_dl == "per pale":
+            default_view["crests"].append(add_per_pale(
+                [a_cl, b_cl],
+                s,
+                [a_ql, b_ql],
+                tincture=[a_rc["field"], b_rc["field"]],
+                c_tincture=[a_rc["charge"], b_rc["charge"]]
+            ))
+        elif this_dl == "per pall":
+            default_view["crests"].append(add_per_pall(
+                [a_cl, b_cl, c_cl],
+                s,
+                [a_ql, b_ql, c_ql],
+                tincture=[a_rc["field"], b_rc["field"], c_rc["field"]],
+                c_tincture=[a_rc["charge"], b_rc["charge"], c_rc["charge"]]
+            ))
+        elif this_dl == "per saltire":
+            default_view["crests"].append(add_per_saltire(
+                [a_cl, b_cl, c_cl, d_cl],
+                s,
+                [a_ql, b_ql, c_ql, d_ql],
+                tincture=[a_rc["field"], b_rc["field"], c_rc["field"], d_rc["field"]],
+                c_tincture=[a_rc["charge"], b_rc["charge"], c_rc["charge"], d_rc["charge"]]
+            ))
+
+
+def get_random_tincture_combo():
+    f = all_tinctures[floor(random.random() * 7)]
+    c = all_tinctures[floor(random.random() * 7)]
+    if tinctures[f].get("type") == "colour" and tinctures[c].get("type") == "colour":
+        f_or_c = floor(random.random() * 2)
+        a_or_o = floor(random.random() * 2)
+        if a_or_o == 0:
+            m = "o"
+        else:
+            m = "a"
+
+        if f_or_c == 0:
+            f = m
+        else:
+            c = m
+
+    return {"field": f, "charge": c}
 
 
 def make_default_test_data(charge, quantity=1):
@@ -124,202 +252,244 @@ def make_default_test_data_by_division(division, charge, quantity=1):
                 ci = ci + 1
 
 
-def add_per_bend(charge, shape, quantity):
+def expand_defaults(charge, quantity, tincture, c_tincture):
+    if not isinstance(charge, list):
+        add_charges = [charge, charge, charge, charge]
+    else:
+        add_charges = charge
+
+    if not isinstance(quantity, list):
+        add_quantities = [quantity, quantity, quantity, quantity]
+    else:
+        add_quantities = quantity
+
+    if not isinstance(tincture, list):
+        add_tinctures = [colors[ci % 5], metals[mi % 2], colors[ci % 5], metals[mi % 2]]
+    else:
+        add_tinctures = tincture
+
+    if not isinstance(c_tincture, list):
+        add_c_tinctures = [metals[mi % 2], colors[ci % 5], metals[mi % 2], colors[ci % 5]]
+    else:
+        add_c_tinctures = c_tincture
+
+    return {
+        "charges": add_charges,
+        "quantities": add_quantities,
+        "tinctures": add_tinctures,
+        "c-tinctures": add_c_tinctures
+    }
+
+
+def add_per_bend(charge, shape, quantity, tincture="preset", c_tincture="preset"):
+    settings = expand_defaults(charge, quantity, tincture=tincture, c_tincture=c_tincture)
+
     return {
         "shape": shape,
         "field": {
             "party": "per bend",
             "dexter-base": {
-                "tincture": colors[ci % 5],
-                "charge": charge,
-                "charge-tincture": metals[mi % 2],
-                "quantity": quantity
+                "tincture": settings["tinctures"][0],
+                "charge": settings["charges"][0],
+                "charge-tincture": settings["c-tinctures"][0],
+                "quantity": settings["quantities"][0]
             },
             "sinister-chief": {
-                "tincture": metals[mi % 2],
-                "charge": charge,
-                "charge-tincture": colors[ci % 5],
-                "quantity": quantity
+                "tincture": settings["tinctures"][1],
+                "charge": settings["charges"][1],
+                "charge-tincture": settings["c-tinctures"][1],
+                "quantity": settings["quantities"][1]
             },
         }
     }
 
 
-def add_per_bend_sinister(charge, shape, quantity):
+def add_per_bend_sinister(charge, shape, quantity, tincture="preset", c_tincture="preset"):
+    settings = expand_defaults(charge, quantity, tincture=tincture, c_tincture=c_tincture)
+
     return {
         "shape": shape,
         "field": {
             "party": "per bend sinister",
             "dexter-chief": {
-                "tincture": colors[ci % 5],
-                "charge": charge,
-                "charge-tincture": metals[mi % 2],
-                "quantity": quantity
+                "tincture": settings["tinctures"][0],
+                "charge": settings["charges"][0],
+                "charge-tincture": settings["c-tinctures"][0],
+                "quantity": settings["quantities"][0]
             },
             "sinister-base": {
-                "tincture": metals[mi % 2],
-                "charge": charge,
-                "charge-tincture": colors[ci % 5],
-                "quantity": quantity
+                "tincture": settings["tinctures"][1],
+                "charge": settings["charges"][1],
+                "charge-tincture": settings["c-tinctures"][1],
+                "quantity": settings["quantities"][1]
             },
         }
     }
 
 
-def add_per_chevron(charge, shape, quantity):
+def add_per_chevron(charge, shape, quantity,  tincture="preset", c_tincture="preset"):
+    settings = expand_defaults(charge, quantity, tincture=tincture, c_tincture=c_tincture)
+
     return {
         "shape": shape,
         "field": {
             "party": "per chevron",
             "chief": {
-                "tincture": colors[ci % 5],
-                "charge": charge,
-                "charge-tincture": metals[mi % 2],
-                "quantity": quantity
+                "tincture": settings["tinctures"][0],
+                "charge": settings["charges"][0],
+                "charge-tincture": settings["c-tinctures"][0],
+                "quantity": settings["quantities"][0]
             },
             "base": {
-                "tincture": metals[mi % 2],
-                "charge": charge,
-                "charge-tincture": colors[ci % 5],
-                "quantity": quantity
+                "tincture": settings["tinctures"][1],
+                "charge": settings["charges"][1],
+                "charge-tincture": settings["c-tinctures"][1],
+                "quantity": settings["quantities"][1]
             },
         }
     }
 
 
-def add_per_cross(charge, shape, quantity):
+def add_per_cross(charge, shape, quantity,  tincture="preset", c_tincture="preset"):
+    settings = expand_defaults(charge, quantity, tincture=tincture, c_tincture=c_tincture)
+
     return {
         "shape": shape,
         "field": {
             "party": "per cross",
             "dexter-chief": {
-                "tincture": colors[ci % 5],
-                "charge": charge,
-                "charge-tincture": metals[mi % 2],
-                "quantity": quantity
+                "tincture": settings["tinctures"][0],
+                "charge": settings["charges"][0],
+                "charge-tincture": settings["c-tinctures"][0],
+                "quantity": settings["quantities"][0]
             },
             "sinister-base": {
-                "tincture": colors[(ci + 1) % 5],
-                "charge": charge,
-                "charge-tincture": metals[mi % 2],
-                "quantity": quantity
+                "tincture": settings["tinctures"][1],
+                "charge": settings["charges"][1],
+                "charge-tincture": settings["c-tinctures"][1],
+                "quantity": settings["quantities"][1]
             },
             "dexter-base": {
-                "tincture": metals[(mi + 1) % 2],
-                "charge": charge,
-                "charge-tincture": colors[ci % 5],
-                "quantity": quantity
+                "tincture": settings["tinctures"][2],
+                "charge": settings["charges"][2],
+                "charge-tincture": settings["c-tinctures"][2],
+                "quantity": settings["quantities"][2]
             },
             "sinister-chief": {
-                "tincture": metals[mi % 2],
-                "charge": charge,
-                "charge-tincture": colors[ci % 5],
-                "quantity": quantity
+                "tincture": settings["tinctures"][3],
+                "charge": settings["charges"][3],
+                "charge-tincture": settings["c-tinctures"][3],
+                "quantity": settings["quantities"][3]
             },
         }
     }
 
 
-def add_per_fess(charge, shape, quantity):
+def add_per_fess(charge, shape, quantity,  tincture="preset", c_tincture="preset"):
+    settings = expand_defaults(charge, quantity, tincture=tincture, c_tincture=c_tincture)
+
     return {
         "shape": shape,
         "field": {
             "party": "per fess",
             "chief": {
-                "tincture": colors[ci % 5],
-                "charge": charge,
-                "charge-tincture": metals[mi % 2],
-                "quantity": quantity
+                "tincture": settings["tinctures"][0],
+                "charge": settings["charges"][0],
+                "charge-tincture": settings["c-tinctures"][0],
+                "quantity": settings["quantities"][0]
             },
             "base": {
-                "tincture": metals[mi % 2],
-                "charge": charge,
-                "charge-tincture": colors[ci % 5],
-                "quantity": quantity
+                "tincture": settings["tinctures"][1],
+                "charge": settings["charges"][1],
+                "charge-tincture": settings["c-tinctures"][1],
+                "quantity": settings["quantities"][1]
             },
         }
     }
 
 
-def add_per_pale(charge, shape, quantity):
+def add_per_pale(charge, shape, quantity,  tincture="preset", c_tincture="preset"):
+    settings = expand_defaults(charge, quantity, tincture=tincture, c_tincture=c_tincture)
+
     return {
         "shape": shape,
         "field": {
             "party": "per pale",
             "dexter": {
-                "tincture": colors[ci % 5],
-                "charge": charge,
-                "charge-tincture": metals[mi % 2],
-                "quantity": quantity
+                "tincture": settings["tinctures"][0],
+                "charge": settings["charges"][0],
+                "charge-tincture": settings["c-tinctures"][0],
+                "quantity": settings["quantities"][0]
             },
             "sinister": {
-                "tincture": metals[mi % 2],
-                "charge": charge,
-                "charge-tincture": colors[ci % 5],
-                "quantity": quantity
+                "tincture": settings["tinctures"][1],
+                "charge": settings["charges"][1],
+                "charge-tincture": settings["c-tinctures"][1],
+                "quantity": settings["quantities"][1]
             },
         }
     }
 
 
-def add_per_pall(charge, shape, quantity):
+def add_per_pall(charge, shape, quantity,  tincture="preset", c_tincture="preset"):
+    settings = expand_defaults(charge, quantity, tincture=tincture, c_tincture=c_tincture)
+
     return {
         "shape": shape,
         "field": {
             "party": "per pall",
             "dexter": {
-                "tincture": colors[ci % 5],
-                "charge": charge,
-                "charge-tincture": metals[mi % 2],
-                "quantity": quantity
+                "tincture": settings["tinctures"][0],
+                "charge": settings["charges"][0],
+                "charge-tincture": settings["c-tinctures"][0],
+                "quantity": settings["quantities"][0]
             },
             "sinister": {
-                "tincture": colors[(ci+1) % 5],
-                "charge": charge,
-                "charge-tincture": metals[mi % 2],
-                "quantity": quantity
+                "tincture": settings["tinctures"][1],
+                "charge": settings["charges"][1],
+                "charge-tincture": settings["c-tinctures"][1],
+                "quantity": settings["quantities"][1]
             },
             "chief": {
-                "tincture": metals[mi % 2],
-                "charge": charge,
-                "charge-tincture": colors[ci % 5],
-                "quantity": quantity
+                "tincture": settings["tinctures"][2],
+                "charge": settings["charges"][2],
+                "charge-tincture": settings["c-tinctures"][2],
+                "quantity": settings["quantities"][2]
             },
         }
     }
 
 
-def add_per_saltire(charge, shape, quantity):
+def add_per_saltire(charge, shape, quantity,  tincture="preset", c_tincture="preset"):
+    settings = expand_defaults(charge, quantity, tincture=tincture, c_tincture=c_tincture)
+
     return {
         "shape": shape,
         "field": {
             "party": "per saltire",
             "chief": {
-                "tincture": colors[ci % 5],
-                "charge": charge,
-                "charge-tincture": metals[mi % 2],
-                "quantity": quantity
+                "tincture": settings["tinctures"][0],
+                "charge": settings["charges"][0],
+                "charge-tincture": settings["c-tinctures"][0],
+                "quantity": settings["quantities"][0]
             },
             "dexter": {
-                "tincture": metals[(mi + 1) % 2],
-                "charge": charge,
-                "charge-tincture": colors[ci % 5],
-                "quantity": quantity
+                "tincture": settings["tinctures"][1],
+                "charge": settings["charges"][1],
+                "charge-tincture": settings["c-tinctures"][1],
+                "quantity": settings["quantities"][1]
             },
             "base": {
-                "tincture": colors[(ci + 1) % 5],
-                "charge": charge,
-                "charge-tincture": metals[mi % 2],
-                "quantity": quantity
+                "tincture": settings["tinctures"][2],
+                "charge": settings["charges"][2],
+                "charge-tincture": settings["c-tinctures"][2],
+                "quantity": settings["quantities"][2]
             },
             "sinister": {
-                "tincture": metals[mi % 2],
-                "charge": charge,
-                "charge-tincture": colors[ci % 5],
-                "quantity": quantity
+                "tincture": settings["tinctures"][3],
+                "charge": settings["charges"][3],
+                "charge-tincture": settings["c-tinctures"][3],
+                "quantity": settings["quantities"][3]
             },
         }
     }
-
-
-

@@ -1,4 +1,5 @@
 from presets import assembled_views
+from presets.assembled_views import make_randomized_test_data
 from rendering.charger import make_charge_image
 from rendering.compositor import make_parted_image
 from rendering.trimmer import make_trimmed_image
@@ -11,7 +12,7 @@ def main():
     # configure_svg_assets()
     delete_all_images()
 
-    mode = "div-set"
+    mode = "random"
 
     # DEMO: This will generate test flags, primarily to demonstrate division of field and charge arrangements.
     #       I have been -- and plan to continue -- using this to see what needs to be fixed at a glance.
@@ -101,6 +102,16 @@ def main():
                       "sinister": {"tincture": "a", "charge": "sun"}
                       }}
         print(f"Image 1a: {make_trimmed_image(pipeline1a)}")
+
+    if mode == "random":
+        make_randomized_test_data(40,
+                                  charge_list="all",
+                                  division_list="all",
+                                  shape_list="all",
+                                  quantity_list="all",
+                                  quantity_frequencies=[7, 2, 1]
+                                  )
+        make_assembled_image(assembled_views.default_view)
 
 
 main()

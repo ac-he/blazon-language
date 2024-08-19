@@ -27,6 +27,7 @@ def configure_svg_assets():
     delete_all_images(png_path + "l")
     delete_all_images(png_path + "m")
     delete_all_images(png_path + "s")
+    delete_all_images(png_path + "xs")
 
     png_path = os.getcwd() + png_path
 
