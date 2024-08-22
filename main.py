@@ -9,7 +9,7 @@ from rendering.assembler import make_assembled_image
 
 def main():
     # DEMO: These are just setup tasks
-    # configure_svg_assets()
+    configure_svg_assets()
     delete_all_images()
 
     mode = "random"

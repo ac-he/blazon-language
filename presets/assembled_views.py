@@ -28,7 +28,14 @@ colors = ["g", "s", "v", "a", "p"]
 metals = ["o", "r"]
 all_tinctures = ["g", "s", "v", "a", "p", "o", "r"]
 
-charges = ["sun", "castle", "clarion"]
+charges = [
+    "sun", "castle", "clarion", "martlet",
+    "rose", "anchor", "bee", "dolphin",
+    "eagle", "griffin", "harp", "comet",
+    "keys", "lion_rampant", "moon", "ship",
+    "owl", "portcullis", "quatrefoil", "raven"
+]
+
 n = len(charges)
 
 
