@@ -22,17 +22,19 @@ def delete_all_images(base="\\rendering\\img"):
 
 
 def configure_svg_assets():
-    png_path = "\\rendering\\assets\\png\\"
+    img_sets = ["cm", "agoprsv"]
+    for img_set in img_sets:
+        png_path = f"\\rendering\\assets\\{img_set}\\"
 
-    delete_all_images(png_path + "l")
-    delete_all_images(png_path + "m")
-    delete_all_images(png_path + "s")
-    delete_all_images(png_path + "xs")
+        delete_all_images(png_path + "l")
+        delete_all_images(png_path + "m")
+        delete_all_images(png_path + "s")
+        delete_all_images(png_path + "xs")
 
-    png_path = os.getcwd() + png_path
+        png_path = os.getcwd() + png_path
 
-    for i in os.listdir(png_path + "f"):
-        for letter, size in charge_size.items():
-            if letter != "f":
-                image = Image.open(png_path + "f\\" + i).resize((int(size), int(size)))
-                image.save(png_path + letter + "\\" + i)
+        for i in os.listdir(png_path + "f"):
+            for letter, size in charge_size.items():
+                if letter != "f":
+                    image = Image.open(png_path + "f\\" + i).resize((int(size), int(size)))
+                    image.save(png_path + letter + "\\" + i)

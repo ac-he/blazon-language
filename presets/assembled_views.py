@@ -1,7 +1,7 @@
 import random
 from math import floor
 
-from const import tinctures
+import const
 
 default_view = {
     "w": 3820,
@@ -28,17 +28,9 @@ colors = ["g", "s", "v", "a", "p"]
 metals = ["o", "r"]
 all_tinctures = ["g", "s", "v", "a", "p", "o", "r"]
 
-charges = [
-    "sun", "castle", "clarion", "martlet",
-    "rose", "anchor", "bee", "dolphin",
-    "eagle", "griffin", "harp", "comet",
-    "keys", "lion_rampant", "moon", "ship",
-    "owl", "portcullis", "quatrefoil", "raven",
-    "escallop", "thistle", "unicorn", "wheel",
-    "wolf", "sword", "yale", "zilant",
-    "crown", "lion_passant", "lamp", "dragon",
-    "phoenix", 
-]
+charges = []
+for key in const.charges.keys():
+    charges.append(key)
 
 n = len(charges)
 
@@ -166,22 +158,14 @@ def make_randomized_test_data(total, charge_list="all", shape_list="all", divisi
 
 
 def get_random_tincture_combo():
-    f = all_tinctures[floor(random.random() * 7)]
-    c = all_tinctures[floor(random.random() * 7)]
-    if tinctures[f].get("type") == "colour" and tinctures[c].get("type") == "colour":
-        f_or_c = floor(random.random() * 2)
-        a_or_o = floor(random.random() * 2)
-        if a_or_o == 0:
-            m = "o"
-        else:
-            m = "a"
+    m = metals[floor(random.random() * 2)]
+    c = colors[floor(random.random() * 5)]
 
-        if f_or_c == 0:
-            f = m
-        else:
-            c = m
-
-    return {"field": f, "charge": c}
+    metal_field = random.random() > 0.5
+    if metal_field:
+        return {"field": m, "charge": c}
+    else:
+        return {"field": c, "charge": m}
 
 
 def make_default_test_data(charge, quantity=1):

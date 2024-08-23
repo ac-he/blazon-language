@@ -4,7 +4,7 @@ import os
 
 import cairo
 from PIL import Image
-from const import canvas, tinctures, charge_loc, charge_size
+from const import canvas, tinctures, charge_loc, charge_size, charges
 from rendering.z_util_images import supply_guid
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
@@ -22,16 +22,12 @@ def make_charge_image(charge_dict, shape="rect", dof="per fess", division="chief
     if not charge_dict.get("quantity"):
         charge_dict["quantity"] = 1
 
-    match charge:
-        case "label":
-            draw_feature_label(charge_dict.get("charge-tincture"), charge_dict.get("quantity"))
-            pass
-        case None:
-            pass
-        case _:
-            stamp_feature(charge, charge_dict.get("tincture"), charge_dict["quantity"], shape, dof, division)
-
-    pass
+    if charges[charge]:
+        if charges[charge]["type"] == "cm" or charges[charge]["type"] == "agoprsv":
+            stamp_feature(charge, charge_dict.get("tincture"), charge_dict["quantity"], shape, dof, division,
+                          charges[charge]["type"], charge_dict.get("charge-tincture"))
+        elif charges[charge]["type"] == "geo":
+            draw_feature_label(charge_dict.get("tincture"), charge_dict["quantity"])
 
     guid = supply_guid()
     surface.write_to_png(guid)
@@ -46,10 +42,14 @@ def set_field_tincture(tincture):
     context.fill()
 
 
-def stamp_feature(charge, tincture, quantity, shape, dof, field):
-    suffix = "_m.png"
-    if tinctures[tincture].get("type") == "colour":
-        suffix = "_c.png"
+def stamp_feature(charge, tincture, quantity, shape, dof, field, c_type, c_tincture="o"):
+    suffix = "_z.png"
+    if c_type == "cm":
+        suffix = "_m.png"
+        if tinctures[tincture].get("type") == "colour":
+            suffix = "_c.png"
+    else:
+        suffix = f"_{c_tincture}.png"
 
     size = charge_loc[dof][field][shape][quantity]["size"]
 
@@ -58,7 +58,7 @@ def stamp_feature(charge, tincture, quantity, shape, dof, field):
         if size is value:
             size_d = letter
 
-    path = os.getcwd() + "\\rendering\\assets\\png\\" + size_d + "\\" + charge + suffix
+    path = f"{os.getcwd()}\\rendering\\assets\\{c_type}\\{size_d}\\{charge}{suffix}"
 
     for stamp in range(0, quantity):
         loc_x = charge_loc[dof][field][shape][quantity]["loc_x"][stamp]

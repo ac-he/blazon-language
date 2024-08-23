@@ -21,6 +21,43 @@ charge_size = {
     "xs": canvas["w"] * 0.15     # x small
 }
 
+charges = {
+    "anchor": {"type": "cm"},
+    "bee": {"type": "cm"},
+    "castle": {"type": "cm"},
+    "clarion": {"type": "cm"},
+    "comet": {"type": "cm"},
+    "crown": {"type": "cm"},
+    "dolphin": {"type": "cm"},
+    "dragon": {"type": "cm"},
+    "eagle": {"type": "cm"},
+    "escallop": {"type": "cm"},
+    "griffin": {"type": "cm"},
+    "harp": {"type": "cm"},
+    "keys": {"type": "cm"},
+    #  "label": {"type": "geo"},
+    "lamp": {"type": "cm"},
+    "lion_passant": {"type": "cm"},
+    "lion_rampant": {"type": "cm"},
+    "martlet": {"type": "agoprsv"},
+    "moon": {"type": "cm"},
+    "owl": {"type": "cm"},
+    "phoenix": {"type": "cm"},
+    "portcullis": {"type": "cm"},
+    "quatrefoil": {"type": "cm"},
+    "raven": {"type": "cm"},
+    "rose": {"type": "cm"},
+    "sun": {"type": "cm"},
+    "ship": {"type": "cm"},
+    "sword": {"type": "cm"},
+    "thistle": {"type": "cm"},
+    "unicorn": {"type": "cm"},
+    "wheel": {"type": "cm"},
+    "wolf": {"type": "cm"},
+    "yale": {"type": "cm"},
+    "zilant": {"type": "cm"},
+}
+
 charge_loc = {
     "per bend": {
         "dexter-base": {
@@ -1865,13 +1902,4 @@ charge_loc = {
             }
         }
     },  # DONE
-}
-
-needs_flip = {
-    "anchor": False,
-    "bee": False,
-    "castle": False,
-    "dolphin": True,
-    "eagle": True,
-    "sun": False,
 }
