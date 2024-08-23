@@ -33,7 +33,11 @@ charges = [
     "rose", "anchor", "bee", "dolphin",
     "eagle", "griffin", "harp", "comet",
     "keys", "lion_rampant", "moon", "ship",
-    "owl", "portcullis", "quatrefoil", "raven"
+    "owl", "portcullis", "quatrefoil", "raven",
+    "escallop", "thistle", "unicorn", "wheel",
+    "wolf", "sword", "yale", "zilant",
+    "crown", "lion_passant", "lamp", "dragon",
+    "phoenix", 
 ]
 
 n = len(charges)
