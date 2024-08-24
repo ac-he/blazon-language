@@ -75,31 +75,31 @@ geo_charge_detail = {
                 "banner": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.550,
-                    "center": canvas['w'] * 0.350,
+                    "center": canvas['w'] * 0.300,
                     "spacing": canvas['w'] * 0.200
                 },
                 "heater": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.300,
                     "spacing": canvas['w'] * 0.200
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_h": canvas['h'] * 0.050,
+                    "bar_y": canvas['h'] * 0.500,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.150
                 },
                 "rect": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.300,
                     "spacing": canvas['w'] * 0.200
                 },
                 "shield": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.300,
                     "spacing": canvas['w'] * 0.200
                 }
             },
@@ -107,31 +107,31 @@ geo_charge_detail = {
                 "banner": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
+                    "center": canvas['w'] * 0.625,
                     "spacing": canvas['w'] * 0.200
                 },
                 "heater": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
+                    "center": canvas['w'] * 0.625,
                     "spacing": canvas['w'] * 0.200
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.050,
+                    "bar_y": canvas['h'] * 0.160,
+                    "center": canvas['w'] * 0.625,
+                    "spacing": canvas['w'] * 0.150
                 },
                 "rect": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
+                    "center": canvas['w'] * 0.625,
                     "spacing": canvas['w'] * 0.200
                 },
                 "shield": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
+                    "center": canvas['w'] * 0.625,
                     "spacing": canvas['w'] * 0.200
                 }
             }
@@ -141,63 +141,63 @@ geo_charge_detail = {
                 "banner": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
+                    "center": canvas['w'] * 0.375,
                     "spacing": canvas['w'] * 0.200
                 },
                 "heater": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
+                    "center": canvas['w'] * 0.375,
                     "spacing": canvas['w'] * 0.200
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.050,
+                    "bar_y": canvas['h'] * 0.160,
+                    "center": canvas['w'] * 0.375,
+                    "spacing": canvas['w'] * 0.150
                 },
                 "rect": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
+                    "center": canvas['w'] * 0.375,
                     "spacing": canvas['w'] * 0.200
                 },
                 "shield": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
+                    "center": canvas['w'] * 0.375,
                     "spacing": canvas['w'] * 0.200
                 }
             },
             "sinister-base": {
                 "banner": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.700,
                     "spacing": canvas['w'] * 0.200
                 },
                 "heater": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.700,
                     "spacing": canvas['w'] * 0.200
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_h": canvas['h'] * 0.050,
+                    "bar_y": canvas['h'] * 0.500,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.150
                 },
                 "rect": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.700,
                     "spacing": canvas['w'] * 0.200
                 },
                 "shield": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.700,
                     "spacing": canvas['w'] * 0.200
                 }
             },
@@ -238,31 +238,31 @@ geo_charge_detail = {
             "base": {
                 "banner": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.600,
                     "center": canvas['w'] * 0.500,
                     "spacing": canvas['w'] * 0.200
                 },
                 "heater": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.700,
                     "center": canvas['w'] * 0.500,
                     "spacing": canvas['w'] * 0.200
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_h": canvas['h'] * 0.050,
+                    "bar_y": canvas['h'] * 0.550,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.130
                 },
                 "rect": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.700,
                     "center": canvas['w'] * 0.500,
                     "spacing": canvas['w'] * 0.200
                 },
                 "shield": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.650,
                     "center": canvas['w'] * 0.500,
                     "spacing": canvas['w'] * 0.200
                 }
@@ -271,130 +271,130 @@ geo_charge_detail = {
         "per cross": {
             "dexter-chief": {
                 "banner": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "heater": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.050,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.300,
+                    "spacing": canvas['w'] * 0.135
                 },
                 "rect": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "shield": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 }
             },
             "dexter-base": {
                 "banner": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "heater": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.030,
+                    "bar_y": canvas['h'] * 0.450,
+                    "center": canvas['w'] * 0.380,
+                    "spacing": canvas['w'] * 0.085
                 },
                 "rect": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.650,
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "shield": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 }
             },
             "sinister-chief": {
                 "banner": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "heater": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.050,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.700,
+                    "spacing": canvas['w'] * 0.135
                 },
                 "rect": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "shield": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 }
             },
             "sinister-base": {
                 "banner": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "heater": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.030,
+                    "bar_y": canvas['h'] * 0.450,
+                    "center": canvas['w'] * 0.620,
+                    "spacing": canvas['w'] * 0.085
                 },
                 "rect": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.650,
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "shield": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 }
             }
         },
@@ -414,7 +414,7 @@ geo_charge_detail = {
                 },
                 "pennant": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.100,
                     "center": canvas['w'] * 0.500,
                     "spacing": canvas['w'] * 0.200
                 },
@@ -434,31 +434,31 @@ geo_charge_detail = {
             "base": {
                 "banner": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.550,
                     "center": canvas['w'] * 0.500,
                     "spacing": canvas['w'] * 0.200
                 },
                 "heater": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.550,
                     "center": canvas['w'] * 0.500,
                     "spacing": canvas['w'] * 0.200
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.430,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.150
                 },
                 "rect": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.650,
                     "center": canvas['w'] * 0.500,
                     "spacing": canvas['w'] * 0.200
                 },
                 "shield": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.550,
                     "center": canvas['w'] * 0.500,
                     "spacing": canvas['w'] * 0.200
                 }
@@ -467,66 +467,66 @@ geo_charge_detail = {
         "per pale": {
             "dexter": {
                 "banner": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "heater": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.050,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.300,
+                    "spacing": canvas['w'] * 0.135
                 },
                 "rect": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "shield": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 }
             },
             "sinister": {
                 "banner": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "heater": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.050,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.700,
+                    "spacing": canvas['w'] * 0.135
                 },
                 "rect": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "shield": {
-                    "bar_h": canvas['h'] * 0.075,
+                    "bar_h": canvas['h'] * 0.065,
                     "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 }
             }
         },
@@ -534,227 +534,227 @@ geo_charge_detail = {
             "chief": {
                 "banner": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.100,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.180
                 },
                 "heater": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.100,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.180
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_h": canvas['h'] * 0.050,
+                    "bar_y": canvas['h'] * 0.100,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.130
                 },
                 "rect": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.100,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.180
                 },
                 "shield": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.100,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.180
                 }
             },
             "dexter": {
                 "banner": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "heater": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.035,
+                    "bar_y": canvas['h'] * 0.350,
+                    "center": canvas['w'] * 0.345,
+                    "spacing": canvas['w'] * 0.095
                 },
                 "rect": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "shield": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.250,
+                    "spacing": canvas['w'] * 0.155
                 }
             },
             "sinister": {
                 "banner": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "heater": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.035,
+                    "bar_y": canvas['h'] * 0.350,
+                    "center": canvas['w'] * 0.655,
+                    "spacing": canvas['w'] * 0.095
                 },
                 "rect": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 },
                 "shield": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.750,
+                    "spacing": canvas['w'] * 0.155
                 }
             }
         },
         "per saltire": {
             "base": {
                 "banner": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_h": canvas['h'] * 0.045,
+                    "bar_y": canvas['h'] * 0.600,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.155
                 },
                 "heater": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.700,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.180
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_h": canvas['h'] * 0.045,
+                    "bar_y": canvas['h'] * 0.575,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.125
                 },
                 "rect": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.700,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.180
                 },
                 "shield": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.700,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.180
                 }
             },
             "chief": {
                 "banner": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_h": canvas['h'] * 0.070,
+                    "bar_y": canvas['h'] * 0.100,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.160
                 },
                 "heater": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_h": canvas['h'] * 0.070,
+                    "bar_y": canvas['h'] * 0.100,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.160
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_h": canvas['h'] * 0.060,
+                    "bar_y": canvas['h'] * 0.090,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.140
                 },
                 "rect": {
                     "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_y": canvas['h'] * 0.100,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.180
                 },
                 "shield": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
+                    "bar_h": canvas['h'] * 0.070,
+                    "bar_y": canvas['h'] * 0.100,
                     "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "spacing": canvas['w'] * 0.160
                 }
             },
             "dexter": {
                 "banner": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.060,
+                    "bar_y": canvas['h'] * 0.350,
+                    "center": canvas['w'] * 0.230,
+                    "spacing": canvas['w'] * 0.140
                 },
                 "heater": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.060,
+                    "bar_y": canvas['h'] * 0.350,
+                    "center": canvas['w'] * 0.230,
+                    "spacing": canvas['w'] * 0.140
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.035,
+                    "bar_y": canvas['h'] * 0.350,
+                    "center": canvas['w'] * 0.335,
+                    "spacing": canvas['w'] * 0.070
                 },
                 "rect": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.060,
+                    "bar_y": canvas['h'] * 0.350,
+                    "center": canvas['w'] * 0.230,
+                    "spacing": canvas['w'] * 0.140
                 },
                 "shield": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.060,
+                    "bar_y": canvas['h'] * 0.350,
+                    "center": canvas['w'] * 0.230,
+                    "spacing": canvas['w'] * 0.140
                 }
             },
             "sinister": {
                 "banner": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.060,
+                    "bar_y": canvas['h'] * 0.350,
+                    "center": canvas['w'] * 0.770,
+                    "spacing": canvas['w'] * 0.140
                 },
                 "heater": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.060,
+                    "bar_y": canvas['h'] * 0.350,
+                    "center": canvas['w'] * 0.770,
+                    "spacing": canvas['w'] * 0.140
                 },
                 "pennant": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.035,
+                    "bar_y": canvas['h'] * 0.350,
+                    "center": canvas['w'] * 0.665,
+                    "spacing": canvas['w'] * 0.070
                 },
                 "rect": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.060,
+                    "bar_y": canvas['h'] * 0.350,
+                    "center": canvas['w'] * 0.770,
+                    "spacing": canvas['w'] * 0.140
                 },
                 "shield": {
-                    "bar_h": canvas['h'] * 0.075,
-                    "bar_y": canvas['h'] * 0.150,
-                    "center": canvas['w'] * 0.500,
-                    "spacing": canvas['w'] * 0.200
+                    "bar_h": canvas['h'] * 0.060,
+                    "bar_y": canvas['h'] * 0.350,
+                    "center": canvas['w'] * 0.770,
+                    "spacing": canvas['w'] * 0.140
                 }
             }
         },
