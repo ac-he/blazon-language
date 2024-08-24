@@ -40,7 +40,9 @@ charges = {
     "escallop": {"type": "cm"},
     "escutcheon": {"type": "agoprsv"},
     "fleur_de_lis": {"type": "agoprsv"},
+    "fret": {"type": "oversize"},
     "fusil": {"type": "agoprsv"},
+    "gorge": {"type": "oversize"},
     "griffin": {"type": "cm"},
     "harp": {"type": "cm"},
     "keys": {"type": "cm"},
@@ -73,7 +75,7 @@ charges = {
     "zilant": {"type": "cm"},
 }
 
-geo_charge_detail = {
+charge_detail = {
     "label": {
         "per bend": {
             "dexter-base": {

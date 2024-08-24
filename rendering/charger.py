@@ -30,6 +30,8 @@ def make_charge_image(charge_dict, shape="rect", dof="per fess", division="chief
         elif charges[charge]["type"] == "geo":
             if charge == "label":
                 draw_feature_label(charge_dict.get("charge-tincture"), charge_dict["quantity"], shape, dof, division)
+        elif charges[charge]["type"] == "oversize":
+            draw_feature_oversize(charge, shape, dof, division, charge_dict.get("charge-tincture"))
 
     guid = supply_guid()
     surface.write_to_png(guid)
@@ -77,10 +79,10 @@ def draw_feature_label(feature_tincture, quantity, shape, dof, division):
     context.set_source_rgb(tinctures[feature_tincture]["r"], tinctures[feature_tincture]["g"],
                            tinctures[feature_tincture]["b"])
 
-    bar_h = const.geo_charge_detail["label"][dof][division][shape]["bar_h"]
-    bar_y = const.geo_charge_detail["label"][dof][division][shape]["bar_y"]
-    center = const.geo_charge_detail["label"][dof][division][shape]["center"]
-    spacing = const.geo_charge_detail["label"][dof][division][shape]["spacing"]
+    bar_h = const.charge_detail["label"][dof][division][shape]["bar_h"]
+    bar_y = const.charge_detail["label"][dof][division][shape]["bar_y"]
+    center = const.charge_detail["label"][dof][division][shape]["center"]
+    spacing = const.charge_detail["label"][dof][division][shape]["spacing"]
 
     label_in_y = bar_y + bar_h * 0.500
     label_out_y = bar_y + bar_h * 1.750
@@ -103,3 +105,15 @@ def draw_feature_label(feature_tincture, quantity, shape, dof, division):
     context.rectangle(0, bar_y, canvas["w"], bar_h)
     context.fill()
 
+
+def draw_feature_oversize(charge, shape, dof, field, c_tincture):
+    path = f"{os.getcwd()}\\rendering\\assets\\oversize\\{charge}_{c_tincture}.png"
+    midpoint = charge_loc[dof][field][shape][1]["size"] / 2
+    loc_x = charge_loc[dof][field][shape][1]["loc_x"][0] + midpoint - 500
+    loc_y = charge_loc[dof][field][shape][1]["loc_y"][0] + midpoint - 500
+
+    surf1 = surface.create_from_png(path)
+    context.set_source_surface(surf1, loc_x, loc_y)
+    context.rectangle(loc_x, loc_y, 1000, 1000)
+    context.close_path()
+    context.fill()
