@@ -3,7 +3,8 @@
 import os
 
 import cairo
-from PIL import Image
+
+import const
 from const import canvas, tinctures, charge_loc, charge_size, charges
 from rendering.z_util_images import supply_guid
 
@@ -22,12 +23,13 @@ def make_charge_image(charge_dict, shape="rect", dof="per fess", division="chief
     if not charge_dict.get("quantity"):
         charge_dict["quantity"] = 1
 
-    if charges[charge]:
+    if charges.get(charge):
         if charges[charge]["type"] == "cm" or charges[charge]["type"] == "agoprsv":
             stamp_feature(charge, charge_dict.get("tincture"), charge_dict["quantity"], shape, dof, division,
                           charges[charge]["type"], charge_dict.get("charge-tincture"))
         elif charges[charge]["type"] == "geo":
-            draw_feature_label(charge_dict.get("tincture"), charge_dict["quantity"])
+            if charge == "label":
+                draw_feature_label(charge_dict.get("charge-tincture"), charge_dict["quantity"], shape, dof, division)
 
     guid = supply_guid()
     surface.write_to_png(guid)
@@ -42,8 +44,7 @@ def set_field_tincture(tincture):
     context.fill()
 
 
-def stamp_feature(charge, tincture, quantity, shape, dof, field, c_type, c_tincture="o"):
-    suffix = "_z.png"
+def stamp_feature(charge, tincture, quantity, shape, dof, field, c_type, c_tincture):
     if c_type == "cm":
         suffix = "_m.png"
         if tinctures[tincture].get("type") == "colour":
@@ -71,29 +72,34 @@ def stamp_feature(charge, tincture, quantity, shape, dof, field, c_type, c_tinct
         context.fill()
 
 
-def draw_feature_label(feature_tincture, quantity):
+def draw_feature_label(feature_tincture, quantity, shape, dof, division):
     global surface, context
     context.set_source_rgb(tinctures[feature_tincture]["r"], tinctures[feature_tincture]["g"],
                            tinctures[feature_tincture]["b"])
 
-    for i in range(quantity):
-        context.move_to(130, 250 + i * 200)
-        context.line_to(190, 150 + i * 200)
-        context.line_to(250, 250 + i * 200)
+    bar_h = const.geo_charge_detail["label"][dof][division][shape]["bar_h"]
+    bar_y = const.geo_charge_detail["label"][dof][division][shape]["bar_y"]
+    center = const.geo_charge_detail["label"][dof][division][shape]["center"]
+    spacing = const.geo_charge_detail["label"][dof][division][shape]["spacing"]
+
+    label_in_y = bar_y + bar_h * 0.500
+    label_out_y = bar_y + bar_h * 1.750
+    label_w = bar_h * 1.01
+
+    label_centers = []
+    if quantity == 1:
+        label_centers = [center]
+    elif quantity == 2:
+        label_centers = [center - spacing / 2, center + spacing / 2]
+    elif quantity == 3:
+        label_centers = [center - spacing, center, center + spacing]
+
+    for label in label_centers:
+        context.move_to(label - label_w/2, label_out_y)
+        context.line_to(label, label_in_y)
+        context.line_to(label + label_w/2, label_out_y)
         context.close_path()
 
-        context.move_to(290, 250 + i * 200)
-        context.line_to(350, 150 + i * 200)
-        context.line_to(410, 250 + i * 200)
-        context.close_path()
-        context.fill()
-
-        context.move_to(450, 250 + i * 200)
-        context.line_to(510, 150 + i * 200)
-        context.line_to(570, 250 + i * 200)
-        context.close_path()
-        context.fill()
-
-        context.rectangle(0, 130 + i * 200, canvas["w"], 70)
-        context.fill()
+    context.rectangle(0, bar_y, canvas["w"], bar_h)
+    context.fill()
 

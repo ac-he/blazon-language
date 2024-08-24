@@ -31,6 +31,7 @@ all_tinctures = ["g", "s", "v", "a", "p", "o", "r"]
 charges = []
 for key in const.charges.keys():
     charges.append(key)
+charges = ["label"]
 
 n = len(charges)
 

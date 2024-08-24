@@ -9,10 +9,10 @@ from rendering.assembler import make_assembled_image
 
 def main():
     # DEMO: These are just setup tasks
-    configure_svg_assets()
+    # configure_svg_assets()
     delete_all_images()
 
-    mode = "random"
+    mode = "div-set"
 
     # DEMO: This will generate test flags, primarily to demonstrate division of field and charge arrangements.
     #       I have been -- and plan to continue -- using this to see what needs to be fixed at a glance.
@@ -27,11 +27,11 @@ def main():
     #           the specified quantity. This is untested for values exceeding 3, because I don't plan on ever having
     #           the value exceed 3 "in real life".
     if mode == "set":
-        assembled_views.make_default_test_data(assembled_views.charges, 3)
+        assembled_views.make_default_test_data("label", 3)
         make_assembled_image(assembled_views.default_view)
 
     if mode == "div-set":
-        assembled_views.make_default_test_data_by_division("per bend both", assembled_views.charges, 3)
+        assembled_views.make_default_test_data_by_division("per bend both", "label", 3)
         make_assembled_image(assembled_views.default_view)
 
     # DEMO: The general rendering pipeline is:
