@@ -1,4 +1,5 @@
-from presets import assembled_views
+from presets.preset_flag_collections import pre_flag_collection
+from presets.preset_flag_views import pre_flag_view
 from presets.view_data_generator import make_randomized_test_data, make_default_test_data, \
     make_default_test_data_by_division
 from rendering.charger import make_charge_image
@@ -13,7 +14,12 @@ def main():
     # configure_svg_assets()
     delete_all_images()
 
-    mode = "div-set"
+    mode = "nice-renders"
+
+    if mode == "nice-renders":
+        collection_settings = pre_flag_view["default_view"]
+        collection_settings["crests"] = pre_flag_collection['nato']
+        make_assembled_image(collection_settings)
 
     # DEMO: This will generate test flags, primarily to demonstrate division of field and charge arrangements.
     #       I have been -- and plan to continue -- using this to see what needs to be fixed at a glance.
@@ -28,12 +34,12 @@ def main():
     #           the specified quantity. This is untested for values exceeding 3, because I don't plan on ever having
     #           the value exceed 3 "in real life".
     if mode == "set":
-        data = assembled_views.default_view
+        data = pre_flag_view["default_view"]
         data["crests"] = make_default_test_data("quarterly_of_eight", 1)
         make_assembled_image(data)
 
     if mode == "div-set":
-        data = assembled_views.default_view
+        data = pre_flag_view["default_view"]
         data["crests"] = make_default_test_data_by_division("per cross", "quarterly_of_eight", 3)
         make_assembled_image(data)
 
@@ -107,7 +113,7 @@ def main():
         print(f"Image 1a: {make_trimmed_image(pipeline1a)}")
 
     if mode == "random":
-        data = assembled_views.default_view
+        data = pre_flag_view["default_view"]
         data["crests"] = make_randomized_test_data(40, charge_list="all", division_list="all", shape_list="all",
                                                    quantity_list="all", quantity_frequencies=[7, 2, 1])
         make_assembled_image(data)
