@@ -60,6 +60,7 @@ charges = {
     "phoenix": {"type": "cm"},
     "portcullis": {"type": "cm"},
     "quatrefoil": {"type": "cm"},
+    "quarterly_of_eight": {"type": "geo"},
     "raven": {"type": "cm"},
     "rose": {"type": "agoprsv"},
     "roundel": {"type": "agoprsv"},
@@ -762,6 +763,696 @@ charge_detail = {
                     "bar_y": canvas['h'] * 0.350,
                     "center": canvas['w'] * 0.770,
                     "spacing": canvas['w'] * 0.140
+                }
+            }
+        },
+    },
+    "qoe": {
+        "per bend": {
+            "dexter-base": {
+                "banner": {
+                    "fess": canvas['h'] * 0.600,
+                    "dexter": canvas['w'] * 0.167,
+                    "pale": canvas['w'] * 0.333,
+                    "sinister": canvas['w'] * 0.500
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.600,
+                    "dexter": canvas['w'] * 0.167,
+                    "pale": canvas['w'] * 0.333,
+                    "sinister": canvas['w'] * 0.500
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.500,
+                    "dexter": canvas['w'] * 0.400,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.600
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.600,
+                    "dexter": canvas['w'] * 0.167,
+                    "pale": canvas['w'] * 0.333,
+                    "sinister": canvas['w'] * 0.500
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.600,
+                    "dexter": canvas['w'] * 0.167,
+                    "pale": canvas['w'] * 0.333,
+                    "sinister": canvas['w'] * 0.500
+                }
+            },
+            "sinister-chief": {
+                "banner": {
+                    "fess": canvas['h'] * 0.300,
+                    "dexter": canvas['w'] * 0.500,
+                    "pale": canvas['w'] * 0.667,
+                    "sinister": canvas['w'] * 0.833
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.300,
+                    "dexter": canvas['w'] * 0.500,
+                    "pale": canvas['w'] * 0.667,
+                    "sinister": canvas['w'] * 0.833
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.200,
+                    "dexter": canvas['w'] * 0.450,
+                    "pale": canvas['w'] * 0.600,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.300,
+                    "dexter": canvas['w'] * 0.500,
+                    "pale": canvas['w'] * 0.667,
+                    "sinister": canvas['w'] * 0.833
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.300,
+                    "dexter": canvas['w'] * 0.500,
+                    "pale": canvas['w'] * 0.667,
+                    "sinister": canvas['w'] * 0.833
+                }
+            }
+        },
+        "per bend sinister": {
+            "dexter-chief": {
+                "banner": {
+                    "fess": canvas['h'] * 0.300,
+                    "dexter": canvas['w'] * 0.167,
+                    "pale": canvas['w'] * 0.333,
+                    "sinister": canvas['w'] * 0.500
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.300,
+                    "dexter": canvas['w'] * 0.167,
+                    "pale": canvas['w'] * 0.333,
+                    "sinister": canvas['w'] * 0.500
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.200,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.400,
+                    "sinister": canvas['w'] * 0.550
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.300,
+                    "dexter": canvas['w'] * 0.167,
+                    "pale": canvas['w'] * 0.333,
+                    "sinister": canvas['w'] * 0.500
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.300,
+                    "dexter": canvas['w'] * 0.167,
+                    "pale": canvas['w'] * 0.333,
+                    "sinister": canvas['w'] * 0.500
+                }
+            },
+            "sinister-base": {
+                "banner": {
+                    "fess": canvas['h'] * 0.600,
+                    "dexter": canvas['w'] * 0.500,
+                    "pale": canvas['w'] * 0.667,
+                    "sinister": canvas['w'] * 0.833
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.600,
+                    "dexter": canvas['w'] * 0.500,
+                    "pale": canvas['w'] * 0.667,
+                    "sinister": canvas['w'] * 0.833
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.500,
+                    "dexter": canvas['w'] * 0.400,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.600
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.600,
+                    "dexter": canvas['w'] * 0.500,
+                    "pale": canvas['w'] * 0.667,
+                    "sinister": canvas['w'] * 0.833
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.600,
+                    "dexter": canvas['w'] * 0.500,
+                    "pale": canvas['w'] * 0.667,
+                    "sinister": canvas['w'] * 0.833
+                }
+            },
+        },
+        "per chevron": {
+            "chief": {
+                "banner": {
+                    "fess": canvas['h'] * 0.250,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.250,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.250,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.250,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.250,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                }
+            },
+            "base": {
+                "banner": {
+                    "fess": canvas['h'] * 0.650,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.650,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.500,
+                    "dexter": canvas['w'] * 0.350,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.650
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.750,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.650,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                }
+            }
+        },
+        "per cross": {
+            "dexter-chief": {
+                "banner": {
+                    "fess": canvas['h'] * 0.225,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.225,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.200,
+                    "dexter": canvas['w'] * 0.200,
+                    "pale": canvas['w'] * 0.300,
+                    "sinister": canvas['w'] * 0.400
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.250,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.225,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                }
+            },
+            "dexter-base": {
+                "banner": {
+                    "fess": canvas['h'] * 0.650,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.650,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.550,
+                    "dexter": canvas['w'] * 0.350,
+                    "pale": canvas['w'] * 0.400,
+                    "sinister": canvas['w'] * 0.450
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.750,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.650,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                }
+            },
+            "sinister-chief": {
+                "banner": {
+                    "fess": canvas['h'] * 0.225,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.225,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.200,
+                    "dexter": canvas['w'] * 0.600,
+                    "pale": canvas['w'] * 0.700,
+                    "sinister": canvas['w'] * 0.800
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.250,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.225,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                }
+            },
+            "sinister-base": {
+                "banner": {
+                    "fess": canvas['h'] * 0.650,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.650,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.550,
+                    "dexter": canvas['w'] * 0.550,
+                    "pale": canvas['w'] * 0.600,
+                    "sinister": canvas['w'] * 0.650
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.750,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.650,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                }
+            }
+        },
+        "per fess": {
+            "chief": {
+                "banner": {
+                    "fess": canvas['h'] * 0.225,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.225,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.200,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.250,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.225,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                }
+            },
+            "base": {
+                "banner": {
+                    "fess": canvas['h'] * 0.675,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.675,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.550,
+                    "dexter": canvas['w'] * 0.350,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.650
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.750,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.675,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                }
+            }
+        },
+        "per pale": {
+            "dexter": {
+                "banner": {
+                    "fess": canvas['h'] * 0.450,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.450,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.250,
+                    "dexter": canvas['w'] * 0.200,
+                    "pale": canvas['w'] * 0.300,
+                    "sinister": canvas['w'] * 0.400
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.500,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.450,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                }
+            },
+            "sinister": {
+                "banner": {
+                    "fess": canvas['h'] * 0.450,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.450,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.250,
+                    "dexter": canvas['w'] * 0.600,
+                    "pale": canvas['w'] * 0.700,
+                    "sinister": canvas['w'] * 0.800
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.500,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.450,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                }
+            }
+        },
+        "per pall": {
+            "chief": {
+                "banner": {
+                    "fess": canvas['h'] * 0.200,
+                    "dexter": canvas['w'] * 0.350,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.650
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.200,
+                    "dexter": canvas['w'] * 0.350,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.650
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.125,
+                    "dexter": canvas['w'] * 0.350,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.650
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.200,
+                    "dexter": canvas['w'] * 0.350,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.650
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.200,
+                    "dexter": canvas['w'] * 0.350,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.650
+                }
+            },
+            "dexter": {
+                "banner": {
+                    "fess": canvas['h'] * 0.550,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.550,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.315,
+                    "dexter": canvas['w'] * 0.200,
+                    "pale": canvas['w'] * 0.300,
+                    "sinister": canvas['w'] * 0.400
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.625,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.550,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                }
+            },
+            "sinister": {
+                "banner": {
+                    "fess": canvas['h'] * 0.550,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.550,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.315,
+                    "dexter": canvas['w'] * 0.600,
+                    "pale": canvas['w'] * 0.700,
+                    "sinister": canvas['w'] * 0.800
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.625,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.550,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                }
+            }
+        },
+        "per saltire": {
+            "base": {
+                "banner": {
+                    "fess": canvas['h'] * 0.750,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.810,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.550,
+                    "dexter": canvas['w'] * 0.375,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.625
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.750,
+                    "dexter": canvas['w'] * 0.350,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.650
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.750,
+                    "dexter": canvas['w'] * 0.350,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.650
+                }
+            },
+            "chief": {
+                "banner": {
+                    "fess": canvas['h'] * 0.150,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.150,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.150,
+                    "dexter": canvas['w'] * 0.375,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.625
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.250,
+                    "dexter": canvas['w'] * 0.350,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.650
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.100,
+                    "dexter": canvas['w'] * 0.350,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.650
+                }
+            },
+            "dexter": {
+                "banner": {
+                    "fess": canvas['h'] * 0.450,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.450,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.300,
+                    "dexter": canvas['w'] * 0.200,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.300
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.500,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.450,
+                    "dexter": canvas['w'] * 0.125,
+                    "pale": canvas['w'] * 0.250,
+                    "sinister": canvas['w'] * 0.375
+                }
+            },
+            "sinister": {
+                "banner": {
+                    "fess": canvas['h'] * 0.450,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.450,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.300,
+                    "dexter": canvas['w'] * 0.700,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.800
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.500,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.450,
+                    "dexter": canvas['w'] * 0.625,
+                    "pale": canvas['w'] * 0.750,
+                    "sinister": canvas['w'] * 0.875
                 }
             }
         },
