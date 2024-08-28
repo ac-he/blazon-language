@@ -13,6 +13,14 @@ canvas = {
     "h": 800
 }
 
+shapes = ["banner", "heater", "pennant", "rect", "shield"]
+divisions = ["per bend", "per bend sinister", "per chevron", "per cross", "per fess", "per pale", "per pall",
+             "per saltire"]
+
+colors = ["g", "s", "v", "a", "p"]
+metals = ["o", "r"]
+all_tinctures = ["g", "s", "v", "a", "p", "o", "r"]
+
 charge_size = {
     "f": 512,  # full
     "l": canvas["w"] * 0.4,  # large

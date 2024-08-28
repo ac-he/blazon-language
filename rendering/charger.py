@@ -7,8 +7,7 @@ from math import floor, ceil
 import cairo
 
 import const
-from const import canvas, tinctures, charge_loc, charge_size, charges
-from presets.assembled_views import all_tinctures
+from const import canvas, tinctures, charge_loc, charge_size, charges, all_tinctures
 from rendering.z_util_images import supply_guid
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])

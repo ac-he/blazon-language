@@ -1,5 +1,6 @@
 from presets import assembled_views
-from presets.assembled_views import make_randomized_test_data
+from presets.view_data_generator import make_randomized_test_data, make_default_test_data, \
+    make_default_test_data_by_division
 from rendering.charger import make_charge_image
 from rendering.compositor import make_parted_image
 from rendering.trimmer import make_trimmed_image
@@ -27,12 +28,14 @@ def main():
     #           the specified quantity. This is untested for values exceeding 3, because I don't plan on ever having
     #           the value exceed 3 "in real life".
     if mode == "set":
-        assembled_views.make_default_test_data("label", 3)
-        make_assembled_image(assembled_views.default_view)
+        data = assembled_views.default_view
+        data["crests"] = make_default_test_data("quarterly_of_eight", 1)
+        make_assembled_image(data)
 
     if mode == "div-set":
-        assembled_views.make_default_test_data_by_division("per bend both", "label", 3)
-        make_assembled_image(assembled_views.default_view)
+        data = assembled_views.default_view
+        data["crests"] = make_default_test_data_by_division("per cross", "quarterly_of_eight", 3)
+        make_assembled_image(data)
 
     # DEMO: The general rendering pipeline is:
     #       User Input =dict=> Assembler =dict=> Trimmer =dict=> Compositor =dict=> Charger ===\
@@ -63,28 +66,28 @@ def main():
         print(f"Image 1a: {make_charge_image(pipeline1a)}")
         print(f"Image 1b: {make_charge_image(pipeline1b)}")
 
-    # Compositor Level (Division of Field)
-    # Supported Divisions:
-    # "per bend"            dexter-base, sinister-chief
-    # "per bend sinister"   sinister-base, dexter-chief
-    # "per chevron"         chief, base
-    # "per cross"           dexter-base, sinister-base, sinister-chief, dexter-chief
-    # "per fess"            chief, base
-    # "per pale"            dexter, sinister
-    # "per pall"            dexter, sinister, chief
-    # "per saltire"         dexter, sinister, chief, base
+        # Compositor Level (Division of Field)
+        # Supported Divisions:
+        # "per bend"            dexter-base, sinister-chief
+        # "per bend sinister"   sinister-base, dexter-chief
+        # "per chevron"         chief, base
+        # "per cross"           dexter-base, sinister-base, sinister-chief, dexter-chief
+        # "per fess"            chief, base
+        # "per pale"            dexter, sinister
+        # "per pall"            dexter, sinister, chief
+        # "per saltire"         dexter, sinister, chief, base
         pipeline2a = {"party": "per fess", "chief": pipeline1a, "base": pipeline1b}
         pipeline2b = {"party": "per pale", "dexter": pipeline1a, "sinister": pipeline1b}
         print(f"Image 2a: {make_parted_image(pipeline2a)}")
         print(f"Image 2b: {make_parted_image(pipeline2b)}")
 
-    # Trimmer Level
-    # Supported Shapes:
-    # "banner"
-    # "heater"
-    # "pennant"
-    # "rect"
-    # "shield"
+        # Trimmer Level
+        # Supported Shapes:
+        # "banner"
+        # "heater"
+        # "pennant"
+        # "rect"
+        # "shield"
         pipeline3a = {"shape": "heater", "field": pipeline2a}
         pipeline3b = {"shape": "banner", "field": pipeline2b}
         print(f"Image 3a: {make_trimmed_image(pipeline3a)}")
@@ -98,20 +101,16 @@ def main():
 
     if mode == "single":
         pipeline1a = {"shape": "pennant", "field": {"party": "per pale",
-                      "dexter": {"tincture": "v", "charge": "castle", "quantity": 3},
-                      "sinister": {"tincture": "a", "charge": "sun"}
-                      }}
+                                                    "dexter": {"tincture": "v", "charge": "castle", "quantity": 3},
+                                                    "sinister": {"tincture": "a", "charge": "sun"}
+                                                    }}
         print(f"Image 1a: {make_trimmed_image(pipeline1a)}")
 
     if mode == "random":
-        make_randomized_test_data(40,
-                                  charge_list="all",
-                                  division_list="all",
-                                  shape_list="all",
-                                  quantity_list="all",
-                                  quantity_frequencies=[7, 2, 1]
-                                  )
-        make_assembled_image(assembled_views.default_view)
+        data = assembled_views.default_view
+        data["crests"] = make_randomized_test_data(40, charge_list="all", division_list="all", shape_list="all",
+                                                   quantity_list="all", quantity_frequencies=[7, 2, 1])
+        make_assembled_image(data)
 
 
 main()
