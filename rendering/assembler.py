@@ -43,7 +43,6 @@ def make_assembled_image(assembled_dict):
         fx = ".png"
 
     print_path = f"{print_dir}\\{print_name}"
-    print(print_path + fx)
 
     background_str = os.getcwd() + "\\presets\\img\\" + assembled_dict.get("background")
     background = surface.create_from_png(background_str)

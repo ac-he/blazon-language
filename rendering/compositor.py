@@ -18,6 +18,8 @@ def make_parted_image(party_dict):
     party = party_dict.get("party")
 
     match party:
+        case "none":
+            return make_charge_image(party_dict.get("field"), party_dict.get("shape"), dof="none", division="field")
         case "per bend":
             per_bend(party_dict.get("dexter-base"), party_dict.get("sinister-chief"), party_dict.get("shape"))
         case "per bend sinister":

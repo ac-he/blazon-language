@@ -71,7 +71,15 @@ def make_randomized_test_data(total, charge_list="all", shape_list="all", divisi
         d_cl = cl[floor(random.random() * len(cl))]
         d_ql = wql[floor(random.random() * len(wql))]
 
-        if this_dl == "per bend":
+        if this_dl == "none":
+            ret_data.append(add_without_division(
+                [a_cl],
+                s,
+                [a_ql],
+                tincture=[a_rc["field"]],
+                c_tincture=[a_rc["charge"]]
+            ))
+        elif this_dl == "per bend":
             ret_data.append(add_per_bend(
                 [a_cl, b_cl],
                 s,
@@ -153,6 +161,7 @@ def make_default_test_data(charge, quantity=1):
     for stamp in charge_set:
         for shape in const.shapes:
             for quantity in range(1, quantity + 1):
+                ret_data.append(add_without_division(stamp, shape, quantity))
                 ret_data.append(add_per_bend(stamp, shape, quantity))
                 ret_data.append(add_per_bend_sinister(stamp, shape, quantity))
                 ret_data.append(add_per_chevron(stamp, shape, quantity))
@@ -174,6 +183,7 @@ def mix_default(quantity=1):
 
     for shape in const.shapes:
         for quantity in range(1, quantity + 1):
+            ret_data.append(add_without_division(charges[si % n], shape, quantity))
             ret_data.append(add_per_bend(charges[si % n], shape, quantity))
             ret_data.append(add_per_bend_sinister(charges[si % n], shape, quantity))
             ret_data.append(add_per_chevron(charges[si % n], shape, quantity))
@@ -204,6 +214,8 @@ def make_default_test_data_by_division(division, charge, quantity=1):
         for shape in const.shapes:
             for stamp in charge_set:
                 match division:
+                    case "none":
+                        ret_data.append(add_without_division(stamp, shape, quantity))
                     case "per bend":
                         ret_data.append(add_per_bend(stamp, shape, quantity))
                     case "per bend sinister":
@@ -277,6 +289,23 @@ def expand_defaults(charge, quantity, tincture, c_tincture):
 ########################################################################################################################
 #                                               ADD PER DIVISION                                                       #
 ########################################################################################################################
+
+
+def add_without_division(charge, shape, quantity, tincture="preset", c_tincture="preset"):
+    settings = expand_defaults(charge, quantity, tincture=tincture, c_tincture=c_tincture)
+
+    return {
+        "shape": shape,
+        "field": {
+            "party": "none",
+            "field": {
+                "tincture": settings["tinctures"][0],
+                "charge": settings["charges"][0],
+                "charge-tincture": settings["c-tinctures"][0],
+                "quantity": settings["quantities"][0]
+            }
+        }
+    }
 
 
 def add_per_bend(charge, shape, quantity, tincture="preset", c_tincture="preset"):
