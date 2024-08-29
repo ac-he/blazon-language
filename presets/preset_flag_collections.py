@@ -1,4 +1,45 @@
 pre_flag_collection = {
+    "fantasy": [
+        {
+            "shape": "banner",
+            "field": {
+                "party": "per fess",
+                "chief": {
+                    "tincture": "r",
+                    "charge": "lozenge",
+                    "quantity": 3,
+                    "charge-tincture": "p"
+                },
+                "base": {"tincture": "p"}
+            }
+        },
+        {
+            "shape": "pennant",
+            "field": {
+                "party": "per cross",
+                "dexter-chief": {"tincture": "a"},
+                "dexter-base": {"tincture": "r"},
+                "sinister-chief": {"tincture": "r"},
+                "sinister-base": {"tincture": "a"}
+            }
+        },
+        {
+            "shape": "banner",
+            "field": {
+                "party": "per pale",
+                "dexter": {
+                    "tincture": "p",
+                    "charge": "cross_moline",
+                    "quantity": 3,
+                    "charge-tincture": "o"
+                },
+                "sinister": {
+                    "tincture": "a",
+                    "charge": "comet",
+                }
+            }
+        },
+    ],
     "nato": [
         {
             "shape": "rect",

@@ -12,13 +12,26 @@ from rendering.assembler import make_assembled_image
 def main():
     # DEMO: These are just setup tasks
     # configure_svg_assets()
-    delete_all_images()
+    # delete_all_images()
 
     mode = "nice-renders"
 
     if mode == "nice-renders":
+        # NATO
         collection_settings = pre_flag_view["default_view"]
+
+        collection_settings["print"]["output-directory"] = "default"
+        collection_settings["print"]["file-name-base"] = "default"
         collection_settings["crests"] = pre_flag_collection['nato']
+
+        make_assembled_image(collection_settings)
+
+        # FANTASY
+        collection_settings = pre_flag_view["default_view"]
+
+        collection_settings["print"]["file-name-base"] = "fantasy"
+        collection_settings["crests"] = pre_flag_collection['fantasy']
+
         make_assembled_image(collection_settings)
 
     # DEMO: This will generate test flags, primarily to demonstrate division of field and charge arrangements.

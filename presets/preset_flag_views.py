@@ -10,7 +10,14 @@ pre_flag_view = {
         "margin": 100,
         "shapes": [
             "rect"
-        ]
+        ],
+        "print": {
+            "output-directory": "default",
+            "file-name-base": "default",
+            "pdf": False,
+            "include-timestamp": False,
+            "clear-old-images": False
+        }
     }
 }
 
