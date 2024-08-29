@@ -39,6 +39,16 @@ pre_flag_collection = {
                 }
             }
         },
+        {
+            "shape": "pennant",
+            "field": {
+                "party": "none",
+                "field": {
+                    "tincture": "a",
+                    "charge": "yale"
+                },
+            }
+        },
     ],
     "nato": [
         {

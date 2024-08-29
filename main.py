@@ -1,3 +1,4 @@
+import const
 from presets.preset_flag_collections import pre_flag_collection
 from presets.preset_flag_views import pre_flag_view
 from presets.view_data_generator import make_randomized_test_data, make_default_test_data, \
@@ -5,7 +6,6 @@ from presets.view_data_generator import make_randomized_test_data, make_default_
 from rendering.charger import make_charge_image
 from rendering.compositor import make_parted_image
 from rendering.trimmer import make_trimmed_image
-from rendering.z_util_images import delete_all_images, configure_svg_assets
 from rendering.assembler import make_assembled_image
 
 
@@ -48,12 +48,12 @@ def main():
     #           the value exceed 3 "in real life".
     if mode == "set":
         data = pre_flag_view["default_view"]
-        data["crests"] = make_default_test_data("quarterly_of_eight", 1)
+        data["crests"] = make_default_test_data(const.charges, 1)
         make_assembled_image(data)
 
     if mode == "div-set":
         data = pre_flag_view["default_view"]
-        data["crests"] = make_default_test_data_by_division("per cross", "quarterly_of_eight", 3)
+        data["crests"] = make_default_test_data_by_division("none", ["label", "quarterly_of_eight"], 3)
         make_assembled_image(data)
 
     # DEMO: The general rendering pipeline is:
