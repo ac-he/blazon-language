@@ -7,12 +7,13 @@ from rendering.charger import make_charge_image
 from rendering.compositor import make_parted_image
 from rendering.trimmer import make_trimmed_image
 from rendering.assembler import make_assembled_image
+from rendering.z_util_images import delete_all_images
 
 
 def main():
     # DEMO: These are just setup tasks
     # configure_svg_assets()
-    # delete_all_images()
+    delete_all_images()
 
     mode = "nice-renders"
 
@@ -27,10 +28,19 @@ def main():
         make_assembled_image(collection_settings)
 
         # FANTASY
-        collection_settings = pre_flag_view["default_view"]
+        collection_settings = pre_flag_view["flagpoles"]
 
         collection_settings["print"]["file-name-base"] = "fantasy"
         collection_settings["crests"] = pre_flag_collection['fantasy']
+
+        make_assembled_image(collection_settings)
+
+        # FANTASY PHOTO
+        collection_settings = pre_flag_view["photorealistic"]
+
+        collection_settings["print"]["file-name-base"] = "photo"
+        collection_settings["crests"] = make_randomized_test_data(15, charge_list="all", division_list="all", shape_list="all",
+                                                                  quantity_list="all", quantity_frequencies=[7, 2, 1])
 
         make_assembled_image(collection_settings)
 

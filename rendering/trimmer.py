@@ -10,7 +10,7 @@ surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
 context = cairo.Context(surface)
 
 
-def make_trimmed_image(shape_dict):
+def make_trimmed_image(shape_dict, overlay=False):
     global surface, context
     surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
     context = cairo.Context(surface)
@@ -22,15 +22,18 @@ def make_trimmed_image(shape_dict):
 
     match shape:
         case "banner":
-            trim_to_banner(field)
+            trim_to_banner(field, overlay)
         case "heater":
-            trim_to_heater(field)
+            trim_to_heater(field, overlay)
         case "pennant":
-            trim_to_pennant(field)
+            trim_to_pennant(field, overlay)
         case "rect":
-            return make_parted_image(field)
+            if overlay:
+                trim_to_rect(field)
+            else:
+                return make_parted_image(field)
         case "shield":
-            trim_to_shield(field)
+            trim_to_shield(field, overlay)
         case _:
             pass
 
@@ -40,8 +43,12 @@ def make_trimmed_image(shape_dict):
     return guid
 
 
-def trim_to_banner(field):
-    field_guid = make_parted_image(field)
+def trim_to_banner(field, overlay):
+    if overlay:
+        field_guid = field.get("name")
+    else:
+        field_guid = make_parted_image(field)
+
     surf1 = surface.create_from_png(field_guid)
     context.set_source_surface(surf1)
 
@@ -53,11 +60,19 @@ def trim_to_banner(field):
     context.close_path()
 
     context.fill()
-    delete_image_path(field_guid)
+
+    if overlay:
+        pass
+    else:
+        delete_image_path(field_guid)
 
 
-def trim_to_heater(field):
-    field_guid = make_parted_image(field)
+def trim_to_heater(field, overlay):
+    if overlay:
+        field_guid = field.get("name")
+    else:
+        field_guid = make_parted_image(field)
+
     surf1 = surface.create_from_png(field_guid)
     context.set_source_surface(surf1)
 
@@ -73,11 +88,19 @@ def trim_to_heater(field):
     context.close_path()
 
     context.fill()
-    delete_image_path(field_guid)
+
+    if overlay:
+        pass
+    else:
+        delete_image_path(field_guid)
 
 
-def trim_to_pennant(field):
-    field_guid = make_parted_image(field)
+def trim_to_pennant(field, overlay):
+    if overlay:
+        field_guid = field.get("name")
+    else:
+        field_guid = make_parted_image(field)
+
     surf1 = surface.create_from_png(field_guid)
     context.set_source_surface(surf1)
 
@@ -87,11 +110,34 @@ def trim_to_pennant(field):
     context.close_path()
 
     context.fill()
-    delete_image_path(field_guid)
+
+    if overlay:
+        pass
+    else:
+        delete_image_path(field_guid)
 
 
-def trim_to_shield(field):
-    field_guid = make_parted_image(field)
+def trim_to_rect(field):
+    field_guid = field.get("name")
+
+    surf1 = surface.create_from_png(field_guid)
+    context.set_source_surface(surf1)
+
+    context.move_to(0, 0)
+    context.line_to(canvas["w"], 0)
+    context.line_to(canvas["w"], canvas["h"])
+    context.line_to(0, canvas["h"])
+    context.close_path()
+
+    context.fill()
+
+
+def trim_to_shield(field, overlay):
+    if overlay:
+        field_guid = field.get("name")
+    else:
+        field_guid = make_parted_image(field)
+
     surf1 = surface.create_from_png(field_guid)
     context.set_source_surface(surf1)
 
@@ -107,4 +153,8 @@ def trim_to_shield(field):
     context.close_path()
 
     context.fill()
-    delete_image_path(field_guid)
+
+    if overlay:
+        pass
+    else:
+        delete_image_path(field_guid)
