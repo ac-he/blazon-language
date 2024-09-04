@@ -1,0 +1,71 @@
+                     I M A G E   C R E D I T S
+========================================================================
+CHARGES
+------------------------------------------------------------------------
+The following charges are from Wikimedia Commons.
+Accessed and subsequently modified via Inkscape throughout August 2024.
+------------------------------------------------------------------------
+Anchor          https://commons.wikimedia.org/wiki/File:Meuble_h%C3%A9raldique_Ancre_marine.svg
+Annulet         https://commons.wikimedia.org/wiki/File:Annulet_Fifth_son.svg
+Bee             https://commons.wikimedia.org/wiki/File:Meuble_h%C3%A9raldique_Abeille_2.svg
+Castle          https://commons.wikimedia.org/wiki/File:Meuble_h%C3%A9raldique_ch%C3%A2teau_%C3%A0_deux_tours.svg
+Caltrap         https://commons.wikimedia.org/wiki/File:H%C3%A9raldique_meuble_chausse-trappe.svg
+Clarion         https://commons.wikimedia.org/wiki/File:Coa_Illustration_Elements_Musical_Instrument_Clarion.svg
+Comet           https://commons.wikimedia.org/wiki/File:Meuble_comets.svg
+Crescent        https://commons.wikimedia.org/wiki/File:Heraldic_crescent.svg
+Cross Moline    https://commons.wikimedia.org/wiki/File:Cross-Moline-Heraldry.svg
+Cross Pate      https://commons.wikimedia.org/wiki/File:Coa_Illustration_Cross_Pattee_concave_arms,_straight_ends.svg
+Crown           https://commons.wikimedia.org/wiki/File:Meuble_h%C3%A9raldique_Couronne_royale_simplifi%C3%A9e.svg
+Dolphin         https://commons.wikimedia.org/wiki/File:Coa_Illustration_Elements_Animal_Dolphin_Haurient.svg
+Dragon          https://commons.wikimedia.org/wiki/File:Y_Ddraig_Goch_in_Flag_of_Wales.svg
+Eagle           https://commons.wikimedia.org/wiki/File:Heraldic_Eagle_01.svg
+Escallop        https://commons.wikimedia.org/wiki/File:Meuble_h%C3%A9raldique_Coquille_2.svg
+Escutcheon      https://commons.wikimedia.org/wiki/File:Vapen_Dan_Koehl_550x600.svg
+Fleur de Lis    https://commons.wikimedia.org/wiki/File:Fleur-de-lis.svg
+Fret            https://commons.wikimedia.org/wiki/File:Fret_LongArms_svg_Element.svg
+Fusil           https://commons.wikimedia.org/wiki/File:Fusil_demo.svg
+Griffin         https://commons.wikimedia.org/wiki/File:Heraldic_figures_-_Griffin.svg
+Harp            https://commons.wikimedia.org/wiki/File:H%C3%A9raldique_meuble_harpe.svg
+Keys            https://commons.wikimedia.org/wiki/File:Cl%C3%A9s_en_sautoir.svg
+Lamp            https://commons.wikimedia.org/wiki/File:Oil_lamps_in_heraldry1.svg
+Lion Passant    https://commons.wikimedia.org/wiki/File:Heraldique_meuble_lion_passant.svg
+Lion Rampant    https://commons.wikimedia.org/wiki/File:Heraldic_Lion_(Two_tailed)_07.svg
+Lozenge         https://commons.wikimedia.org/wiki/File:Fusil_demo.svg
+Martlet         https://commons.wikimedia.org/wiki/File:MartletSable_(English).svg
+Mascle          https://commons.wikimedia.org/wiki/File:Meuble_h%C3%A9raldique_Macle.svg
+Moon            https://commons.wikimedia.org/wiki/File:H%C3%A9raldique_meuble_Lune_pleine.svg
+Mullet          https://commons.wikimedia.org/wiki/File:Etoile2.svg
+Octofoil        https://commons.wikimedia.org/wiki/File:Coa_Illustration_Elements_Plant_Octofoil.svg
+Owl             https://commons.wikimedia.org/wiki/File:Owl_perched_on_a_branch.svg
+Phoenix         https://commons.wikimedia.org/wiki/File:F%C3%A9nix.svg
+Portcullis      https://commons.wikimedia.org/wiki/File:Meuble_h%C3%A9raldique_Herse-sarrasine.svg
+Quatrefoil      https://commons.wikimedia.org/wiki/File:Quatrefoils.svg
+Raven           https://commons.wikimedia.org/wiki/File:Bird_-_Oiseau_-_Vogel.svg
+Rose            https://commons.wikimedia.org/wiki/File:Rose_BVA.svg
+Roundel         https://commons.wikimedia.org/wiki/File:Roundel-argent.svg
+Rustre          https://commons.wikimedia.org/wiki/File:Rustre_demo.svg
+Ship            https://commons.wikimedia.org/wiki/File:H%C3%A9raldique_meuble_navire_1.svg
+Sun             https://commons.wikimedia.org/wiki/File:H%C3%A9raldique_meuble_Soleil_avec_visage.svg
+Sword           https://commons.wikimedia.org/wiki/File:Coa_Illustration_Elements_Arms_Gladius.svg
+Thistle         https://commons.wikimedia.org/wiki/File:Thistle_(Montreal).svg
+Unicorn         https://commons.wikimedia.org/wiki/File:Jednoro%C5%BCec.svg
+Wheel           https://commons.wikimedia.org/wiki/File:Meuble_h%C3%A9raldique_Roue_dentel%C3%A9e_8_branches.svg
+Wolf            https://commons.wikimedia.org/wiki/File:Heraldic_Wolf_Passant.svg
+Yale            https://commons.wikimedia.org/wiki/File:Yale_template.svg
+Zilant          https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Kazan_Governorate_1856.svg
+------------------------------------------------------------------------
+The following charges are "homemade" and were created in Inkscape, August 2024.
+------------------------------------------------------------------------
+Billet
+Gorge
+Snairald
+Ventmonster
+========================================================================
+OTHER ASSETS
+------------------------------------------------------------------------
+Wikimedia
+Cloth Texture   https://commons.wikimedia.org/wiki/File:Blue_chambray_cloth.JPG (Modified in Sketch.io)
+------------------------------------------------------------------------
+Geograph
+Photographic Background     https://www.geograph.org.uk/photo/3233086 (Modified in Inkscape)
+========================================================================
