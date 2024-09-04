@@ -1,9 +1,8 @@
 # the charger takes in JSON
 # and outputs an IMAGE GUID
-import os
 import random
 from math import floor, ceil
-
+from pathlib import Path
 import cairo
 
 import const
@@ -65,13 +64,13 @@ def stamp_feature(charge, tincture, quantity, shape, dof, field, c_type, c_tinct
         if size is value:
             size_d = letter
 
-    path = f"{os.getcwd()}\\rendering\\assets\\{c_type}\\{size_d}\\{charge}{suffix}"
+    path = Path.joinpath(Path.cwd(), "rendering", "assets", c_type, size_d, charge + suffix)
 
     for stamp in range(0, quantity):
         loc_x = charge_loc[dof][field][shape][quantity]["loc_x"][stamp]
         loc_y = charge_loc[dof][field][shape][quantity]["loc_y"][stamp]
 
-        surf1 = surface.create_from_png(path)
+        surf1 = surface.create_from_png(str(path))
         context.set_source_surface(surf1, loc_x, loc_y)
         context.rectangle(loc_x, loc_y, size, size)
         context.close_path()
@@ -146,12 +145,12 @@ def draw_feature_label(feature_tincture, quantity, shape, dof, division):
 
 
 def draw_feature_oversize(charge, shape, dof, field, c_tincture):
-    path = f"{os.getcwd()}\\rendering\\assets\\oversize\\{charge}_{c_tincture}.png"
+    path = Path.joinpath(Path.cwd(), "rendering", "assets", "oversize", f"{charge}_{c_tincture}.png")
     midpoint = charge_loc[dof][field][shape][1]["size"] / 2
     loc_x = charge_loc[dof][field][shape][1]["loc_x"][0] + midpoint - 500
     loc_y = charge_loc[dof][field][shape][1]["loc_y"][0] + midpoint - 500
 
-    surf1 = surface.create_from_png(path)
+    surf1 = surface.create_from_png(str(path))
     context.set_source_surface(surf1, loc_x, loc_y)
     context.rectangle(loc_x, loc_y, 1000, 1000)
     context.close_path()

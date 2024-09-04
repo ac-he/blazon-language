@@ -1,13 +1,12 @@
 import os
 from random import random
-import cairo
+from pathlib import Path
 from PIL import Image
-
-from const import canvas, charge_size
+from const import charge_size
 
 
 def supply_guid():
-    return os.getcwd() + "\\rendering\\img\\" + str(random()) + ".png"
+    return Path.joinpath(Path.cwd(), 'rendering', 'img', str(random()) + ".png")
 
 
 def delete_image_path(path):
@@ -15,26 +14,29 @@ def delete_image_path(path):
         os.remove(path)
 
 
-def delete_all_images(base="\\rendering\\img"):
-    path = os.getcwd() + base
+def delete_all_images():
+    path = Path.joinpath(Path.cwd(), 'rendering', 'img')
     for i in os.listdir(path):
-        delete_image_path(path + "\\" + i)
+        delete_image_path(path.joinpath(i))
 
 
 def configure_svg_assets():
     img_sets = ["cm", "agoprsv"]
+    scaling_sizes = ["l", "m", "s", "xs"]
+
     for img_set in img_sets:
-        png_path = f"\\rendering\\assets\\{img_set}\\"
+        for size in scaling_sizes:
+            path = Path.joinpath(Path.cwd(), 'rendering', 'assets', img_set, size)
+            for i in os.listdir(path):
+                delete_image_path(path.joinpath(i))
 
-        delete_all_images(png_path + "l")
-        delete_all_images(png_path + "m")
-        delete_all_images(png_path + "s")
-        delete_all_images(png_path + "xs")
+        png_path = Path.joinpath(Path.cwd(), 'rendering', 'assets', img_set)
+        f_path = png_path.joinpath("f")
+        for f_image in os.listdir(f_path):
+            for size in scaling_sizes:
+                image_path = f_path.joinpath(f_image)
+                save_path = png_path.joinpath(size, f_image)
+                resize = int(charge_size[size])
 
-        png_path = os.getcwd() + png_path
-
-        for i in os.listdir(png_path + "f"):
-            for letter, size in charge_size.items():
-                if letter != "f":
-                    image = Image.open(png_path + "f\\" + i).resize((int(size), int(size)))
-                    image.save(png_path + letter + "\\" + i)
+                image = Image.open(image_path).resize((resize, resize))
+                image.save(save_path)

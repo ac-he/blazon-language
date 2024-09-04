@@ -1,7 +1,6 @@
 # the compositor takes in JSON
 # and outputs an IMAGE GUID
 import cairo
-
 from const import canvas
 from rendering.charger import make_charge_image
 from rendering.z_util_images import supply_guid, delete_image_path

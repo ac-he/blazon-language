@@ -1,7 +1,6 @@
 # the trimmer takes in JSON
 # and outputs an IMAGE GUID
 import cairo
-
 from const import canvas
 from rendering.z_util_images import supply_guid, delete_image_path
 from rendering.compositor import make_parted_image

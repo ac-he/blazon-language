@@ -1,13 +1,12 @@
 # the charger takes in JSON
 # and outputs an IMAGE GUID
 from datetime import datetime
-import os
-
+from pathlib import Path
 import cairo
 from PIL import Image
 
 from const import canvas
-from rendering.z_util_images import delete_image_path, supply_guid, delete_all_images
+from rendering.z_util_images import delete_image_path, delete_all_images
 from rendering.trimmer import make_trimmed_image
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
@@ -19,7 +18,6 @@ def make_assembled_image(assembled_dict):
     surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, assembled_dict.get("w"), assembled_dict.get("h"))
     context = cairo.Context(surface)
 
-    print_dir = os.getcwd() + "\\rendering\\img"
     print_name = "Page_"
     if assembled_dict.get("print"):
         if assembled_dict["print"].get("clear-old-images"):
@@ -40,10 +38,9 @@ def make_assembled_image(assembled_dict):
         is_pdf = False
         fx = ".png"
 
-    print_path = f"{print_dir}\\{print_name}"
+    print_path = str(Path.joinpath(Path.cwd(), "rendering", "img", print_name))
 
-    background_str = os.getcwd() + "\\presets\\img\\" + assembled_dict.get("background")
-    print(background_str)
+    background_str = str(Path.joinpath(Path.cwd(), "presets", "img", assembled_dict.get("background")))
     background = surface.create_from_png(background_str)
 
     scale_w = int(assembled_dict.get("crest-scale-width"))
@@ -114,7 +111,7 @@ def draw_overlay(name, shape, x, y, w, h):
     shape_dict = {
         "shape": shape,
         "field": {
-            "name": f"{os.getcwd()}\\presets\\img\\overlay_{name}.png"
+            "name": str(Path.joinpath(Path.cwd(), "presets", "img", f"overlay_{name}.png"))
         }
     }
 
