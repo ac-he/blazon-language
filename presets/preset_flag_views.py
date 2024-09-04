@@ -36,7 +36,7 @@ pre_flag_view = {
         "overlay": "fabric",
         "print": {
             "output-directory": "default",
-            "file-name-base": "default",
+            "file-name-base": "flagpoles",
             "pdf": False,
             "include-timestamp": False,
             "clear-old-images": False
@@ -58,7 +58,7 @@ pre_flag_view = {
         "overlay": "fabric",
         "print": {
             "output-directory": "default",
-            "file-name-base": "default",
+            "file-name-base": "photo",
             "pdf": False,
             "include-timestamp": False,
             "clear-old-images": False
