@@ -1,10 +1,10 @@
-                     I M A G E   C R E D I T S
-========================================================================
+                            I M A G E   C R E D I T S
+===============================================================================
 CHARGES
-------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 The following charges are from Wikimedia Commons.
 Accessed and subsequently modified via Inkscape throughout August 2024.
-------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Anchor          https://commons.wikimedia.org/wiki/File:Meuble_h%C3%A9raldique_Ancre_marine.svg
 Annulet         https://commons.wikimedia.org/wiki/File:Annulet_Fifth_son.svg
 Bee             https://commons.wikimedia.org/wiki/File:Meuble_h%C3%A9raldique_Abeille_2.svg
@@ -53,19 +53,22 @@ Wheel           https://commons.wikimedia.org/wiki/File:Meuble_h%C3%A9raldique_R
 Wolf            https://commons.wikimedia.org/wiki/File:Heraldic_Wolf_Passant.svg
 Yale            https://commons.wikimedia.org/wiki/File:Yale_template.svg
 Zilant          https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Kazan_Governorate_1856.svg
-------------------------------------------------------------------------
-The following charges are "homemade" and were created in Inkscape, August 2024.
-------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+The following charges were created from scratch in Inkscape, August 2024.
+-------------------------------------------------------------------------------
 Billet
-Gorge
+Chequy
+Fusily
+Gyronny
+Lozengy
 Snairald
 Ventmonster
-========================================================================
+===============================================================================
 OTHER ASSETS
-------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Wikimedia
 Cloth Texture   https://commons.wikimedia.org/wiki/File:Blue_chambray_cloth.JPG (Modified in Sketch.io)
-------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Geograph
 Photographic Background     https://www.geograph.org.uk/photo/3233086 (Modified in Inkscape)
-========================================================================
+===============================================================================
