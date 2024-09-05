@@ -14,9 +14,10 @@ def main():
     # configure_svg_assets()  # This will clear and re-create the sized versions of all the charges.
     delete_all_images()  # This removes previously generated images from rendering/img.
 
-    # Demo Mode
+    # DEMO: PRESET MODES
     # "nice-renders"    Curated flag collections to show off the nice stuff this renderer can make.
-    # "random"          A set of 40 random flags that show off the ugly stuff this renderer can make.
+    # "random"          A set of 40 random flags that show off the ugly stuff this renderer can make. These won't always
+    #                   be pretty, but it's a good way to get a feel for what's all here.
     # "set"             Demonstrates what a charge looks like for all quantities, divisions, and shapes.
     #                   Mostly used when fine-tuning the values in const.py.
     # "div-set"         Demonstrates what a charge looks like for all quantities and shapes.
@@ -35,7 +36,8 @@ def main():
         collection_settings["print"]["output-directory"] = "default"  # Change this to a filepath to save images to
         collection_settings["print"]["file-name-base"] = "default"  # Change this to a string to be the base filename
         collection_settings["print"]["include-timestamp"] = False  # Change this to true to add the time to the filename
-                                                                   # (Pairs well with delete_all_images() disabled)
+                                                                   # (Pairs well with delete_all_images() disabled so
+        #                                                          # they won't overwrite each other.)
         # This is adding the flag collection, pre-made and stored in presets/preset_flag_collections.py.
         collection_settings["crests"] = pre_flag_collection['nato']
         # Generate the image
@@ -70,7 +72,8 @@ def main():
         # QUANTITY LIST -- "all" or a list of quantities
         ql = "all"  # [1, 3]
         # QUANTITY FREQUENCIES -- "equal" or a list of frequencies corresponding to the quantity list.
-        # For example, a 70% chance of 1 charge, 20% chance of 2 charges, and 10% chance of 3 charges.
+        # For example, a 70% chance of 1 charge, 20% chance of 2 charges, and 10% chance of 3 charges,
+        # if ql = [1, 2, 3] or "all" and qf = [7, 2, 1].
         qf = [7, 2, 1]  # [7, 1] or "equal"
         data["crests"] = make_randomized_test_data(40, charge_list=cl, division_list=dl, shape_list=sl,
                                                    quantity_list=ql, quantity_frequencies=qf)
@@ -78,15 +81,18 @@ def main():
 
     # DEMO: This will generate test flags, primarily to demonstrate division of field and charge arrangements.
     #       If you run this, note that different shapes of flag/crest will have different fess points!
-    #       PARAM charge... The charge to include on the flag. Currently, it accepts only an empty string for
-    #           a blank element or "label" which creates a label shape, though it does not render correctly at
-    #           present.
+    #       PARAM charge... The charge to include on the flag. Can be left blank or set to any of the included charges,
+    #           as listed in const.py.
     #       PARAM quantity... The number of charges to include per division of the field. Counterintuitively and
     #           for at-a-glance debugging reasons, it does not print one set of flags with this quantity on all
     #           of them. Rather, this represents the number of sets of flags that will be printed, with the
     #           number of charges in each set incremented. Because of this, the number of flags printed is 40 times
     #           the specified quantity. This is untested for values exceeding 3, because I don't plan on ever having
     #           the value exceed 3 "in real life".
+    #       PARAM division... (div-set only) The division of field to limit the set to. Acceptable values are:
+    #           "per bend"          "per bend sinister"         "per bend both"         "per chevron"
+    #           "per cross"         "per fess"                  "per pale"              "per pall"
+    #           "per saltire"       "none"
     if mode == "set":
         data = pre_flag_view["default_view"]
         data["crests"] = make_default_test_data("snairald", 1)
@@ -161,12 +167,23 @@ def main():
         print(f"Image 3a: {make_trimmed_image(pipeline3a)}")
         print(f"Image 3b: {make_trimmed_image(pipeline3b)}")
 
-    # Generates a single image.
+    # DEMO: SINGLE IMAGE
+    #   Generates a single image. This basically combines the above pipeline demonstration into one step.
     if mode == "single":
-        pipeline1a = {"shape": "pennant", "field": {"party": "per pale",
-                                                    "dexter": {"tincture": "v", "charge": "castle", "quantity": 3},
-                                                    "sinister": {"tincture": "a", "charge": "sun"}
-                                                    }}
+        pipeline1a = {"shape": "pennant",
+                      "field": {
+                          "party": "per pale",
+                          "dexter": {
+                              "tincture": "v",
+                              "charge": "castle",
+                              "quantity": 3
+                              },
+                          "sinister": {
+                              "tincture": "a",
+                              "charge": "sun"
+                              }
+                          }
+                      }
         print(f"Image 1a: {make_trimmed_image(pipeline1a)}")
 
 
