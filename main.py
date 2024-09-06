@@ -5,7 +5,7 @@ from presets.view_data_generator import make_randomized_test_data, make_default_
 from rendering.charger import make_charge_image
 from rendering.compositor import make_parted_image
 from rendering.trimmer import make_trimmed_image
-from rendering.assembler import make_assembled_image
+from rendering.assembler import make_assembled_image, draw_single_flag_with_overlay
 from rendering.z_util_images import delete_all_images, configure_svg_assets
 
 
@@ -25,7 +25,7 @@ def main():
     # "pipeline"        Shows the steps of the process, largely for demo purposes. It should be the same as the previous
     #                   release.
     # "single"          Creates just one image, largely for demo purposes. It should be the same as last time.
-    mode = "nice-renders"
+    mode = "single"
 
     # NICE RENDERS
     if mode == "nice-renders":
@@ -170,21 +170,22 @@ def main():
     # DEMO: SINGLE IMAGE
     #   Generates a single image. This basically combines the above pipeline demonstration into one step.
     if mode == "single":
-        pipeline1a = {"shape": "pennant",
+        pipeline1a = {"shape": "heater",
                       "field": {
-                          "party": "per pale",
-                          "dexter": {
-                              "tincture": "v",
-                              "charge": "castle",
-                              "quantity": 3
+                          "party": "per bend",
+                          "dexter-base": {
+                              "tincture": "g",
+                              "charge": "bee"
                               },
-                          "sinister": {
-                              "tincture": "a",
-                              "charge": "sun"
+                          "sinister-chief": {
+                              "tincture": "o",
+                              "charge": "crown"
                               }
                           }
                       }
         print(f"Image 1a: {make_trimmed_image(pipeline1a)}")
+        draw_single_flag_with_overlay(pipeline1a, "fabric",
+                                      "C:\\Users\\annac\\Code\\blazon-docs\\blazon-docs\\assets\\logo.png")
 
 
 main()

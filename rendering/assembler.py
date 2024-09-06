@@ -5,6 +5,7 @@ from pathlib import Path
 import cairo
 from PIL import Image
 
+import const
 from const import canvas
 from rendering.z_util_images import delete_image_path, delete_all_images
 from rendering.trimmer import make_trimmed_image
@@ -133,3 +134,46 @@ def draw_overlay(name, shape, x, y, w, h):
 
     # cleanup
     delete_image_path(trimmed_guid)
+
+
+def draw_single_flag_with_overlay(crest, overlay_name, save_to):
+    w = const.canvas["w"]
+    h = const.canvas["h"]
+
+    shape_dict = {
+        "shape": crest.get("shape"),
+        "field": {
+            "name": str(Path.joinpath(Path.cwd(), "presets", "img", f"overlay_{overlay_name}.png"))
+        }
+    }
+
+    # fetch trimmed image
+    main_guid = make_trimmed_image(crest)
+    overlay_guid = make_trimmed_image(shape_dict, True)
+
+    # scale image
+    main_image = Image.open(main_guid).resize((w, h))
+    main_image.save(main_guid)
+    overlay_image = Image.open(overlay_guid).resize((w, h))
+    overlay_image.save(overlay_guid)
+
+    # create surface
+    main_surf = surface.create_from_png(main_guid)
+    overlay_surf = surface.create_from_png(overlay_guid)
+
+    # draw
+    context.set_source_surface(main_surf)
+    context.rectangle(0, 0, w, h)
+    context.close_path()
+    context.fill()
+
+    context.set_source_surface(overlay_surf)
+    context.rectangle(0, 0, w, h)
+    context.close_path()
+    context.fill()
+
+    surface.write_to_png(save_to)
+
+    # cleanup
+    delete_image_path(main_guid)
+    delete_image_path(overlay_guid)
