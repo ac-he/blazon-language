@@ -14,8 +14,8 @@ canvas = {
 }
 
 shapes = ["banner", "heater", "pennant", "rect", "shield"]
-divisions = ["per bend", "per bend sinister", "per chevron", "per cross", "per fess", "per pale", "per pall",
-             "per saltire", "none"]
+divisions = ["per bend", "per bend sinister", "per chevron", "per cross", "per fess", "per fess escutcheon",
+             "per pale", "per pall", "per saltire", "none"]
 
 colors = ["g", "s", "v", "a", "p"]
 metals = ["o", "r"]
@@ -485,6 +485,104 @@ charge_detail = {
                     "spacing": canvas['w'] * 0.200
                 }
             }
+        },
+        "per fess escutcheon": {
+            "chief": {
+                "banner": {
+                    "bar_h": canvas['h'] * 0.050,
+                    "bar_y": canvas['h'] * 0.070,
+                    "center": canvas['w'] * 0.500,
+                    "spacing": canvas['w'] * 0.300
+                },
+                "heater": {
+                    "bar_h": canvas['h'] * 0.050,
+                    "bar_y": canvas['h'] * 0.070,
+                    "center": canvas['w'] * 0.500,
+                    "spacing": canvas['w'] * 0.300
+                },
+                "pennant": {
+                    "bar_h": canvas['h'] * 0.050,
+                    "bar_y": canvas['h'] * 0.070,
+                    "center": canvas['w'] * 0.500,
+                    "spacing": canvas['w'] * 0.250
+                },
+                "rect": {
+                    "bar_h": canvas['h'] * 0.070,
+                    "bar_y": canvas['h'] * 0.070,
+                    "center": canvas['w'] * 0.500,
+                    "spacing": canvas['w'] * 0.300
+                },
+                "shield": {
+                    "bar_h": canvas['h'] * 0.050,
+                    "bar_y": canvas['h'] * 0.070,
+                    "center": canvas['w'] * 0.500,
+                    "spacing": canvas['w'] * 0.300
+                }
+            },
+            "base": {
+                "banner": {
+                    "bar_h": canvas['h'] * 0.050,
+                    "bar_y": canvas['h'] * 0.650,
+                    "center": canvas['w'] * 0.500,
+                    "spacing": canvas['w'] * 0.300
+                },
+                "heater": {
+                    "bar_h": canvas['h'] * 0.075,
+                    "bar_y": canvas['h'] * 0.700,
+                    "center": canvas['w'] * 0.500,
+                    "spacing": canvas['w'] * 0.200
+                },
+                "pennant": {
+                    "bar_h": canvas['h'] * 0.050,
+                    "bar_y": canvas['h'] * 0.550,
+                    "center": canvas['w'] * 0.500,
+                    "spacing": canvas['w'] * 0.100
+                },
+                "rect": {
+                    "bar_h": canvas['h'] * 0.075,
+                    "bar_y": canvas['h'] * 0.775,
+                    "center": canvas['w'] * 0.500,
+                    "spacing": canvas['w'] * 0.200
+                },
+                "shield": {
+                    "bar_h": canvas['h'] * 0.075,
+                    "bar_y": canvas['h'] * 0.700,
+                    "center": canvas['w'] * 0.500,
+                    "spacing": canvas['w'] * 0.200
+                }
+            },
+            "escutcheon": {
+                "banner": {
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.225,
+                    "center": canvas['w'] * 0.500,
+                    "spacing": canvas['w'] * 0.150
+                },
+                "heater": {
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.225,
+                    "center": canvas['w'] * 0.500,
+                    "spacing": canvas['w'] * 0.150
+                },
+                "pennant": {
+                    "bar_h": canvas['h'] * 0.050,
+                    "bar_y": canvas['h'] * 0.240,
+                    "center": canvas['w'] * 0.500,
+                    "spacing": canvas['w'] * 0.100
+                },
+                "rect": {
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.300,
+                    "center": canvas['w'] * 0.500,
+                    "spacing": canvas['w'] * 0.150
+                },
+                "shield": {
+                    "bar_h": canvas['h'] * 0.065,
+                    "bar_y": canvas['h'] * 0.225,
+                    "center": canvas['w'] * 0.500,
+                    "spacing": canvas['w'] * 0.150
+                }
+            },
         },
         "per pale": {
             "dexter": {
@@ -1209,6 +1307,104 @@ charge_detail = {
                     "sinister": canvas['w'] * 0.750
                 }
             }
+        },
+        "per fess escutcheon": {
+            "chief": {
+                "banner": {
+                    "fess": canvas['h'] * 0.100,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.100,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.100,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.100,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.100,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                }
+            },
+            "base": {
+                "banner": {
+                    "fess": canvas['h'] * 0.725,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.750,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.600,
+                    "dexter": canvas['w'] * 0.400,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.600
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.800,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.750,
+                    "dexter": canvas['w'] * 0.250,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.750
+                }
+            },
+            "escutcheon": {
+                "banner": {
+                    "fess": canvas['h'] * 0.425,
+                    "dexter": canvas['w'] * 0.375,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.625
+                },
+                "heater": {
+                    "fess": canvas['h'] * 0.425,
+                    "dexter": canvas['w'] * 0.375,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.625
+                },
+                "pennant": {
+                    "fess": canvas['h'] * 0.350,
+                    "dexter": canvas['w'] * 0.400,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.600
+                },
+                "rect": {
+                    "fess": canvas['h'] * 0.450,
+                    "dexter": canvas['w'] * 0.375,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.625
+                },
+                "shield": {
+                    "fess": canvas['h'] * 0.425,
+                    "dexter": canvas['w'] * 0.375,
+                    "pale": canvas['w'] * 0.500,
+                    "sinister": canvas['w'] * 0.625
+                }
+            },
         },
         "per pale": {
             "dexter": {
@@ -2595,6 +2791,269 @@ charge_loc = {
                 }
             }
         }
+    },
+    "per fess escutcheon": {
+        "chief": {
+            "banner": {
+                1: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.400],
+                    "loc_y": [canvas["h"] * 0.028]
+                },
+                2: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.030, canvas["w"] * 0.770],
+                    "loc_y": [canvas["h"] * 0.030, canvas["h"] * 0.030]
+                },
+                3: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.030, canvas["w"] * 0.400, canvas["w"] * 0.770],
+                    "loc_y": [canvas["h"] * 0.125, canvas["h"] * 0.028, canvas["h"] * 0.125]
+                }
+            },
+            "heater": {
+                1: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.400],
+                    "loc_y": [canvas["h"] * 0.028]
+                },
+                2: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.030, canvas["w"] * 0.770],
+                    "loc_y": [canvas["h"] * 0.030, canvas["h"] * 0.030]
+                },
+                3: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.030, canvas["w"] * 0.400, canvas["w"] * 0.770],
+                    "loc_y": [canvas["h"] * 0.125, canvas["h"] * 0.028, canvas["h"] * 0.125]
+                }
+            },
+            "pennant": {
+                1: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.400],
+                    "loc_y": [canvas["h"] * 0.028]
+                },
+                2: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.100, canvas["w"] * 0.700],
+                    "loc_y": [canvas["h"] * 0.065, canvas["h"] * 0.065]
+                },
+                3: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.100, canvas["w"] * 0.400, canvas["w"] * 0.700],
+                    "loc_y": [canvas["h"] * 0.065, canvas["h"] * 0.028, canvas["h"] * 0.065]
+                }
+            },
+            "rect": {
+                1: {
+                    "size": charge_size["m"],
+                    "loc_x": [canvas["w"] * 0.350],
+                    "loc_y": [canvas["h"] * 0.020]
+                },
+                2: {
+                    "size": charge_size["m"],
+                    "loc_x": [canvas["w"] * 0.025, canvas["w"] * 0.675],
+                    "loc_y": [canvas["h"] * 0.020, canvas["h"] * 0.020]
+                },
+                3: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.030, canvas["w"] * 0.400, canvas["w"] * 0.770],
+                    "loc_y": [canvas["h"] * 0.125, canvas["h"] * 0.050, canvas["h"] * 0.125]
+                }
+            },
+            "shield": {
+                1: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.400],
+                    "loc_y": [canvas["h"] * 0.028]
+                },
+                2: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.030, canvas["w"] * 0.770],
+                    "loc_y": [canvas["h"] * 0.030, canvas["h"] * 0.030]
+                },
+                3: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.030, canvas["w"] * 0.400, canvas["w"] * 0.770],
+                    "loc_y": [canvas["h"] * 0.125, canvas["h"] * 0.028, canvas["h"] * 0.125]
+                }
+            }
+        },
+        "base": {
+            "banner": {
+                1: {
+                    "size": charge_size["m"],
+                    "loc_x": [canvas["w"] * 0.025],
+                    "loc_y": [canvas["h"] * 0.625]
+                },
+                2: {
+                    "size": charge_size["m"],
+                    "loc_x": [canvas["w"] * 0.025, canvas["w"] * 0.675],
+                    "loc_y": [canvas["h"] * 0.625, canvas["h"] * 0.625]
+                },
+                3: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.025, canvas["w"] * 0.025, canvas["w"] * 0.775],
+                    "loc_y": [canvas["h"] * 0.700, canvas["h"] * 0.490, canvas["h"] * 0.595]
+                }
+            },
+            "heater": {
+                1: {
+                    "size": charge_size["m"],
+                    "loc_x": [canvas["w"] * 0.350],
+                    "loc_y": [canvas["h"] * 0.720]
+                },
+                2: {
+                    "size": charge_size["m"],
+                    "loc_x": [canvas["w"] * 0.110, canvas["w"] * 0.590],
+                    "loc_y": [canvas["h"] * 0.635, canvas["h"] * 0.635]
+                },
+                3: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.050, canvas["w"] * 0.400, canvas["w"] * 0.750],
+                    "loc_y": [canvas["h"] * 0.540, canvas["h"] * 0.745, canvas["h"] * 0.540]
+                }
+            },
+            "pennant": {
+                1: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.400],
+                    "loc_y": [canvas["h"] * 0.600]
+                },
+                2: {
+                    "size": charge_size["xs"],
+                    "loc_x": [canvas["w"] * 0.425, canvas["w"] * 0.425],
+                    "loc_y": [canvas["h"] * 0.580, canvas["h"] * 0.700]
+                },
+                3: {
+                    "size": charge_size["xs"],
+                    "loc_x": [canvas["w"] * 0.335, canvas["w"] * 0.425, canvas["w"] * 0.515],
+                    "loc_y": [canvas["h"] * 0.570, canvas["h"] * 0.700, canvas["h"] * 0.570]
+                }
+            },
+            "rect": {
+                1: {
+                    "size": charge_size["m"],
+                    "loc_x": [canvas["w"] * 0.350],
+                    "loc_y": [canvas["h"] * 0.760]
+                },
+                2: {
+                    "size": charge_size["m"],
+                    "loc_x": [canvas["w"] * 0.110, canvas["w"] * 0.590],
+                    "loc_y": [canvas["h"] * 0.725, canvas["h"] * 0.725]
+                },
+                3: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.050, canvas["w"] * 0.400, canvas["w"] * 0.750],
+                    "loc_y": [canvas["h"] * 0.580, canvas["h"] * 0.775, canvas["h"] * 0.580]
+                }
+            },
+            "shield": {
+                1: {
+                    "size": charge_size["m"],
+                    "loc_x": [canvas["w"] * 0.350],
+                    "loc_y": [canvas["h"] * 0.695]
+                },
+                2: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.100, canvas["w"] * 0.700],
+                    "loc_y": [canvas["h"] * 0.620, canvas["h"] * 0.620]
+                },
+                3: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.050, canvas["w"] * 0.400, canvas["w"] * 0.750],
+                    "loc_y": [canvas["h"] * 0.540, canvas["h"] * 0.745, canvas["h"] * 0.540]
+                }
+            }
+        },
+        "escutcheon": {
+            "banner": {
+                1: {
+                    "size": charge_size["l"],
+                    "loc_x": [canvas["w"] * 0.300],
+                    "loc_y": [canvas["h"] * 0.280]
+                },
+                2: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.300, canvas["w"] * 0.500],
+                    "loc_y": [canvas["h"] * 0.260, canvas["h"] * 0.420]
+                },
+                3: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.400, canvas["w"] * 0.280, canvas["w"] * 0.520],
+                    "loc_y": [canvas["h"] * 0.460, canvas["h"] * 0.260, canvas["h"] * 0.260]
+                }
+            },
+            "heater": {
+                1: {
+                    "size": charge_size["l"],
+                    "loc_x": [canvas["w"] * 0.300],
+                    "loc_y": [canvas["h"] * 0.280]
+                },
+                2: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.300, canvas["w"] * 0.500],
+                    "loc_y": [canvas["h"] * 0.260, canvas["h"] * 0.420]
+                },
+                3: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.400, canvas["w"] * 0.280, canvas["w"] * 0.520],
+                    "loc_y": [canvas["h"] * 0.460, canvas["h"] * 0.260, canvas["h"] * 0.260]
+                }
+            },
+            "pennant": {
+                1: {
+                    "size": charge_size["m"],
+                    "loc_x": [canvas["w"] * 0.350],
+                    "loc_y": [canvas["h"] * 0.250]
+                },
+                2: {
+                    "size": charge_size["xs"],
+                    "loc_x": [canvas["w"] * 0.375, canvas["w"] * 0.470],
+                    "loc_y": [canvas["h"] * 0.250, canvas["h"] * 0.375]
+                },
+                3: {
+                    "size": charge_size["xs"],
+                    "loc_x": [canvas["w"] * 0.340, canvas["w"] * 0.425, canvas["w"] * 0.510],
+                    "loc_y": [canvas["h"] * 0.250, canvas["h"] * 0.375, canvas["h"] * 0.250]
+                }
+            },
+            "rect": {
+                1: {
+                    "size": charge_size["l"],
+                    "loc_x": [canvas["w"] * 0.300],
+                    "loc_y": [canvas["h"] * 0.330]
+                },
+                2: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.320, canvas["w"] * 0.480],
+                    "loc_y": [canvas["h"] * 0.320, canvas["h"] * 0.480]
+                },
+                3: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.400, canvas["w"] * 0.280, canvas["w"] * 0.520],
+                    "loc_y": [canvas["h"] * 0.500, canvas["h"] * 0.340, canvas["h"] * 0.340]
+                }
+            },
+            "shield": {
+                1: {
+                    "size": charge_size["l"],
+                    "loc_x": [canvas["w"] * 0.300],
+                    "loc_y": [canvas["h"] * 0.280]
+                },
+                2: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.300, canvas["w"] * 0.500],
+                    "loc_y": [canvas["h"] * 0.260, canvas["h"] * 0.420]
+                },
+                3: {
+                    "size": charge_size["s"],
+                    "loc_x": [canvas["w"] * 0.400, canvas["w"] * 0.280, canvas["w"] * 0.520],
+                    "loc_y": [canvas["h"] * 0.460, canvas["h"] * 0.260, canvas["h"] * 0.260]
+                }
+            }
+        },
     },
     "per pale": {
         "dexter": {

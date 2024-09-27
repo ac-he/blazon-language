@@ -118,6 +118,14 @@ def make_randomized_test_data(total, charge_list="all", shape_list="all", divisi
                 tincture=[a_rc["field"], b_rc["field"]],
                 c_tincture=[a_rc["charge"], b_rc["charge"]]
             ))
+        elif this_dl == "per fess escutcheon":
+            ret_data.append(add_per_fess_escutcheon(
+                [a_cl, b_cl, c_cl],
+                s,
+                [a_ql, b_ql, c_ql],
+                tincture=[a_rc["field"], b_rc["field"], c_rc["field"]],
+                c_tincture=[a_rc["charge"], b_rc["charge"], c_rc["charge"]]
+            ))
         elif this_dl == "per pale":
             ret_data.append(add_per_pale(
                 [a_cl, b_cl],
@@ -166,6 +174,7 @@ def make_default_test_data(charge, quantity=1):
                 ret_data.append(add_per_chevron(stamp, shape, quantity))
                 ret_data.append(add_per_cross(stamp, shape, quantity))
                 ret_data.append(add_per_fess(stamp, shape, quantity))
+                ret_data.append(add_per_fess_escutcheon(stamp, shape, quantity))
                 ret_data.append(add_per_pale(stamp, shape, quantity))
                 ret_data.append(add_per_pall(stamp, shape, quantity))
                 ret_data.append(add_per_saltire(stamp, shape, quantity))
@@ -228,6 +237,8 @@ def make_default_test_data_by_division(division, charge, quantity=1):
                         ret_data.append(add_per_cross(stamp, shape, quantity))
                     case "per fess":
                         ret_data.append(add_per_fess(stamp, shape, quantity))
+                    case "per fess escutcheon":
+                        ret_data.append(add_per_fess_escutcheon(stamp, shape, quantity))
                     case "per pale":
                         ret_data.append(add_per_pale(stamp, shape, quantity))
                     case "per pall":
@@ -268,12 +279,12 @@ def expand_defaults(charge, quantity, tincture, c_tincture):
         add_quantities = quantity
 
     if not isinstance(tincture, list):
-        add_tinctures = [const.colors[ci % 5], const.metals[mi % 2], const.colors[ci % 5], const.metals[mi % 2]]
+        add_tinctures = [const.colors[ci % 5], const.metals[mi % 2], const.colors[(ci + 1) % 5], const.metals[(mi + 1) % 2]]
     else:
         add_tinctures = tincture
 
     if not isinstance(c_tincture, list):
-        add_c_tinctures = [const.metals[mi % 2], const.colors[ci % 5], const.metals[mi % 2], const.colors[ci % 5]]
+        add_c_tinctures = [const.metals[mi % 2], const.colors[ci % 5], const.metals[(mi + 1) % 2], const.colors[(ci + 1) % 5]]
     else:
         add_c_tinctures = c_tincture
 
@@ -429,6 +440,35 @@ def add_per_fess(charge, shape, quantity,  tincture="preset", c_tincture="preset
                 "charge": settings["charges"][1],
                 "charge-tincture": settings["c-tinctures"][1],
                 "quantity": settings["quantities"][1]
+            },
+        }
+    }
+
+
+def add_per_fess_escutcheon(charge, shape, quantity,  tincture="preset", c_tincture="preset"):
+    settings = expand_defaults(charge, quantity, tincture=tincture, c_tincture=c_tincture)
+
+    return {
+        "shape": shape,
+        "field": {
+            "party": "per fess escutcheon",
+            "chief": {
+                "tincture": settings["tinctures"][0],
+                "charge": settings["charges"][0],
+                "charge-tincture": settings["c-tinctures"][0],
+                "quantity": settings["quantities"][0]
+            },
+            "base": {
+                "tincture": settings["tinctures"][1],
+                "charge": settings["charges"][1],
+                "charge-tincture": settings["c-tinctures"][1],
+                "quantity": settings["quantities"][1]
+            },
+            "escutcheon": {
+                "tincture": settings["tinctures"][2],
+                "charge": settings["charges"][2],
+                "charge-tincture": settings["c-tinctures"][2],
+                "quantity": settings["quantities"][2]
             },
         }
     }

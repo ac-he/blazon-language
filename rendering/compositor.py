@@ -30,6 +30,9 @@ def make_parted_image(party_dict):
                       party_dict.get("dexter-base"), party_dict.get("shape"))
         case "per fess":
             per_fess(party_dict.get("chief"), party_dict.get("base"), party_dict.get("shape"))
+        case "per fess escutcheon":
+            per_fess_escutcheon(party_dict.get("chief"), party_dict.get("base"), party_dict.get("escutcheon"),
+                                party_dict.get("shape"))
         case "per pale":
             per_pale(party_dict.get("dexter"), party_dict.get("sinister"), party_dict.get("shape"))
         case "per pall":
@@ -190,6 +193,52 @@ def per_fess(chief, base, shape):
     context.rectangle(0, fess, canvas["w"], canvas["h"] - fess)
     context.fill()
     delete_image_path(base_guid)
+
+
+def per_fess_escutcheon(chief, base, escutcheon, shape):
+    escutcheon_scale = 0.5
+    fess = canvas["h"] / 2
+
+    if shape == "pennant":
+        fess = canvas["h"] * 3 / 8
+        escutcheon_scale = 0.375
+    elif shape == "banner" or shape == "shield" or shape == "heater":
+        fess = canvas["h"] * 3.5 / 8
+
+    esc_scale_w = canvas["w"] * escutcheon_scale
+    esc_scale_h = canvas["h"] * escutcheon_scale
+    esc_w = (canvas["w"] - esc_scale_w) / 2
+    esc_h = fess - esc_scale_h / 2
+
+    chief_guid = make_charge_image(chief, shape=shape, dof="per fess escutcheon", division="chief")
+    surf1 = surface.create_from_png(chief_guid)
+    context.set_source_surface(surf1)
+    context.rectangle(0, 0, canvas["w"], fess)
+    context.fill()
+    delete_image_path(chief_guid)
+
+    base_guid = make_charge_image(base, shape=shape, dof="per fess escutcheon", division="base")
+    surf2 = surface.create_from_png(base_guid)
+    context.set_source_surface(surf2)
+    context.rectangle(0, fess, canvas["w"], canvas["h"] - fess)
+    context.fill()
+    delete_image_path(base_guid)
+
+    escutcheon_guid = make_charge_image(escutcheon, shape=shape, dof="per fess escutcheon", division="escutcheon")
+    surf3 = surface.create_from_png(escutcheon_guid)
+    context.set_source_surface(surf3)
+    context.move_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.000 * esc_scale_h)
+    context.line_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.625 * esc_scale_h)
+    context.curve_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.875 * esc_scale_h,
+                     esc_w + 0.333 * esc_scale_w, esc_h + 0.938 * esc_scale_h,
+                     esc_w + 0.500 * esc_scale_w, esc_h + 1.000 * esc_scale_h)
+    context.curve_to(esc_w + 0.667 * esc_scale_w, esc_h + 0.938 * esc_scale_h,
+                     esc_w + 1.000 * esc_scale_w, esc_h + 0.875 * esc_scale_h,
+                     esc_w + 1.000 * esc_scale_w, esc_h + 0.625 * esc_scale_h)
+    context.line_to(esc_w + 1.000 * esc_scale_w, esc_h + 0.000 * esc_scale_h)
+    context.close_path()
+    context.fill()
+    delete_image_path(escutcheon_guid)
 
 
 def per_pale(dexter, sinister, shape):
