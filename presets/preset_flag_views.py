@@ -64,5 +64,28 @@ pre_flag_view = {
             "clear-old-images": False
         }
     },
+    "armorial": {
+        "w": 800,
+        "h": 600,
+        "background": "armorial-folio.png",
+        "crest-scale-width": 95,
+        "kerning": 10,
+        "line-spacing": 45,
+        "override-shapes": True,
+        "margin-x": 42,
+        "margin-y": 60,
+        "shapes": [
+            "heater"
+        ],
+        "mid-margin-x": 400,
+        "page-overlay": "armorial-folio",
+        "print": {
+            "output-directory": "default",
+            "file-name-base": "Armorial-Folio",
+            "pdf": False,
+            "include-timestamp": False,
+            "clear-old-images": False
+        }
+    },
 }
 

@@ -1,6 +1,8 @@
 # the charger takes in JSON
 # and outputs an IMAGE GUID
+import random
 from datetime import datetime
+from math import floor
 from pathlib import Path
 import cairo
 from PIL import Image
@@ -66,7 +68,9 @@ def make_assembled_image(assembled_dict):
 
         # draw crest
         if assembled_dict.get("override-shapes"):
-            crest["shape"] = "rect"
+            count = len(assembled_dict.get("shapes"))
+            index = floor(random.random() * count)
+            crest["shape"] = assembled_dict.get("shapes")[index]
 
         draw_crest(crest, x, y, scale_w, scale_h)
 
@@ -75,14 +79,32 @@ def make_assembled_image(assembled_dict):
 
         # get new crest position
         x = x + assembled_dict.get("kerning") + scale_w
-        if (x + scale_w) > (assembled_dict.get("w") - assembled_dict.get("margin-x")):
+        print()
+
+        far_x = x + scale_w
+        mid_margin_left = 0
+        mid_margin_right = 0
+        if assembled_dict.get("mid-margin-x"):
+            mid_margin_right = assembled_dict.get("mid-margin-x") + assembled_dict.get("margin-x")
+            mid_margin_left = assembled_dict.get("mid-margin-x") - assembled_dict.get("margin-x")
+        print(x, "\t", mid_margin_left, mid_margin_right)
+        if assembled_dict.get("mid-margin-x") and (
+                (mid_margin_left < far_x < mid_margin_right + scale_w) or
+                (mid_margin_left < x < mid_margin_right + scale_w)):
+            x = assembled_dict.get("mid-margin-x") + assembled_dict.get("margin-x")
+            print("a", x, assembled_dict.get("mid-margin-x"), y)
+        elif far_x > (assembled_dict.get("w") - assembled_dict.get("margin-x")):
             x = assembled_dict.get("margin-x")
             y = y + assembled_dict.get("line-spacing") + scale_h
+            print("b", x, assembled_dict.get("mid-margin-x"), y)
         if (y + scale_h) > (assembled_dict.get("h") - assembled_dict.get("margin-y")):
+            draw_page_overlay(assembled_dict)
             page_name = print_path + str(pages) + fx
             surface.write_to_png(page_name)
             new_page = True
+            print("c", x, assembled_dict.get("mid-margin-x"), y)
 
+    draw_page_overlay(assembled_dict)
     page_name = print_path + str(pages) + fx
     surface.write_to_png(page_name)
 
@@ -177,3 +199,25 @@ def draw_single_flag_with_overlay(crest, overlay_name, save_to):
     # cleanup
     delete_image_path(main_guid)
     delete_image_path(overlay_guid)
+
+
+def draw_page_overlay(assembled_dict):
+    if assembled_dict.get("page-overlay"):
+        name = assembled_dict["page-overlay"]
+        w = assembled_dict["w"]
+        h = assembled_dict["h"]
+
+        overlay = str(Path.joinpath(Path.cwd(), "presets", "img", f"overlay_{name}.png"))
+
+        # scale image
+        image = Image.open(overlay).resize((w, h))
+        image.save(overlay)
+
+        # create surface
+        surf1 = surface.create_from_png(overlay)
+
+        # draw
+        context.set_source_surface(surf1)
+        context.rectangle(0, 0, w, h)
+        context.close_path()
+        context.fill()

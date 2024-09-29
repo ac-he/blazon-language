@@ -67,8 +67,12 @@ Ventmonster
 OTHER ASSETS
 -------------------------------------------------------------------------------
 Wikimedia
-Cloth Texture   https://commons.wikimedia.org/wiki/File:Blue_chambray_cloth.JPG (Modified in Sketch.io)
+Cloth Texture   https://commons.wikimedia.org/wiki/File:Blue_chambray_cloth.JPG
+    (Modified in Sketch.io, August 2024)
+Armorial        https://commons.wikimedia.org/wiki/File:Wapenboek_Beyeren_(armorial)_-_KB79K21_-_folios_001v_(left)_and_002r_(right).jpg
+    (Modified in Sketch.io and Canva, September 2024)
 -------------------------------------------------------------------------------
 Geograph
-Photographic Background     https://www.geograph.org.uk/photo/3233086 (Modified in Inkscape)
+Photographic Background     https://www.geograph.org.uk/photo/3233086
+    (Modified in Inkscape, August 2024)
 ===============================================================================
