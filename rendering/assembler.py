@@ -15,20 +15,109 @@ from rendering.trimmer import make_trimmed_image
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
 context = cairo.Context(surface)
 
+print_path = None
+fx = None
+new_page = None
+pages = None
+x = None
+y = None
+scale_w = None
+scale_h = None
+background = None
+cur_printbox = None
+
 
 def make_assembled_image(assembled_dict):
-    global surface, context
+    global print_path, fx, pages, new_page
+
+    create_print_settings(assembled_dict)
+
+    for crest in assembled_dict.get("crests"):
+        # create new page if needed
+        if new_page:
+            create_new_page(assembled_dict)
+
+        # override shape if needed
+        if assembled_dict.get("override-shapes"):
+            count = len(assembled_dict.get("shapes"))
+            index = floor(random.random() * count)
+            crest["shape"] = assembled_dict.get("shapes")[index]
+
+        # draw crest
+        draw_crest(crest, x, y, scale_w, scale_h)
+        if assembled_dict.get("overlay"):
+            draw_overlay(assembled_dict.get("overlay"), crest["shape"], x, y, scale_w, scale_h)
+
+        # get new crest position
+        get_new_crest_position(assembled_dict)
+
+    print_page(assembled_dict)
+
+
+def get_new_crest_position(assembled_dict):
+    global x, y, scale_w, scale_h, cur_printbox
+    printboxes = assembled_dict.get("printboxes")
+    printbox = printboxes[cur_printbox]
+
+    x_limit = printbox.get("x") + printbox.get("w")
+    x_next = printbox.get("kerning") + scale_w
+    # If it fits on this line
+    if x + x_next + scale_w <= x_limit:
+        x += x_next
+
+    # If it doesn't fit on this line
+    else:
+        y_limit = printbox.get("y") + printbox.get("h")
+        y_next = printbox.get("line-spacing") + scale_h
+
+        # If another line fits in this printbox
+        if y + y_next + scale_h <= y_limit:
+            x = printbox.get("x")
+            y += y_next
+
+        # If another line doesn't fit in this printbox
+        else:
+            cur_printbox += 1
+            # If this is the last printbox
+            if len(printboxes) <= cur_printbox:
+                cur_printbox = 0
+                print_page(assembled_dict)
+
+            printbox = printboxes[cur_printbox]
+
+            x = printbox.get("x")
+            y = printbox.get("y")
+
+
+def create_printboxes(assembled_dict):
+    global x, y, cur_printbox
+    cur_printbox = 0
+
+    printboxes = assembled_dict.get("printboxes")
+    printbox = printboxes[cur_printbox]
+
+    x = printbox.get("x")
+    y = printbox.get("y")
+
+
+def create_print_settings(assembled_dict):
+    global print_path, fx, background, scale_w, scale_h, new_page, pages, surface, context
     surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, assembled_dict.get("w"), assembled_dict.get("h"))
     context = cairo.Context(surface)
 
     print_name = "Page_"
+    fx = ".png"
+    print_dir = None
+
+    background_str = str(Path.joinpath(Path.cwd(), "presets", "img", assembled_dict.get("background")))
+    background = surface.create_from_png(background_str)
+
+    scale_w = int(assembled_dict.get("crest-scale-width"))
+    scale_h = int(assembled_dict.get("crest-scale-width") * canvas.get("h") / canvas.get("w"))
+
     if assembled_dict.get("print"):
         if assembled_dict["print"].get("clear-old-images"):
             delete_all_images()
-
-        is_pdf = assembled_dict["print"]["pdf"]
-        fx = ".png"
-
         if assembled_dict["print"]["output-directory"] != "default":
             print_dir = assembled_dict["print"]["output-directory"]
         if assembled_dict["print"]["file-name-base"] != "default":
@@ -37,76 +126,33 @@ def make_assembled_image(assembled_dict):
             now = datetime.now()
             print_name = print_name + now.strftime("%d.%m.%y-%I.%M%p_")
 
+    if print_dir:
+        print_path = str(Path.joinpath(print_dir, print_name))
     else:
-        is_pdf = False
-        fx = ".png"
+        print_path = str(Path.joinpath(Path.cwd(), "rendering", "img", print_name))
 
-    print_path = str(Path.joinpath(Path.cwd(), "rendering", "img", print_name))
-
-    background_str = str(Path.joinpath(Path.cwd(), "presets", "img", assembled_dict.get("background")))
-    background = surface.create_from_png(background_str)
-
-    scale_w = int(assembled_dict.get("crest-scale-width"))
-    scale_h = int(assembled_dict.get("crest-scale-width") * canvas.get("h") / canvas.get("w"))
-
+    create_printboxes(assembled_dict)
     new_page = True
     pages = 0
-    x = 0
-    y = 0
-    for crest in assembled_dict.get("crests"):
-        # create new page if needed
-        if new_page:
-            new_page = False
-            pages = pages + 1
 
-            x = assembled_dict.get("margin-x")
-            y = assembled_dict.get("margin-y")
 
-            context.set_source_surface(background)
-            context.rectangle(0, 0, assembled_dict.get("w"), assembled_dict.get("h"))
-            context.fill()
-
-        # draw crest
-        if assembled_dict.get("override-shapes"):
-            count = len(assembled_dict.get("shapes"))
-            index = floor(random.random() * count)
-            crest["shape"] = assembled_dict.get("shapes")[index]
-
-        draw_crest(crest, x, y, scale_w, scale_h)
-
-        if assembled_dict.get("overlay"):
-            draw_overlay(assembled_dict.get("overlay"), crest["shape"], x, y, scale_w, scale_h)
-
-        # get new crest position
-        x = x + assembled_dict.get("kerning") + scale_w
-        print()
-
-        far_x = x + scale_w
-        mid_margin_left = 0
-        mid_margin_right = 0
-        if assembled_dict.get("mid-margin-x"):
-            mid_margin_right = assembled_dict.get("mid-margin-x") + assembled_dict.get("margin-x")
-            mid_margin_left = assembled_dict.get("mid-margin-x") - assembled_dict.get("margin-x")
-        print(x, "\t", mid_margin_left, mid_margin_right)
-        if assembled_dict.get("mid-margin-x") and (
-                (mid_margin_left < far_x < mid_margin_right + scale_w) or
-                (mid_margin_left < x < mid_margin_right + scale_w)):
-            x = assembled_dict.get("mid-margin-x") + assembled_dict.get("margin-x")
-            print("a", x, assembled_dict.get("mid-margin-x"), y)
-        elif far_x > (assembled_dict.get("w") - assembled_dict.get("margin-x")):
-            x = assembled_dict.get("margin-x")
-            y = y + assembled_dict.get("line-spacing") + scale_h
-            print("b", x, assembled_dict.get("mid-margin-x"), y)
-        if (y + scale_h) > (assembled_dict.get("h") - assembled_dict.get("margin-y")):
-            draw_page_overlay(assembled_dict)
-            page_name = print_path + str(pages) + fx
-            surface.write_to_png(page_name)
-            new_page = True
-            print("c", x, assembled_dict.get("mid-margin-x"), y)
-
+def print_page(assembled_dict):
+    global print_path, fx, surface, new_page, pages
     draw_page_overlay(assembled_dict)
     page_name = print_path + str(pages) + fx
     surface.write_to_png(page_name)
+    new_page = True
+
+
+def create_new_page(assembled_dict):
+    global new_page, pages, context, background
+
+    new_page = False
+    pages = pages + 1
+
+    context.set_source_surface(background)
+    context.rectangle(0, 0, assembled_dict.get("w"), assembled_dict.get("h"))
+    context.fill()
 
 
 def draw_crest(crest, x, y, w, h):
