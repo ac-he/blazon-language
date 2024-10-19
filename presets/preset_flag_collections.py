@@ -292,5 +292,287 @@ pre_flag_collection = {
                 "base": {"tincture": "a"}
             }
         },
+    ],
+    "coin toss": [
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per chevron",
+                "chief": {
+                    "tincture": "o",
+                    "charge": "griffin"
+                },
+                "base": {
+                    "tincture": "g",
+                    "charge": "lozenge",
+                    "charge-tincture": "o",
+                    "quantity": 3
+                }
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per saltire",
+                "dexter": {
+                    "tincture": "g",
+                    "charge": "griffin",
+                },
+                "chief": {
+                    "tincture": "r",
+                    "charge": "rose",
+                    "charge-tincture": "g"
+                },
+                "sinister": {
+                    "tincture": "g",
+                    "charge": "annulet",
+                    "charge-tincture": "o"
+                },
+                "base": {
+                    "tincture": "s",
+                    "charge": "lozengy",
+                    "charge-tincture": "o",
+                }
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per pale",
+                "dexter": {
+                    "tincture": "p",
+                    "charge": "crown",
+                },
+                "sinister": {
+                    "tincture": "o",
+                    "charge": "harp",
+                },
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per pall",
+                "dexter": {
+                    "tincture": "o",
+                    "charge": "crown",
+                },
+                "sinister": {
+                    "tincture": "g",
+                    "charge": "lion_rampant",
+                },
+                "chief": {
+                    "tincture": "r",
+                    "charge": "gorge",
+                    "charge-tincture": "s"
+                },
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per bend",
+                "dexter-base": {
+                    "tincture": "r",
+                    "charge": "crown",
+                },
+                "sinister-chief": {
+                    "tincture": "g",
+                    "charge": "zilant",
+                    "quantity": 2
+                },
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per bend sinister",
+                "dexter-chief": {
+                    "tincture": "s",
+                },
+                "sinister-base": {
+                    "tincture": "o",
+                    "charge": "eagle",
+                },
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per bend sinister",
+                "dexter-chief": {
+                    "tincture": "a",
+                    "charge": "ship",
+                    "quantity": 3
+                },
+                "sinister-base": {
+                    "tincture": "r",
+                    "charge": "anchor",
+                },
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per bend sinister",
+                "dexter-chief": {
+                    "tincture": "g",
+                    "charge": "castle",
+                },
+                "sinister-base": {
+                    "tincture": "g",
+                    "charge": "dragon",
+                },
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per saltire",
+                "dexter": {
+                    "tincture": "v",
+                    "charge": "griffin",
+                },
+                "chief": {
+                    "tincture": "s",
+                    "charge": "keys"
+                },
+                "sinister": {
+                    "tincture": "v",
+                    "charge": "griffin",
+                },
+                "base": {
+                    "tincture": "o",
+                    "charge": "quatrefoil",
+                    "charge-tincture": "v",
+                }
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "none",
+                "field": {
+                    "tincture": "v",
+                    "charge": "lozengy",
+                    "charge-tincture": "r"
+                },
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per pale",
+                "dexter": {
+                    "tincture": "p",
+                    "charge": "crown",
+                },
+                "sinister": {
+                    "tincture": "o",
+                    "charge": "thistle",
+                },
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per pall",
+                "dexter": {
+                    "tincture": "o",
+                    "charge": "crown",
+                },
+                "sinister": {
+                    "tincture": "g",
+                    "charge": "lion_rampant",
+                },
+                "chief": {
+                    "tincture": "r",
+                    "charge": "gorge",
+                    "charge-tincture": "s"
+                },
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per bend",
+                "dexter-base": {
+                    "tincture": "r",
+                    "charge": "crown",
+                },
+                "sinister-chief": {
+                    "tincture": "g",
+                    "charge": "zilant",
+                    "quantity": 2
+                },
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per bend sinister",
+                "dexter-chief": {
+                    "tincture": "a",
+                    "charge": "ship",
+                    "quantity": 3
+                },
+                "sinister-base": {
+                    "tincture": "r",
+                    "charge": "anchor",
+                },
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per bend sinister",
+                "dexter-chief": {
+                    "tincture": "s",
+                    "charge": "moon",
+                },
+                "sinister-base": {
+                    "tincture": "s",
+                    "charge": "comet",
+                },
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per bend sinister",
+                "dexter-chief": {
+                    "tincture": "s",
+                },
+                "sinister-base": {
+                    "tincture": "g",
+                    "charge": "lamp",
+                },
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "none",
+                "field": {
+                    "tincture": "p",
+                    "charge": "quatrefoil",
+                    "charge-tincture": "r"
+                },
+            }
+        },
+        {
+            "shape": "rect",
+            "field": {
+                "party": "per bend sinister",
+                "dexter-chief": {
+                    "tincture": "g",
+                    "charge": "ship",
+                },
+                "sinister-base": {
+                    "tincture": "s",
+                    "charge": "ship",
+                },
+            }
+        },
     ]
 }

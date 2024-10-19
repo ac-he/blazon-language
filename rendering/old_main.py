@@ -1,3 +1,4 @@
+import const
 from presets.preset_flag_collections import pre_flag_collection
 from presets.preset_flag_views import pre_flag_view
 from presets.view_data_generator import make_randomized_test_data, make_default_test_data, \
@@ -6,7 +7,7 @@ from rendering.charger import make_charge_image
 from rendering.compositor import make_parted_image
 from rendering.trimmer import make_trimmed_image
 from rendering.assembler import make_assembled_image, draw_single_flag_with_overlay
-from rendering.z_util_images import delete_all_images, configure_svg_assets
+from rendering.z_util_images import delete_all_images
 
 
 def main():
@@ -25,7 +26,7 @@ def main():
     # "pipeline"        Shows the steps of the process, largely for demo purposes. It should be the same as the previous
     #                   release.
     # "single"          Creates just one image, largely for demo purposes. It should be the same as last time.
-    mode = "single"
+    mode = "nice-renders"
 
     # NICE RENDERS
     if mode == "nice-renders":
@@ -59,14 +60,36 @@ def main():
                                                                   quantity_frequencies=[7, 2, 1])
         make_assembled_image(collection_settings)
 
+        collection_settings = pre_flag_view["armorial"]
+        collection_settings["crests"] = make_randomized_test_data(23, charge_list="all", division_list="all",
+                                                                  shape_list="all", quantity_list="all",
+                                                                  quantity_frequencies=[7, 2, 1])
+        make_assembled_image(collection_settings)
+
+        collection_settings = pre_flag_view["armorial"]
+        collection_settings["print"]["file-name-base"] = "armorial-nato"
+        collection_settings["crests"] = pre_flag_collection['nato']
+        make_assembled_image(collection_settings)
+
+        collection_settings = pre_flag_view["armorial"]
+        collection_settings["print"]["file-name-base"] = "armorial-fantasy"
+        collection_settings["crests"] = pre_flag_collection['fantasy']
+        make_assembled_image(collection_settings)
+
+    if mode == "armorial":
+        collection_settings = pre_flag_view["armorial"]
+        collection_settings["print"]["file-name-base"] = "armorial-coin-toss"
+        collection_settings["crests"] = pre_flag_collection['coin toss']
+        make_assembled_image(collection_settings)
+
     # RANDOM MODE
     # You can override the lists here
     if mode == "random":
         data = pre_flag_view["default_view"]
         # CHARGE LIST -- "all" or a list of charges
-        cl = "all"  # ["comet", "cross_moline", "fleur_de_lis", "keys", "lion_rampant"]
+        cl = ["fusily", "gyronny", "lozengy", "chequy", "fret", "gorge", "none", "none", "none"]
         # DIVISION LIST -- "all" or a list of divisions
-        dl = "all"  # ["per pall", "per fess", "per cross"]
+        dl = ["per fess escutcheon"]
         # SHAPE LIST -- "all" or a list of shapes
         sl = "all"  # ["heater", "shield"]
         # QUANTITY LIST -- "all" or a list of quantities
@@ -95,12 +118,12 @@ def main():
     #           "per saltire"       "none"
     if mode == "set":
         data = pre_flag_view["default_view"]
-        data["crests"] = make_default_test_data("snairald", 1)
+        data["crests"] = make_default_test_data(["gyronny", "fret"], 1)
         make_assembled_image(data)
 
     if mode == "div-set":
         data = pre_flag_view["default_view"]
-        data["crests"] = make_default_test_data_by_division("none", ["label", "lion_passant"], 3)
+        data["crests"] = make_default_test_data_by_division("per fess escutcheon", ["label", "quarterly_of_eight"], 3)
         make_assembled_image(data)
 
     # DEMO: The general rendering pipeline is:
@@ -172,20 +195,46 @@ def main():
     if mode == "single":
         pipeline1a = {"shape": "heater",
                       "field": {
-                          "party": "per bend",
-                          "dexter-base": {
-                              "tincture": "g",
-                              "charge": "bee"
-                              },
-                          "sinister-chief": {
-                              "tincture": "o",
-                              "charge": "crown"
-                              }
-                          }
+                          "party": "none",
+                          "field": {
+                              "tincture": "r",
+                              "charge": "mullet",
+                              "charge-tincture": "s",
+                              "quantity": 2
+                          },
+                        }
                       }
-        print(f"Image 1a: {make_trimmed_image(pipeline1a)}")
+        name = "example1"
+        folder = "variable_nine"
+        # print(f"Image 1a: {make_trimmed_image(pipeline1a)}")
         draw_single_flag_with_overlay(pipeline1a, "fabric",
-                                      "C:\\Users\\annac\\Code\\blazon-docs\\blazon-docs\\assets\\logo.png")
+                                      f"C:\\Users\\annac\\Code\\blazon-docs\\blazon-docs\\assets\\{folder}\\{name}.png")
+        # make_trimmed_image(pipeline1a)
+
+    if mode == "single-gen":
+        for tincture in const.tinctures:
+            pipeline1a = {"shape": "heater",
+                          "field": {
+                              "party": "none",
+                              "field": {
+                                  "tincture": tincture
+                              }
+                            }
+                          }
+            # pipeline1a = {"shape": "heater",
+            #               "field": {
+            #                   "party": "none",
+            #                   "field": {
+            #                       "tincture": "g",
+            #                       "charge-tincture": "o",
+            #                       "charge": charge,
+            #                       "quantity": 1
+            #                   }
+            #               }
+            #               }
+            print(f"Image 1a: {make_trimmed_image(pipeline1a)}")
+            draw_single_flag_with_overlay(pipeline1a, "fabric",
+                                          f"C:\\Users\\annac\\Code\\blazon-docs\\blazon-docs\\assets\\tincture_chart\\{tincture}.png")
 
 
 main()

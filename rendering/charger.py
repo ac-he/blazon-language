@@ -5,8 +5,8 @@ from math import floor, ceil
 from pathlib import Path
 import cairo
 
-import const
-from const import canvas, tinctures, charge_loc, charge_size, charges, all_tinctures
+from rendering import const
+from rendering.const import canvas, tinctures, charge_loc, charge_size, charges, all_tinctures
 from rendering.z_util_images import supply_guid
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])

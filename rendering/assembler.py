@@ -7,8 +7,8 @@ from pathlib import Path
 import cairo
 from PIL import Image
 
-import const
-from const import canvas
+from rendering import const
+from rendering.const import canvas
 from rendering.z_util_images import delete_image_path, delete_all_images
 from rendering.trimmer import make_trimmed_image
 
