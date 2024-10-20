@@ -1,25 +1,109 @@
-@@grammar::Calc
+@@grammar::Blazon
 
-    start = expression $ ;
+    start = blazons:({blazon}*) $ ;
 
-    expression
-        =
-        | term '+' ~ expression
-        | term '-' ~ expression
-        | term
-        ;
+    blazon = division ".";
 
-    term
-        =
-        | factor '*' ~ term
-        | factor '/' ~ term
-        | factor
-        ;
+    division =
+        per_bend |
+        per_bend_sinister |
+        per_chevron |
+        per_cross |
+        per_fess |
+        per_fess_escutcheon |
+        per_pale |
+        per_pall |
+        per_saltire |
+        per_nothing ;
 
-    factor
-        =
-        | '(' ~ @:expression ')'
-        | number
-        ;
+    tincture = metal | color ;
 
-    number = /\d+/ ;
+    metal = "or" | "argent" ;
+
+    color = "azure" | "gules" | "purpure" | "sable" | "vert" ;
+
+    quantity_plural = "two" | "three" ;
+    quantity_singular = quantity_one | quantity_a ;
+    quantity_one = "one" ;
+    quantity_a = "a" ;
+
+    charge_pattern =
+        "gyronny" |
+        "lozengy" ;
+    tq_charge_pattern = charge:(charge_pattern) tincture:(tincture) ;
+
+    charge_tincturable_singular =
+        "roundel" |
+        "crescent" |
+        "billet" |
+        "mullet" |
+        "caltrap" |
+        "martlet" |
+        "cross" "pate" |
+        "annulet" |
+        "fusil" |
+        "fleur-de-lis" |
+        "lozenge" |
+        "rose" |
+        "mascle" |
+        "cross" "moline" |
+        "rustre" |
+        "octofoil" |
+        "escutcheon" ;
+    charge_tincturable_plural =
+        "roundels" |
+        "crescents" |
+        "billets" |
+        "mullets" |
+        "caltraps" |
+        "martlets" |
+        "crosses" "pate" |
+        "annulets" |
+        "fusils" |
+        "fleurs-de-lis" |
+        "lozenges" |
+        "roses" |
+        "mascles" |
+        "crosses" "moline" |
+        "rustres" |
+        "octofoils" |
+        "escutcheons" ;
+    tq_charge_tincturable_singular =
+        quantity:(quantity_singular)
+        charge:(charge_tincturable_singular)
+        tincture:(tincture);
+    tq_charge_tincturable_plural =
+        quantity:(quantity_plural)
+        charge:(charge_tincturable_plural)
+        tincture(tincture) ;
+    tq_charge_tincturable =
+        tq_charge_tincturable_singular |
+        tq_charge_tincturable_plural ;
+
+    charge_large =
+        "gorge" |
+        "fret" ;
+    tq_charge_large = quantity_a charge:(charge_large) tincture:(tincture) ;
+
+    charge_label = "a" "label" "of" ;
+    tq_label_singular = quantity_one "point" ;
+    tq_label_plural = quantity_plural "points" ;
+    tq_label = tq_label_singular | tq_label_plural ;
+    tq_charge_label = charge:(charge_label) quantity:(tq_label) tincture:(tincture) ;
+
+    charge_phrase =
+        tq_charge_pattern |
+        tq_charge_tincturable |
+        tq_charge_large |
+        tq_charge_label ;
+
+    per_bend = "per bend";
+    per_bend_sinister = "per bend sinister" ;
+    per_chevron = "per chevron" ;
+    per_cross = "per cross" ;
+    per_fess = "per fess" ;
+    per_fess_escutcheon = "per fess escutcheon" ;
+    per_pale = "per pale" ;
+    per_pall = "per pall" ;
+    per_saltire = "per saltire" ;
+    per_nothing = field_tincture:(tincture) "," charge:(charge_phrase);

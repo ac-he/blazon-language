@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from language._parser import CalcParser
+from language._parser import BlazonParser
 from tatsu.util import asjson
 
 
@@ -9,7 +9,7 @@ def main():
     grammar_path = Path.joinpath(Path.cwd(), 'language', 'blazon.ebnf')
     code_path = Path.joinpath(Path.cwd(), 'language', 'test', 'sample.blzn')
 
-    parser = CalcParser()
+    parser = BlazonParser()
     ast = parser.parse(get_file_as_string(code_path), start='start')
     print(ast)
     print(json.dumps(asjson(ast), indent=2))

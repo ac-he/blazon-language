@@ -25,7 +25,7 @@ from tatsu.util import re, generic_main
 KEYWORDS: set[str] = set()
 
 
-class CalcBuffer(Buffer):
+class BlazonBuffer(Buffer):
     def __init__(self, text, /, config: ParserConfig | None = None, **settings):
         config = ParserConfig.new(
             config,
@@ -45,7 +45,7 @@ class CalcBuffer(Buffer):
         super().__init__(text, config=config)
 
 
-class CalcParser(Parser):
+class BlazonParser(Parser):
     def __init__(self, /, config: ParserConfig | None = None, **settings):
         config = ParserConfig.new(
             config,
@@ -66,68 +66,427 @@ class CalcParser(Parser):
 
     @tatsumasu()
     def _start_(self):
-        self._expression_()
+        with self._group():
+
+            def block0():
+                self._blazon_()
+            self._closure(block0)
+        self.name_last_node('blazons')
         self._check_eof()
+        self._define(['blazons'], [])
 
     @tatsumasu()
-    def _expression_(self):
+    def _blazon_(self):
+        self._division_()
+        self._token('.')
+
+    @tatsumasu()
+    def _division_(self):
         with self._choice():
             with self._option():
-                self._term_()
-                self._token('+')
-                self._cut()
-                self._expression_()
+                self._per_bend_()
             with self._option():
-                self._term_()
-                self._token('-')
-                self._cut()
-                self._expression_()
+                self._per_bend_sinister_()
             with self._option():
-                self._term_()
+                self._per_chevron_()
+            with self._option():
+                self._per_cross_()
+            with self._option():
+                self._per_fess_()
+            with self._option():
+                self._per_fess_escutcheon_()
+            with self._option():
+                self._per_pale_()
+            with self._option():
+                self._per_pall_()
+            with self._option():
+                self._per_saltire_()
+            with self._option():
+                self._per_nothing_()
             self._error(
                 'expecting one of: '
-                '<factor> <term>'
+                "'per bend sinister' 'per bend' 'per"
+                "chevron' 'per cross' 'per fess"
+                "escutcheon' 'per fess' 'per pale' 'per"
+                "pall' 'per saltire' <color> <metal>"
+                '<per_bend> <per_bend_sinister>'
+                '<per_chevron> <per_cross> <per_fess>'
+                '<per_fess_escutcheon> <per_nothing>'
+                '<per_pale> <per_pall> <per_saltire>'
+                '<tincture>'
             )
 
     @tatsumasu()
-    def _term_(self):
+    def _tincture_(self):
         with self._choice():
             with self._option():
-                self._factor_()
-                self._token('*')
-                self._cut()
-                self._term_()
+                self._metal_()
             with self._option():
-                self._factor_()
-                self._token('/')
-                self._cut()
-                self._term_()
-            with self._option():
-                self._factor_()
+                self._color_()
             self._error(
                 'expecting one of: '
-                "'(' <factor> <number>"
+                "'argent' 'azure' 'gules' 'or' 'purpure'"
+                "'sable' 'vert' <color> <metal>"
             )
 
     @tatsumasu()
-    def _factor_(self):
+    def _metal_(self):
         with self._choice():
             with self._option():
-                self._token('(')
-                self._cut()
-                self._expression_()
-                self.name_last_node('@')
-                self._token(')')
+                self._token('or')
             with self._option():
-                self._number_()
+                self._token('argent')
             self._error(
                 'expecting one of: '
-                "'(' <number> \\d+"
+                "'argent' 'or'"
             )
 
     @tatsumasu()
-    def _number_(self):
-        self._pattern('\\d+')
+    def _color_(self):
+        with self._choice():
+            with self._option():
+                self._token('azure')
+            with self._option():
+                self._token('gules')
+            with self._option():
+                self._token('purpure')
+            with self._option():
+                self._token('sable')
+            with self._option():
+                self._token('vert')
+            self._error(
+                'expecting one of: '
+                "'azure' 'gules' 'purpure' 'sable' 'vert'"
+            )
+
+    @tatsumasu()
+    def _quantity_plural_(self):
+        with self._choice():
+            with self._option():
+                self._token('two')
+            with self._option():
+                self._token('three')
+            self._error(
+                'expecting one of: '
+                "'three' 'two'"
+            )
+
+    @tatsumasu()
+    def _quantity_singular_(self):
+        with self._choice():
+            with self._option():
+                self._quantity_one_()
+            with self._option():
+                self._quantity_a_()
+            self._error(
+                'expecting one of: '
+                "'a' 'one' <quantity_a> <quantity_one>"
+            )
+
+    @tatsumasu()
+    def _quantity_one_(self):
+        self._token('one')
+
+    @tatsumasu()
+    def _quantity_a_(self):
+        self._token('a')
+
+    @tatsumasu()
+    def _charge_pattern_(self):
+        with self._choice():
+            with self._option():
+                self._token('gyronny')
+            with self._option():
+                self._token('lozengy')
+            self._error(
+                'expecting one of: '
+                "'gyronny' 'lozengy'"
+            )
+
+    @tatsumasu()
+    def _tq_charge_pattern_(self):
+        with self._group():
+            self._charge_pattern_()
+        self.name_last_node('charge')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._define(['charge', 'tincture'], [])
+
+    @tatsumasu()
+    def _charge_tincturable_singular_(self):
+        with self._choice():
+            with self._option():
+                self._token('roundel')
+            with self._option():
+                self._token('crescent')
+            with self._option():
+                self._token('billet')
+            with self._option():
+                self._token('mullet')
+            with self._option():
+                self._token('caltrap')
+            with self._option():
+                self._token('martlet')
+            with self._option():
+                self._token('cross')
+                self._token('pate')
+            with self._option():
+                self._token('annulet')
+            with self._option():
+                self._token('fusil')
+            with self._option():
+                self._token('fleur-de-lis')
+            with self._option():
+                self._token('lozenge')
+            with self._option():
+                self._token('rose')
+            with self._option():
+                self._token('mascle')
+            with self._option():
+                self._token('cross')
+                self._token('moline')
+            with self._option():
+                self._token('rustre')
+            with self._option():
+                self._token('octofoil')
+            with self._option():
+                self._token('escutcheon')
+            self._error(
+                'expecting one of: '
+                "'annulet' 'billet' 'caltrap' 'crescent'"
+                "'cross' 'escutcheon' 'fleur-de-lis'"
+                "'fusil' 'lozenge' 'martlet' 'mascle'"
+                "'mullet' 'octofoil' 'rose' 'roundel'"
+                "'rustre'"
+            )
+
+    @tatsumasu()
+    def _charge_tincturable_plural_(self):
+        with self._choice():
+            with self._option():
+                self._token('roundels')
+            with self._option():
+                self._token('crescents')
+            with self._option():
+                self._token('billets')
+            with self._option():
+                self._token('mullets')
+            with self._option():
+                self._token('caltraps')
+            with self._option():
+                self._token('martlets')
+            with self._option():
+                self._token('crosses')
+                self._token('pate')
+            with self._option():
+                self._token('annulets')
+            with self._option():
+                self._token('fusils')
+            with self._option():
+                self._token('fleurs-de-lis')
+            with self._option():
+                self._token('lozenges')
+            with self._option():
+                self._token('roses')
+            with self._option():
+                self._token('mascles')
+            with self._option():
+                self._token('crosses')
+                self._token('moline')
+            with self._option():
+                self._token('rustres')
+            with self._option():
+                self._token('octofoils')
+            with self._option():
+                self._token('escutcheons')
+            self._error(
+                'expecting one of: '
+                "'annulets' 'billets' 'caltraps'"
+                "'crescents' 'crosses' 'escutcheons'"
+                "'fleurs-de-lis' 'fusils' 'lozenges'"
+                "'martlets' 'mascles' 'mullets'"
+                "'octofoils' 'roses' 'roundels' 'rustres'"
+            )
+
+    @tatsumasu()
+    def _tq_charge_tincturable_singular_(self):
+        with self._group():
+            self._quantity_singular_()
+        self.name_last_node('quantity')
+        with self._group():
+            self._charge_tincturable_singular_()
+        self.name_last_node('charge')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._define(['charge', 'quantity', 'tincture'], [])
+
+    @tatsumasu()
+    def _tq_charge_tincturable_plural_(self):
+        with self._group():
+            self._quantity_plural_()
+        self.name_last_node('quantity')
+        with self._group():
+            self._charge_tincturable_plural_()
+        self.name_last_node('charge')
+        self._tincture_()
+        with self._group():
+            self._tincture_()
+        self._define(['charge', 'quantity'], [])
+
+    @tatsumasu()
+    def _tq_charge_tincturable_(self):
+        with self._choice():
+            with self._option():
+                self._tq_charge_tincturable_singular_()
+            with self._option():
+                self._tq_charge_tincturable_plural_()
+            self._error(
+                'expecting one of: '
+                "'a' 'one' 'three' 'two' <quantity_a>"
+                '<quantity_one> <quantity_plural>'
+                '<quantity_singular>'
+                '<tq_charge_tincturable_plural>'
+                '<tq_charge_tincturable_singular>'
+            )
+
+    @tatsumasu()
+    def _charge_large_(self):
+        with self._choice():
+            with self._option():
+                self._token('gorge')
+            with self._option():
+                self._token('fret')
+            self._error(
+                'expecting one of: '
+                "'fret' 'gorge'"
+            )
+
+    @tatsumasu()
+    def _tq_charge_large_(self):
+        self._quantity_a_()
+        with self._group():
+            self._charge_large_()
+        self.name_last_node('charge')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._define(['charge', 'tincture'], [])
+
+    @tatsumasu()
+    def _charge_label_(self):
+        self._token('a')
+        self._token('label')
+        self._token('of')
+
+    @tatsumasu()
+    def _tq_label_singular_(self):
+        self._quantity_one_()
+        self._token('point')
+
+    @tatsumasu()
+    def _tq_label_plural_(self):
+        self._quantity_plural_()
+        self._token('points')
+
+    @tatsumasu()
+    def _tq_label_(self):
+        with self._choice():
+            with self._option():
+                self._tq_label_singular_()
+            with self._option():
+                self._tq_label_plural_()
+            self._error(
+                'expecting one of: '
+                "'one' 'three' 'two' <quantity_one>"
+                '<quantity_plural> <tq_label_plural>'
+                '<tq_label_singular>'
+            )
+
+    @tatsumasu()
+    def _tq_charge_label_(self):
+        with self._group():
+            self._charge_label_()
+        self.name_last_node('charge')
+        with self._group():
+            self._tq_label_()
+        self.name_last_node('quantity')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._define(['charge', 'quantity', 'tincture'], [])
+
+    @tatsumasu()
+    def _charge_phrase_(self):
+        with self._choice():
+            with self._option():
+                self._tq_charge_pattern_()
+            with self._option():
+                self._tq_charge_tincturable_()
+            with self._option():
+                self._tq_charge_large_()
+            with self._option():
+                self._tq_charge_label_()
+            self._error(
+                'expecting one of: '
+                "'a' 'gyronny' 'lozengy' 'one' 'three'"
+                "'two' <charge_label> <charge_pattern>"
+                '<quantity_a> <quantity_one>'
+                '<quantity_plural> <quantity_singular>'
+                '<tq_charge_label> <tq_charge_large>'
+                '<tq_charge_pattern>'
+                '<tq_charge_tincturable>'
+                '<tq_charge_tincturable_plural>'
+                '<tq_charge_tincturable_singular>'
+            )
+
+    @tatsumasu()
+    def _per_bend_(self):
+        self._token('per bend')
+
+    @tatsumasu()
+    def _per_bend_sinister_(self):
+        self._token('per bend sinister')
+
+    @tatsumasu()
+    def _per_chevron_(self):
+        self._token('per chevron')
+
+    @tatsumasu()
+    def _per_cross_(self):
+        self._token('per cross')
+
+    @tatsumasu()
+    def _per_fess_(self):
+        self._token('per fess')
+
+    @tatsumasu()
+    def _per_fess_escutcheon_(self):
+        self._token('per fess escutcheon')
+
+    @tatsumasu()
+    def _per_pale_(self):
+        self._token('per pale')
+
+    @tatsumasu()
+    def _per_pall_(self):
+        self._token('per pall')
+
+    @tatsumasu()
+    def _per_saltire_(self):
+        self._token('per saltire')
+
+    @tatsumasu()
+    def _per_nothing_(self):
+        with self._group():
+            self._tincture_()
+        self.name_last_node('field_tincture')
+        self._token(',')
+        with self._group():
+            self._charge_phrase_()
+        self.name_last_node('charge')
+        self._define(['charge', 'field_tincture'], [])
 
 
 def main(filename, **kwargs):
@@ -135,9 +494,18 @@ def main(filename, **kwargs):
         text = sys.stdin.read()
     else:
         text = Path(filename).read_text()
-    parser = CalcParser()
+    parser = BlazonParser()
     return parser.parse(
         text,
         filename=filename,
         **kwargs,
     )
+
+
+if __name__ == '__main__':
+    import json
+    from tatsu.util import asjson
+
+    ast = generic_main(main, BlazonParser, name='Blazon')
+    data = asjson(ast)
+    print(json.dumps(data, indent=2))
