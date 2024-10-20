@@ -10,26 +10,29 @@
         per_chevron |
         per_cross |
         per_fess |
-        per_fess_escutcheon |
         per_pale |
         per_pall |
         per_saltire |
         per_nothing ;
 
     tincture = metal | color ;
-
     metal = "or" | "argent" ;
-
     color = "azure" | "gules" | "purpure" | "sable" | "vert" ;
+
+    tincture_cap = metal_cap | color_cap ;
+    metal_cap = "Or" | "Argent" ;
+    color_cap = "Azure" | "Gules" | "Purpure" | "Sable" | "Vert" ;
 
     quantity_plural = "two" | "three" ;
     quantity_singular = quantity_one | quantity_a ;
     quantity_one = "one" ;
-    quantity_a = "a" ;
+    quantity_a = "a" | "an";
 
     charge_pattern =
         "gyronny" |
-        "lozengy" ;
+        "lozengy" |
+        "chequy" |
+        "fusily";
     tq_charge_pattern = charge:(charge_pattern) tincture:(tincture) ;
 
     charge_tincturable_singular =
@@ -71,11 +74,11 @@
     tq_charge_tincturable_singular =
         quantity:(quantity_singular)
         charge:(charge_tincturable_singular)
-        tincture:(tincture);
+        tincture:(tincture) ;
     tq_charge_tincturable_plural =
         quantity:(quantity_plural)
         charge:(charge_tincturable_plural)
-        tincture(tincture) ;
+        tincture:(tincture) ;
     tq_charge_tincturable =
         tq_charge_tincturable_singular |
         tq_charge_tincturable_plural ;
@@ -83,7 +86,7 @@
     charge_large =
         "gorge" |
         "fret" ;
-    tq_charge_large = quantity_a charge:(charge_large) tincture:(tincture) ;
+    tq_charge_large = quantity:(quantity_a) charge:(charge_large) tincture:(tincture) ;
 
     charge_label = "a" "label" "of" ;
     tq_label_singular = quantity_one "point" ;
@@ -91,19 +94,163 @@
     tq_label = tq_label_singular | tq_label_plural ;
     tq_charge_label = charge:(charge_label) quantity:(tq_label) tincture:(tincture) ;
 
+    charge_auto_singular =
+        "lion" "rampant" |
+        "lion" "passant" |
+        "crown" |
+        "scallop" |
+        "phoenix" |
+        "anchor" |
+        "bee" |
+        "castle" |
+        "dragon" |
+        "eagle" |
+        "dolphin" |
+        "griffin" |
+        "harp" |
+        "comet" |
+        "clarion" |
+        "set of keys saltirewise" |
+        "lamp" |
+        "moon in her plenitude" |
+        "sun in his splendor" |
+        "owl" |
+        "portcullis" |
+        "quatrefoil" |
+        "raven" |
+        "ship" |
+        "thistle" |
+        "unicorn" |
+        "wheel" |
+        "wolf" |
+        "sword" |
+        "yale" |
+        "zilant" ;
+    charge_auto_plural =
+        "lions" "rampant" |
+        "lions" "passant" |
+        "crowns" |
+        "scallops" |
+        "phoenixes" |
+        "anchors" |
+        "bees" |
+        "castles" |
+        "dragons" |
+        "eagles" |
+        "dolphins" |
+        "griffins" |
+        "harps" |
+        "comets" |
+        "clarions" |
+        "sets of keys saltirewise" |
+        "lamps" |
+        "moons in their plenitude" |
+        "suns in their splendor" |
+        "owls" |
+        "portcullises" |
+        "quatrefoils" |
+        "ravens" |
+        "ships" |
+        "thistles" |
+        "unicorns" |
+        "wheels" |
+        "wolves" |
+        "swords" |
+        "yales" |
+        "zilants";
+    tq_charge_auto_singular =
+        quantity:(quantity_singular)
+        charge:(charge_auto_singular) ;
+    tq_charge_auto_plural =
+        quantity:(quantity_plural)
+        charge:(charge_auto_plural) ;
+    tq_charge_auto = tq_charge_auto_singular | tq_charge_auto_plural ;
+
+    tq_charge_quarterly =
+        charge:("quarterly" "of" "eight") ":"
+        tincture:(
+            tincture ","
+            tincture ","
+            tincture ","
+            tincture ","
+            tincture ","
+            tincture ","
+            tincture ","
+            tincture
+            ) ;
+
     charge_phrase =
         tq_charge_pattern |
+        tq_charge_auto |
         tq_charge_tincturable |
         tq_charge_large |
-        tq_charge_label ;
+        tq_charge_label |
+        tq_charge_quarterly;
 
-    per_bend = "per bend";
-    per_bend_sinister = "per bend sinister" ;
-    per_chevron = "per chevron" ;
-    per_cross = "per cross" ;
-    per_fess = "per fess" ;
-    per_fess_escutcheon = "per fess escutcheon" ;
-    per_pale = "per pale" ;
-    per_pall = "per pall" ;
-    per_saltire = "per saltire" ;
-    per_nothing = field_tincture:(tincture) "," charge:(charge_phrase);
+    per_bend =
+        "Per" "bend"
+        tincture:(tincture) "and"
+        tincture:(tincture) ";"
+        ["in" "chief" chief:(charge_phrase) ","]
+        "in" "base" base:(charge_phrase) ;
+
+    per_bend_sinister =
+        "Per" "bend" "sinister"
+        tincture:(tincture) "and"
+        tincture:(tincture) ";"
+        ["in" "chief" chief:(charge_phrase) ","]
+        "in" "base" base:(charge_phrase) ;
+
+    per_chevron =
+        "Per" "chevron"
+        tincture:(tincture) "and"
+        tincture:(tincture) ";"
+        "in" "chief" chief:(charge_phrase)
+        [ "," "in" "base" base:(charge_phrase) ] ;
+
+    per_cross =
+        "Quarterly" ";"
+        "I." tincture:(tincture) ["," charge:(charge_phrase)] ","
+        "II." tincture:(tincture) "," charge:(charge_phrase) ","
+        "III." tincture:(tincture) "," charge:(charge_phrase) ","
+        "IV." tincture:(tincture) "," charge:(charge_phrase) ;
+
+    per_fess =
+        "Per" "fess"
+        tincture:(tincture) "and"
+        tincture:(tincture) ";"
+        "in" "chief" chief:(charge_phrase) ","
+        "in" "base" base:(charge_phrase)
+        [";" "in" "the" "center"
+        (
+            ("on" "an" "escutcheon" tincture:(tincture) escutcheon:(charge_phrase)) |
+            ("an" "escutcheon" tincture:(tincture))
+        )] ;
+
+    per_pale =
+        "Per" "pale"
+        tincture:(tincture) "and"
+        tincture:(tincture) ";"
+        "to" "dexter" dexter:(charge_phrase) ","
+        "to" "sinister" sinister:(charge_phrase) ;
+
+    per_pall =
+        "Per" "pall"
+        tincture:(tincture) ","
+        tincture:(tincture) "," "and"
+        tincture:(tincture) ";"
+        ["in" "chief" chief:(charge_phrase) ","]
+        "to" "dexter" dexter:(charge_phrase) ","
+        "to" "sinister" sinister:(charge_phrase) ;
+
+    per_saltire =
+        "Per" "saltire"
+        tincture:(tincture) ","
+        tincture:(tincture) ","
+        tincture:(tincture) "," "and"
+        tincture:(tincture) ";"
+        ["in" "chief" chief:(charge_phrase) ","]
+        "to" "dexter" dexter:(charge_phrase) ","
+        "to" "sinister" sinister:(charge_phrase) ","
+        "in" "base" base:(charge_phrase);
+    per_nothing = field_tincture:(tincture_cap) "," charge:(charge_phrase);
