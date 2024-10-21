@@ -6,15 +6,15 @@
     blazon = division "." (/[\n]+/ | $);
 
     division =
-        per_bend |
-        per_bend_sinister |
-        per_chevron |
-        per_cross |
-        per_fess |
-        per_pale |
-        per_pall |
-        per_saltire |
-        per_nothing ;
+        per_bend:(per_bend) |
+        per_bend_sinister:(per_bend_sinister) |
+        per_chevron:(per_chevron) |
+        per_cross:(per_cross) |
+        per_fess:(per_fess) |
+        per_pale:(per_pale) |
+        per_pall:(per_pall) |
+        per_saltire:(per_saltire) |
+        per_nothing:(per_nothing) ;
 
     tincture = "or" | "argent" | "azure" | "gules" | "purpure" | "sable" | "vert" ;
     tincture_cap = "Or" | "Argent" | "Azure" | "Gules" | "Purpure" | "Sable" | "Vert" ;
@@ -108,8 +108,8 @@
         "clarion" |
         "set of keys saltirewise" |
         "lamp" |
-        "moon in her plenitude" |
-        "sun in his splendor" |
+        "moon" "in" "her" "plenitude" |
+        "sun" "in" "his" "splendor" |
         "owl" |
         "portcullis" |
         "quatrefoil" |
@@ -206,10 +206,10 @@
 
     per_cross =
         "Quarterly" ";"
-        "I." tincture:(tincture) ["," charge:(charge_phrase)] ","
-        "II." tincture:(tincture) "," charge:(charge_phrase) ","
-        "III." tincture:(tincture) "," charge:(charge_phrase) ","
-        "IV." tincture:(tincture) "," charge:(charge_phrase) ;
+        "I." tincture:(tincture) ["," dexter_chief:(charge_phrase)] ","
+        "II." tincture:(tincture) "," sinister_chief:(charge_phrase) ","
+        "III." tincture:(tincture) "," dexter_base:(charge_phrase) ","
+        "IV." tincture:(tincture) "," sinister_base:(charge_phrase) ;
 
     per_fess =
         "Per" "fess"

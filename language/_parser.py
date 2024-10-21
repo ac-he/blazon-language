@@ -94,23 +94,41 @@ class BlazonParser(Parser):
     def _division_(self):
         with self._choice():
             with self._option():
-                self._per_bend_()
+                with self._group():
+                    self._per_bend_()
+                self.name_last_node('per_bend')
             with self._option():
-                self._per_bend_sinister_()
+                with self._group():
+                    self._per_bend_sinister_()
+                self.name_last_node('per_bend_sinister')
             with self._option():
-                self._per_chevron_()
+                with self._group():
+                    self._per_chevron_()
+                self.name_last_node('per_chevron')
             with self._option():
-                self._per_cross_()
+                with self._group():
+                    self._per_cross_()
+                self.name_last_node('per_cross')
             with self._option():
-                self._per_fess_()
+                with self._group():
+                    self._per_fess_()
+                self.name_last_node('per_fess')
             with self._option():
-                self._per_pale_()
+                with self._group():
+                    self._per_pale_()
+                self.name_last_node('per_pale')
             with self._option():
-                self._per_pall_()
+                with self._group():
+                    self._per_pall_()
+                self.name_last_node('per_pall')
             with self._option():
-                self._per_saltire_()
+                with self._group():
+                    self._per_saltire_()
+                self.name_last_node('per_saltire')
             with self._option():
-                self._per_nothing_()
+                with self._group():
+                    self._per_nothing_()
+                self.name_last_node('per_nothing')
             self._error(
                 'expecting one of: '
                 "'Argent' 'Azure' 'Gules' 'Or' 'Per'"
@@ -480,9 +498,15 @@ class BlazonParser(Parser):
             with self._option():
                 self._token('lamp')
             with self._option():
-                self._token('moon in her plenitude')
+                self._token('moon')
+                self._token('in')
+                self._token('her')
+                self._token('plenitude')
             with self._option():
-                self._token('sun in his splendor')
+                self._token('sun')
+                self._token('in')
+                self._token('his')
+                self._token('splendor')
             with self._option():
                 self._token('owl')
             with self._option():
@@ -512,10 +536,9 @@ class BlazonParser(Parser):
                 "'anchor' 'bee' 'castle' 'clarion'"
                 "'comet' 'crown' 'dolphin' 'dragon'"
                 "'eagle' 'griffin' 'harp' 'lamp' 'lion'"
-                "'moon in her plenitude' 'owl' 'phoenix'"
-                "'portcullis' 'quatrefoil' 'raven'"
-                "'scallop' 'set of keys saltirewise'"
-                "'ship' 'sun in his splendor' 'sword'"
+                "'moon' 'owl' 'phoenix' 'portcullis'"
+                "'quatrefoil' 'raven' 'scallop' 'set of"
+                "keys saltirewise' 'ship' 'sun' 'sword'"
                 "'thistle' 'unicorn' 'wheel' 'wolf'"
                 "'yale' 'zilant'"
             )
@@ -790,8 +813,8 @@ class BlazonParser(Parser):
             self._token(',')
             with self._group():
                 self._charge_phrase_()
-            self.name_last_node('charge')
-            self._define(['charge'], [])
+            self.name_last_node('dexter_chief')
+            self._define(['dexter_chief'], [])
         self._token(',')
         self._token('II.')
         with self._group():
@@ -800,7 +823,7 @@ class BlazonParser(Parser):
         self._token(',')
         with self._group():
             self._charge_phrase_()
-        self.name_last_node('charge')
+        self.name_last_node('sinister_chief')
         self._token(',')
         self._token('III.')
         with self._group():
@@ -809,7 +832,7 @@ class BlazonParser(Parser):
         self._token(',')
         with self._group():
             self._charge_phrase_()
-        self.name_last_node('charge')
+        self.name_last_node('dexter_base')
         self._token(',')
         self._token('IV.')
         with self._group():
@@ -818,8 +841,8 @@ class BlazonParser(Parser):
         self._token(',')
         with self._group():
             self._charge_phrase_()
-        self.name_last_node('charge')
-        self._define(['charge', 'tincture'], [])
+        self.name_last_node('sinister_base')
+        self._define(['dexter_base', 'dexter_chief', 'sinister_base', 'sinister_chief', 'tincture'], [])
 
     @tatsumasu()
     def _per_fess_(self):
