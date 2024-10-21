@@ -1,8 +1,9 @@
-@@grammar::Blazon
+@@grammar :: Blazon
+@@whitespace :: /[ ]+/
 
-    start = blazons:({blazon}*) $ ;
+    start = blazons:({blazon}*) $;
 
-    blazon = division ".";
+    blazon = division "." (/[\n]+/ | $);
 
     division =
         per_bend |
@@ -15,13 +16,8 @@
         per_saltire |
         per_nothing ;
 
-    tincture = metal | color ;
-    metal = "or" | "argent" ;
-    color = "azure" | "gules" | "purpure" | "sable" | "vert" ;
-
-    tincture_cap = metal_cap | color_cap ;
-    metal_cap = "Or" | "Argent" ;
-    color_cap = "Azure" | "Gules" | "Purpure" | "Sable" | "Vert" ;
+    tincture = "or" | "argent" | "azure" | "gules" | "purpure" | "sable" | "vert" ;
+    tincture_cap = "Or" | "Argent" | "Azure" | "Gules" | "Purpure" | "Sable" | "Vert" ;
 
     quantity_plural = "two" | "three" ;
     quantity_singular = quantity_one | quantity_a ;

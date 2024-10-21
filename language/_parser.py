@@ -30,7 +30,7 @@ class BlazonBuffer(Buffer):
         config = ParserConfig.new(
             config,
             owner=self,
-            whitespace=None,
+            whitespace='[ ]+',
             nameguard=None,
             ignorecase=False,
             namechars='',
@@ -50,7 +50,7 @@ class BlazonParser(Parser):
         config = ParserConfig.new(
             config,
             owner=self,
-            whitespace=None,
+            whitespace='[ ]+',
             nameguard=None,
             ignorecase=False,
             namechars='',
@@ -79,6 +79,16 @@ class BlazonParser(Parser):
     def _blazon_(self):
         self._division_()
         self._token('.')
+        with self._group():
+            with self._choice():
+                with self._option():
+                    self._pattern('[\\n]+')
+                with self._option():
+                    self._check_eof()
+                self._error(
+                    'expecting one of: '
+                    '[\\n]+'
+                )
 
     @tatsumasu()
     def _division_(self):
@@ -103,42 +113,21 @@ class BlazonParser(Parser):
                 self._per_nothing_()
             self._error(
                 'expecting one of: '
-                "'Per' 'Quarterly' <color_cap>"
-                '<metal_cap> <per_bend>'
-                '<per_bend_sinister> <per_chevron>'
-                '<per_cross> <per_fess> <per_nothing>'
-                '<per_pale> <per_pall> <per_saltire>'
-                '<tincture_cap>'
+                "'Argent' 'Azure' 'Gules' 'Or' 'Per'"
+                "'Purpure' 'Quarterly' 'Sable' 'Vert'"
+                '<per_bend> <per_bend_sinister>'
+                '<per_chevron> <per_cross> <per_fess>'
+                '<per_nothing> <per_pale> <per_pall>'
+                '<per_saltire> <tincture_cap>'
             )
 
     @tatsumasu()
     def _tincture_(self):
         with self._choice():
             with self._option():
-                self._metal_()
-            with self._option():
-                self._color_()
-            self._error(
-                'expecting one of: '
-                "'argent' 'azure' 'gules' 'or' 'purpure'"
-                "'sable' 'vert' <color> <metal>"
-            )
-
-    @tatsumasu()
-    def _metal_(self):
-        with self._choice():
-            with self._option():
                 self._token('or')
             with self._option():
                 self._token('argent')
-            self._error(
-                'expecting one of: '
-                "'argent' 'or'"
-            )
-
-    @tatsumasu()
-    def _color_(self):
-        with self._choice():
             with self._option():
                 self._token('azure')
             with self._option():
@@ -151,37 +140,17 @@ class BlazonParser(Parser):
                 self._token('vert')
             self._error(
                 'expecting one of: '
-                "'azure' 'gules' 'purpure' 'sable' 'vert'"
+                "'argent' 'azure' 'gules' 'or' 'purpure'"
+                "'sable' 'vert'"
             )
 
     @tatsumasu()
     def _tincture_cap_(self):
         with self._choice():
             with self._option():
-                self._metal_cap_()
-            with self._option():
-                self._color_cap_()
-            self._error(
-                'expecting one of: '
-                "'Argent' 'Azure' 'Gules' 'Or' 'Purpure'"
-                "'Sable' 'Vert' <color_cap> <metal_cap>"
-            )
-
-    @tatsumasu()
-    def _metal_cap_(self):
-        with self._choice():
-            with self._option():
                 self._token('Or')
             with self._option():
                 self._token('Argent')
-            self._error(
-                'expecting one of: '
-                "'Argent' 'Or'"
-            )
-
-    @tatsumasu()
-    def _color_cap_(self):
-        with self._choice():
             with self._option():
                 self._token('Azure')
             with self._option():
@@ -194,7 +163,8 @@ class BlazonParser(Parser):
                 self._token('Vert')
             self._error(
                 'expecting one of: '
-                "'Azure' 'Gules' 'Purpure' 'Sable' 'Vert'"
+                "'Argent' 'Azure' 'Gules' 'Or' 'Purpure'"
+                "'Sable' 'Vert'"
             )
 
     @tatsumasu()
