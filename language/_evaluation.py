@@ -1,3 +1,5 @@
+import math
+
 charge_values = {
     "anchor": 97,
     "anchors": 97,
@@ -50,6 +52,7 @@ charge_values = {
     "setsofkeyssaltirewise": 107,
     "alabelof": 1,
     "lamp": 108,
+    "lamps": 108,
     "lionpassant": 32,
     "lionspassant": 32,
     "lionrampant": 10,
@@ -109,6 +112,9 @@ def stringify_charge(charge):
 
 
 def integerify_quantity(quantity):
+    if isinstance(quantity, list):
+        quantity = quantity[0]
+
     match quantity:
         case "a":
             return 1
@@ -122,13 +128,55 @@ def integerify_quantity(quantity):
             return 3
 
 
-def get_int_value(charge, quantity):
-    if quantity:
-        i_quantity = integerify_quantity(quantity)
+def get_int_value(field):
+    s_charge = stringify_charge(field.charge)
+    i_charge = charge_values.get(s_charge)
+
+    if s_charge == "quarterlyofeight":
+        return interpret_quarterly_of_eight(field.charge_tincture)
+
+    if field.charge_quantity:
+        i_quantity = integerify_quantity(field.charge_quantity)
     else:
         i_quantity = 1
 
-    s_charge = stringify_charge(charge)
-    s_value = charge_values.get(s_charge)
+    return int(math.pow(i_charge, i_quantity))
 
-    return s_value ^ i_quantity
+
+def interpret_quarterly_of_eight(tinctures):
+    total = 0
+    for i in range(8):
+        tincture = tinctures[i * 2]
+
+        if not is_metal(tincture):
+            total += math.pow(2, 7 - i)
+
+    return int(total)
+
+
+def is_metal(tincture):
+    if tincture == "argent" or tincture == "or":
+        return True
+    return False
+
+
+def get_operator_string(field):
+    match field.field_tincture:
+        case "argent": return "Add", "to"
+        case "or": return "Subtract", "from"
+        case "sable": return "Multiply", "by"
+        case "gules": return "Divide", "by"
+        case "purpure": return "Mod", "by"
+        case "azure": return "Raise", "to the power of"
+        case "vert": return "root", None
+
+
+def get_comparison(field):
+    match field.field_tincture:
+        case "argent": return "less than"
+        case "or": return "greater than"
+        case "sable": return "equal to"
+        case "gules": return "not equal to"
+        case "purpure": return "less than or equal to"
+        case "azure": return "greater than or equal to"
+        case "vert": return "equal to"

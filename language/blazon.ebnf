@@ -106,7 +106,7 @@
         "harp" |
         "comet" |
         "clarion" |
-        "set of keys saltirewise" |
+        "set" "of" "keys" "saltirewise" |
         "lamp" |
         "moon" "in" "her" "plenitude" |
         "sun" "in" "his" "splendor" |
@@ -138,10 +138,10 @@
         "harps" |
         "comets" |
         "clarions" |
-        "sets of keys saltirewise" |
+        "sets" "of" "keys" "saltirewise" |
         "lamps" |
-        "moons in their plenitude" |
-        "suns in their splendor" |
+        "moons" "in" "their" "plenitude" |
+        "suns" "in" "their" "splendor" |
         "owls" |
         "portcullises" |
         "quatrefoils" |
@@ -249,4 +249,5 @@
         "to" "dexter" dexter:(charge_phrase) ","
         "to" "sinister" sinister:(charge_phrase) ","
         "in" "base" base:(charge_phrase);
-    per_nothing = field_tincture:(tincture_cap) "," charge:(charge_phrase);
+
+    per_nothing = field_tincture:(tincture_cap) "," field:(charge_phrase);

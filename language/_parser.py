@@ -494,7 +494,10 @@ class BlazonParser(Parser):
             with self._option():
                 self._token('clarion')
             with self._option():
-                self._token('set of keys saltirewise')
+                self._token('set')
+                self._token('of')
+                self._token('keys')
+                self._token('saltirewise')
             with self._option():
                 self._token('lamp')
             with self._option():
@@ -537,10 +540,9 @@ class BlazonParser(Parser):
                 "'comet' 'crown' 'dolphin' 'dragon'"
                 "'eagle' 'griffin' 'harp' 'lamp' 'lion'"
                 "'moon' 'owl' 'phoenix' 'portcullis'"
-                "'quatrefoil' 'raven' 'scallop' 'set of"
-                "keys saltirewise' 'ship' 'sun' 'sword'"
-                "'thistle' 'unicorn' 'wheel' 'wolf'"
-                "'yale' 'zilant'"
+                "'quatrefoil' 'raven' 'scallop' 'set'"
+                "'ship' 'sun' 'sword' 'thistle' 'unicorn'"
+                "'wheel' 'wolf' 'yale' 'zilant'"
             )
 
     @tatsumasu()
@@ -579,13 +581,22 @@ class BlazonParser(Parser):
             with self._option():
                 self._token('clarions')
             with self._option():
-                self._token('sets of keys saltirewise')
+                self._token('sets')
+                self._token('of')
+                self._token('keys')
+                self._token('saltirewise')
             with self._option():
                 self._token('lamps')
             with self._option():
-                self._token('moons in their plenitude')
+                self._token('moons')
+                self._token('in')
+                self._token('their')
+                self._token('plenitude')
             with self._option():
-                self._token('suns in their splendor')
+                self._token('suns')
+                self._token('in')
+                self._token('their')
+                self._token('splendor')
             with self._option():
                 self._token('owls')
             with self._option():
@@ -615,13 +626,11 @@ class BlazonParser(Parser):
                 "'anchors' 'bees' 'castles' 'clarions'"
                 "'comets' 'crowns' 'dolphins' 'dragons'"
                 "'eagles' 'griffins' 'harps' 'lamps'"
-                "'lions' 'moons in their plenitude'"
-                "'owls' 'phoenixes' 'portcullises'"
-                "'quatrefoils' 'ravens' 'scallops' 'sets"
-                "of keys saltirewise' 'ships' 'suns in"
-                "their splendor' 'swords' 'thistles'"
-                "'unicorns' 'wheels' 'wolves' 'yales'"
-                "'zilants'"
+                "'lions' 'moons' 'owls' 'phoenixes'"
+                "'portcullises' 'quatrefoils' 'ravens'"
+                "'scallops' 'sets' 'ships' 'suns'"
+                "'swords' 'thistles' 'unicorns' 'wheels'"
+                "'wolves' 'yales' 'zilants'"
             )
 
     @tatsumasu()
@@ -1020,8 +1029,8 @@ class BlazonParser(Parser):
         self._token(',')
         with self._group():
             self._charge_phrase_()
-        self.name_last_node('charge')
-        self._define(['charge', 'field_tincture'], [])
+        self.name_last_node('field')
+        self._define(['field', 'field_tincture'], [])
 
 
 def main(filename, **kwargs):
