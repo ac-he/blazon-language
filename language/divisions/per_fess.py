@@ -18,7 +18,7 @@ class PerFess(Blazon, ABC):
             self.escutcheon = blazon_json.get("escutcheon")
             if not self.escutcheon:
                 self.escutcheon = {}
-            self.escutcheon = Field(self.escutcheon, self.tinctures[2])
+            self.escutcheon = Field(self.escutcheon, self.tinctures[2], "per fess escutcheon", "escutcheon")
 
     def get_pseudocode(self):
         if self.escutcheon:
@@ -34,7 +34,7 @@ class PerFess(Blazon, ABC):
             variable2 = get_int_value(self.base)
             return f"Save the value from {variable2} to Variable{variable1}."
 
-    def get_image(self):
+    def get_image(self, shape):
         pass
 
     def get_program(self):

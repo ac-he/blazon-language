@@ -1,6 +1,6 @@
 import random
 from math import floor
-from rendering import const
+from rendering import _render_config
 
 charges = []
 for key in const.charges.keys():

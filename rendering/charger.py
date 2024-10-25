@@ -1,40 +1,33 @@
-# the charger takes in JSON
-# and outputs an IMAGE GUID
-import random
 from math import floor, ceil
-from pathlib import Path
-import cairo
 
-from rendering import const
-from rendering.const import canvas, tinctures, charge_loc, charge_size, charges, all_tinctures
-from rendering.z_util_images import supply_guid
+import cairo
+from pathlib import Path
+
+from language._evaluation import integerify_quantity, charges, make_charge_render_friendly
+from rendering._image_management import supply_guid
+from rendering._render_config import canvas, tinctures, charge_loc, charge_size, charge_detail
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
 context = cairo.Context(surface)
 
 
-def make_charge_image(charge_dict, shape="rect", dof="per fess", division="chief"):
+def make_division_image(field, shape="rect"):
     global surface, context
     surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
     context = cairo.Context(surface)
 
-    set_field_tincture(charge_dict.get("tincture"))
-    charge = charge_dict.get("charge")
+    set_field_tincture(field.field_tincture)
 
-    if not charge_dict.get("quantity"):
-        charge_dict["quantity"] = 1
-
-    if charges.get(charge):
-        if charges[charge]["type"] == "cm" or charges[charge]["type"] == "agoprsv":
-            stamp_feature(charge, charge_dict.get("tincture"), charge_dict["quantity"], shape, dof, division,
-                          charges[charge]["type"], charge_dict.get("charge-tincture"))
-        elif charges[charge]["type"] == "geo":
-            if charge == "label":
-                draw_feature_label(charge_dict.get("charge-tincture"), charge_dict["quantity"], shape, dof, division)
-            if charge == "quarterly_of_eight":
-                draw_feature_quarterly_of_eight(charge_dict.get("charge-tincture"), shape, dof, division)
-        elif charges[charge]["type"] == "oversize":
-            draw_feature_oversize(charge, shape, dof, division, charge_dict.get("charge-tincture"))
+    charge_type = charges[field.get_render_friendly_charge()]["type"]
+    if charge_type == "cm" or charge_type == "agoprsv":
+        stamp_feature(field, shape, charge_type)
+    elif charge_type == "geo":
+        if field.charge == "alabelof":
+            draw_feature_label(field, shape)
+        if field.charge == "quarterlyofeight":
+            draw_feature_quarterly_of_eight(field, shape)
+    elif charge_type == "oversize":
+        draw_feature_oversize(field, shape)
 
     guid = supply_guid()
     surface.write_to_png(guid)
@@ -49,26 +42,30 @@ def set_field_tincture(tincture):
     context.fill()
 
 
-def stamp_feature(charge, tincture, quantity, shape, dof, field, c_type, c_tincture):
-    if c_type == "cm":
+def stamp_feature(field, shape, charge_type):
+    if charge_type == "cm":
         suffix = "_m.png"
-        if tinctures[tincture].get("type") == "colour":
+        if tinctures[field.field_tincture].get("type") == "color":
             suffix = "_c.png"
     else:
-        suffix = f"_{c_tincture}.png"
+        tincture = tinctures[field.charge_tincture]["initial"]
+        suffix = f"_{tincture}.png"
 
-    size = charge_loc[dof][field][shape][quantity]["size"]
+    charge = charge_loc[field.dof][field.division]
+    quantity = integerify_quantity(field.charge_quantity)
 
+    size = charge[shape][quantity]["size"]
     size_d = "f"
     for letter, value in charge_size.items():
         if size is value:
             size_d = letter
 
-    path = Path.joinpath(Path.cwd(), "rendering", "assets", c_type, size_d, charge + suffix)
+    path = Path.joinpath(Path.cwd(), "rendering", "assets", charge_type, size_d,
+                         field.get_render_friendly_charge() + suffix)
 
     for stamp in range(0, quantity):
-        loc_x = charge_loc[dof][field][shape][quantity]["loc_x"][stamp]
-        loc_y = charge_loc[dof][field][shape][quantity]["loc_y"][stamp]
+        loc_x = charge[shape][quantity]["loc_x"][stamp]
+        loc_y = charge[shape][quantity]["loc_y"][stamp]
 
         surf1 = surface.create_from_png(str(path))
         context.set_source_surface(surf1, loc_x, loc_y)
@@ -77,25 +74,19 @@ def stamp_feature(charge, tincture, quantity, shape, dof, field, c_type, c_tinct
         context.fill()
 
 
-def draw_feature_quarterly_of_eight(tincture_list, shape, dof, division):
+def draw_feature_quarterly_of_eight(field, shape):
     global surface, context
-    fess_line = const.charge_detail["qoe"][dof][division][shape]["fess"]
-    dexter_line = const.charge_detail["qoe"][dof][division][shape]["dexter"]
-    pale_line = const.charge_detail["qoe"][dof][division][shape]["pale"]
-    sinister_line = const.charge_detail["qoe"][dof][division][shape]["sinister"]
+    line = charge_detail["qoe"][field.dof][field.division][shape]
+    fess_line = line["fess"]
+    dexter_line = line["dexter"]
+    pale_line = line["pale"]
+    sinister_line = line["sinister"]
 
     fesses = [0, fess_line, canvas['h']]
     pales = [0, dexter_line, pale_line, sinister_line, canvas['w']]
 
-    if isinstance(tincture_list, str):
-        t = []
-        for i in range(8):
-            t.append(all_tinctures[floor(random.random() * 7)])
-    else:
-        t = tincture_list
-
     for quarter in range(8):
-        color = tinctures[t[quarter]]
+        color = tinctures[quarter * 2]
 
         top = fesses[floor((quarter / 4) + 0.01)]
         bottom = fesses[ceil((quarter / 4) + 0.01)]
@@ -112,26 +103,27 @@ def draw_feature_quarterly_of_eight(tincture_list, shape, dof, division):
         context.fill()
 
 
-def draw_feature_label(feature_tincture, quantity, shape, dof, division):
+def draw_feature_label(field, shape):
     global surface, context
-    context.set_source_rgb(tinctures[feature_tincture]["r"], tinctures[feature_tincture]["g"],
-                           tinctures[feature_tincture]["b"])
+    point = charge_detail["label"][field.dof][field.division][shape]
+    context.set_source_rgb(tinctures[field.charge_tincture]["r"], tinctures[field.charge_tincture]["g"],
+                           tinctures[field.charge_tincture]["b"])
 
-    bar_h = const.charge_detail["label"][dof][division][shape]["bar_h"]
-    bar_y = const.charge_detail["label"][dof][division][shape]["bar_y"]
-    center = const.charge_detail["label"][dof][division][shape]["center"]
-    spacing = const.charge_detail["label"][dof][division][shape]["spacing"]
+    bar_h = point["bar_h"]
+    bar_y = point["bar_y"]
+    center = point["center"]
+    spacing = point["spacing"]
 
     label_in_y = bar_y + bar_h * 0.500
     label_out_y = bar_y + bar_h * 1.750
     label_w = bar_h * 1.01
 
     label_centers = []
-    if quantity == 1:
+    if field.charge_quantity == 1:
         label_centers = [center]
-    elif quantity == 2:
+    elif field.charge_quantity == 2:
         label_centers = [center - spacing / 2, center + spacing / 2]
-    elif quantity == 3:
+    elif field.charge_quantity == 3:
         label_centers = [center - spacing, center, center + spacing]
 
     for label in label_centers:
@@ -144,11 +136,13 @@ def draw_feature_label(feature_tincture, quantity, shape, dof, division):
     context.fill()
 
 
-def draw_feature_oversize(charge, shape, dof, field, c_tincture):
-    path = Path.joinpath(Path.cwd(), "rendering", "assets", "oversize", f"{charge}_{c_tincture}.png")
-    midpoint = charge_loc[dof][field][shape][1]["size"] / 2
-    loc_x = charge_loc[dof][field][shape][1]["loc_x"][0] + midpoint - 500
-    loc_y = charge_loc[dof][field][shape][1]["loc_y"][0] + midpoint - 500
+def draw_feature_oversize(field, shape):
+    tincture = tinctures[field.charge_tincture]["initial"]
+    path = Path.joinpath(Path.cwd(), "rendering", "assets", "oversize",
+                         f"{field.charge}_{tincture}.png")
+    midpoint = charge_loc[field.dof][field.division][shape][1]["size"] / 2
+    loc_x = charge_loc[field.dof][field.division][shape][1]["loc_x"][0] + midpoint - 500
+    loc_y = charge_loc[field.dof][field.division][shape][1]["loc_y"][0] + midpoint - 500
 
     surf1 = surface.create_from_png(str(path))
     context.set_source_surface(surf1, loc_x, loc_y)

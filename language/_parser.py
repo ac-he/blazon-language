@@ -1025,12 +1025,12 @@ class BlazonParser(Parser):
     def _per_nothing_(self):
         with self._group():
             self._tincture_cap_()
-        self.name_last_node('field_tincture')
+        self.name_last_node('tincture')
         self._token(',')
         with self._group():
             self._charge_phrase_()
         self.name_last_node('field')
-        self._define(['field', 'field_tincture'], [])
+        self._define(['field', 'tincture'], [])
 
 
 def main(filename, **kwargs):

@@ -24,7 +24,7 @@ class PerChevron(Blazon, ABC):
         else:
             return f"Generate a random integer 1-9 and store it to Variable{variable}."
 
-    def get_image(self):
+    def get_image(self, shape):
         pass
 
     def get_program(self):

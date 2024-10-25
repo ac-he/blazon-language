@@ -1,9 +1,9 @@
 # the compositor takes in JSON
 # and outputs an IMAGE GUID
 import cairo
-from rendering.const import canvas
-from rendering.charger import make_charge_image
-from rendering.z_util_images import supply_guid, delete_image_path
+from rendering._render_config import canvas
+from rendering.legacy_pipeline.charger import make_charge_image
+from rendering._image_management import supply_guid, delete_image_path
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
 context = cairo.Context(surface)

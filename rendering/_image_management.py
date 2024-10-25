@@ -2,7 +2,7 @@ import os
 from random import random
 from pathlib import Path
 from PIL import Image
-from rendering.const import charge_size
+from rendering._render_config import charge_size
 
 
 def supply_guid():

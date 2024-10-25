@@ -1,13 +1,12 @@
-import const
 from presets.preset_flag_collections import pre_flag_collection
 from presets.preset_flag_views import pre_flag_view
 from presets.view_data_generator import make_randomized_test_data, make_default_test_data, \
     make_default_test_data_by_division
-from rendering.charger import make_charge_image
-from rendering.compositor import make_parted_image
-from rendering.trimmer import make_trimmed_image
-from rendering.assembler import make_assembled_image, draw_single_flag_with_overlay
-from rendering.z_util_images import delete_all_images
+from rendering.legacy_pipeline.charger import make_charge_image
+from rendering.legacy_pipeline.compositor import make_parted_image
+from rendering.legacy_pipeline.trimmer import make_trimmed_image
+from rendering.legacy_pipeline.assembler import make_assembled_image, draw_single_flag_with_overlay
+from rendering._image_management import delete_all_images
 
 
 def main():

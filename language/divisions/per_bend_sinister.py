@@ -27,8 +27,7 @@ class PerBendSinister(Blazon, ABC):
             else:
                 return f"Output '{chr(variable)}', the character value of {variable}."
 
-
-    def get_image(self):
+    def get_image(self, shape):
         pass
 
     def get_program(self):

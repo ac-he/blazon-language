@@ -1,110 +1,129 @@
 import math
 
-charge_values = {
-    "anchor": 97,
-    "anchors": 97,
-    "annulet": 5,
-    "annulets": 5,
-    "bee": 98,
-    "bees": 98,
-    "billet": 2,
-    "billets": 2,
-    "caltrap": 3,
-    "caltraps": 3,
-    "castle": 99,
-    "castles": 99,
-    "chequy": 1000,
-    "clarion": 106,
-    "clarions": 106,
-    "comet": 105,
-    "comets": 105,
-    "crescent": 2,
-    "crescents": 2,
-    "crossmoline": 8,
-    "crossesmoline": 8,
-    "crosspate": 4,
-    "crossespate": 4,
-    "crown": 33,
-    "crowns": 33,
-    "dolphin": 102,
-    "dolphins": 102,
-    "dragon": 100,
-    "dragons": 100,
-    "eagle": 101,
-    "eagles": 101,
-    "scallop": 46,
-    "scallops": 46,
-    "escutcheon": 9,
-    "escutcheons": 9,
-    "fleur-de-lis": 6,
-    "fleurs-de-lis": 6,
-    "fret": 1,
-    "fusil": 5,
-    "fusils": 5,
-    "fusily": 1000,
-    "gorge": 0,
-    "griffin": 103,
-    "griffins": 103,
-    "gyronny": -1,
-    "harp": 104,
-    "harps": 104,
-    "setofkeyssaltirewise": 107,
-    "setsofkeyssaltirewise": 107,
-    "alabelof": 1,
-    "lamp": 108,
-    "lamps": 108,
-    "lionpassant": 32,
-    "lionspassant": 32,
-    "lionrampant": 10,
-    "lionsrampant": 10,
-    "lozenge": 6,
-    "lozenges": 6,
-    "lozengy": -1,
-    "martlet": 4,
-    "martlets": 4,
-    "mascle": 7,
-    "mascles": 7,
-    "mooninherplenitude": 109,
-    "moonsintheirplenitude": 109,
-    "mullet": 3,
-    "mullets": 3,
-    "octofoil": 9,
-    "octofoils": 9,
-    "owl": 111,
-    "owls": 111,
-    "phoenix": 63,
-    "phoenixes": 63,
-    "portcullis": 112,
-    "portcullises": 112,
-    "quatrefoil": 113,
-    "quatrefoils": 113,
-    "raven": 114,
-    "ravens": 114,
-    "rose": 7,
-    "roses": 7,
-    "roundel": 0,
-    "roundels": 0,
-    "rustre": 8,
-    "rustres": 8,
-    "ship": 115,
-    "ships": 115,
-    "suninhissplendor": 110,
-    "sunsintheirsplendor": 110,
-    "sword": 120,
-    "swords": 120,
-    "thistle": 116,
-    "thistles": 116,
-    "unicorn": 117,
-    "unicorns": 117,
-    "wheel": 118,
-    "wheels": 118,
-    "wolf": 119,
-    "wolves": 119,
-    "yale": 121,
-    "yales": 121,
-    "zilant": 122,
-    "zilants": 122
+charges = {
+    "anchor": {"type": "cm", "value": 97},
+    "annulet": {"type": "agoprsv", "value": 5},
+    "bee": {"type": "cm", "value": 98},
+    "billet": {"type": "agoprsv", "value": 2},
+    "caltrap": {"type": "agoprsv", "value": 3},
+    "castle": {"type": "cm", "value": 99},
+    "chequy": {"type": "oversize", "value": 1000},
+    "clarion": {"type": "cm", "value": 106},
+    "comet": {"type": "cm", "value": 105},
+    "crescent": {"type": "agoprsv", "value": 2},
+    "cross_moline": {"type": "agoprsv", "value": 8},
+    "cross_pate": {"type": "agoprsv", "value": 4},
+    "crown": {"type": "cm", "value": 33},
+    "dolphin": {"type": "cm", "value": 102},
+    "dragon": {"type": "cm", "value": 100},
+    "eagle": {"type": "cm", "value": 101},
+    "escallop": {"type": "cm", "value": 46},
+    "escutcheon": {"type": "agoprsv", "value": 9},
+    "fleur_de_lis": {"type": "agoprsv", "value": 6},
+    "fret": {"type": "oversize", "value": 1},
+    "fusil": {"type": "agoprsv", "value": 5},
+    "fusily": {"type": "oversize", "value": 1000},
+    "gorge": {"type": "oversize", "value": 0},
+    "griffin": {"type": "cm", "value": 103},
+    "gyronny": {"type": "oversize", "value": -1},
+    "harp": {"type": "cm", "value": 104},
+    "keys": {"type": "cm", "value": 107},
+    "label": {"type": "geo", "value": 1},
+    "lamp": {"type": "cm", "value": 108},
+    "lion_passant": {"type": "cm", "value": 32},
+    "lion_rampant": {"type": "cm", "value": 10},
+    "lozenge": {"type": "agoprsv", "value": 6},
+    "lozengy": {"type": "oversize", "value": -1},
+    "martlet": {"type": "agoprsv", "value": 4},
+    "mascle": {"type": "agoprsv", "value": 7},
+    "moon": {"type": "cm", "value": 109},
+    "mullet": {"type": "agoprsv", "value": 3},
+    "octofoil": {"type": "agoprsv", "value": 9},
+    "owl": {"type": "cm", "value": 111},
+    "phoenix": {"type": "cm", "value": 63},
+    "portcullis": {"type": "cm", "value": 112},
+    "quatrefoil": {"type": "cm", "value": 113},
+    "quarterly_of_eight": {"type": "geo"},
+    "raven": {"type": "cm", "value": 114},
+    "rose": {"type": "agoprsv", "value": 7},
+    "roundel": {"type": "agoprsv", "value": 0},
+    "rustre": {"type": "agoprsv", "value": 8},
+    "ship": {"type": "cm", "value": 115},
+    "snairald": {"type": "cm"},
+    "sun": {"type": "cm", "value": 110},
+    "sword": {"type": "cm", "value": 120},
+    "thistle": {"type": "cm", "value": 116},
+    "unicorn": {"type": "cm", "value": 117},
+    "ventmonster": {"type": "oversize"},
+    "wheel": {"type": "cm", "value": 118},
+    "wolf": {"type": "cm", "value": 119},
+    "yale": {"type": "cm", "value": 121},
+    "zilant": {"type": "cm", "value": 122},
 }
+
+
+def make_charge_render_friendly(charge):
+    match charge:
+        case "anchors": return "anchor"
+        case "annulets": return "annulet"
+        case "bees": return "bee"
+        case "billets": return "billet"
+        case "caltraps": return "caltrap"
+        case "castles": return "castle"
+        case "clarions": return "clarion"
+        case "comets": return "comet"
+        case "crescents": return "crescent"
+        case "crossmoline": return "cross_moline"
+        case "crossesmoline": return "cross_moline"
+        case "crosspate": return "cross_pate"
+        case "crossespate": return "cross_pate"
+        case "crowns": return "crown"
+        case "dolphins": return "dolphin"
+        case "dragons": return "dragon"
+        case "eagles": return "eagle"
+        case "scallop": return "escallop"
+        case "scallops": return "escallop"
+        case "escutcheons": return "escutcheon"
+        case "fleur-de-lis": return "fleur_de_lis"
+        case "fleurs-de-lis": return "fleur_de_lis"
+        case "fusils": return "fusil"
+        case "griffins": return "griffin"
+        case "harps": return "harp"
+        case "setofkeyssaltirewise": return "keys"
+        case "setsofkeyssaltirewise": return "keys"
+        case "alabelof": return "label"
+        case "lamps": return "lamp"
+        case "lionpassant": return "lion_passant"
+        case "lionspassant": return "lion_passant"
+        case "lionrampant": return "lion_rampant"
+        case "lionsrampant": return "lion_rampant"
+        case "lozenges": return "lozenge"
+        case "martlets": return "martlet"
+        case "mascles": return "mascle"
+        case "mooninherplenitude": return "moon"
+        case "moonsintheirplenitude": return "moon"
+        case "mullets": return "mullet"
+        case "octofoils": return "octofoil"
+        case "owls": return "owl"
+        case "phoenixes": return "phoenix"
+        case "portcullises": return "portcullis"
+        case "quatrefoils": return "quatrefoil"
+        case "quarterlyofeight": return "quarterly_of_eight"
+        case "ravens": return "raven"
+        case "roses": return "rose"
+        case "roundels": return "roundel"
+        case "rustres": return "rustre"
+        case "ships": return "ship"
+        case "suninhissplendor": return "sun"
+        case "sunsintheirsplendor": return "sun"
+        case "swords": return "sword"
+        case "thistles": return "thistle"
+        case "unicorns": return "unicorn"
+        case "wheels": return "wheel"
+        case "wolves": return "wolf"
+        case "yales": return "yale"
+        case "zilants": return "zilant"
+        case _: return charge
 
 
 def stringify_charge(charge):
@@ -130,10 +149,9 @@ def integerify_quantity(quantity):
 
 def get_int_value(field):
     s_charge = stringify_charge(field.charge)
-    i_charge = charge_values.get(s_charge)
-
     if s_charge == "quarterlyofeight":
         return interpret_quarterly_of_eight(field.charge_tincture)
+    i_charge = charges[make_charge_render_friendly(s_charge)]["value"]
 
     if field.charge_quantity:
         i_quantity = integerify_quantity(field.charge_quantity)

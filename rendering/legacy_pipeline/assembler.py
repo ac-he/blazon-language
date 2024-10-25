@@ -7,10 +7,9 @@ from pathlib import Path
 import cairo
 from PIL import Image
 
-from rendering import const
-from rendering.const import canvas
-from rendering.z_util_images import delete_image_path, delete_all_images
-from rendering.trimmer import make_trimmed_image
+from rendering._render_config import canvas
+from rendering._image_management import delete_image_path, delete_all_images
+from rendering.legacy_pipeline.trimmer import make_trimmed_image
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
 context = cairo.Context(surface)
@@ -109,7 +108,7 @@ def create_print_settings(assembled_dict):
     fx = ".png"
     print_dir = None
 
-    background_str = str(Path.joinpath(Path.cwd(), "presets", "img", assembled_dict.get("background")))
+    background_str = str(Path.joinpath(Path.cwd(), "presets", "../img", assembled_dict.get("background")))
     background = surface.create_from_png(background_str)
 
     scale_w = int(assembled_dict.get("crest-scale-width"))
@@ -129,7 +128,7 @@ def create_print_settings(assembled_dict):
     if print_dir:
         print_path = str(Path.joinpath(print_dir, print_name))
     else:
-        print_path = str(Path.joinpath(Path.cwd(), "rendering", "img", print_name))
+        print_path = str(Path.joinpath(Path.cwd(), "rendering", "../img", print_name))
 
     create_printboxes(assembled_dict)
     new_page = True
@@ -180,7 +179,7 @@ def draw_overlay(name, shape, x, y, w, h):
     shape_dict = {
         "shape": shape,
         "field": {
-            "name": str(Path.joinpath(Path.cwd(), "presets", "img", f"overlay_{name}.png"))
+            "name": str(Path.joinpath(Path.cwd(), "presets", "../img", f"overlay_{name}.png"))
         }
     }
 
@@ -211,7 +210,7 @@ def draw_single_flag_with_overlay(crest, overlay_name, save_to):
     shape_dict = {
         "shape": crest.get("shape"),
         "field": {
-            "name": str(Path.joinpath(Path.cwd(), "presets", "img", f"overlay_{overlay_name}.png"))
+            "name": str(Path.joinpath(Path.cwd(), "presets", "../img", f"overlay_{overlay_name}.png"))
         }
     }
 
@@ -253,7 +252,7 @@ def draw_page_overlay(assembled_dict):
         w = assembled_dict["w"]
         h = assembled_dict["h"]
 
-        overlay = str(Path.joinpath(Path.cwd(), "presets", "img", f"overlay_{name}.png"))
+        overlay = str(Path.joinpath(Path.cwd(), "presets", "../img", f"overlay_{name}.png"))
 
         # scale image
         image = Image.open(overlay).resize((w, h))

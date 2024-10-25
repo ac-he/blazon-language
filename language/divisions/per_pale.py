@@ -18,7 +18,7 @@ class PerPale(Blazon, ABC):
         variable = get_int_value(self.dexter)
         return f"Save the value {value} to Variable{variable}."
 
-    def get_image(self):
+    def get_image(self, shape):
         pass
 
     def get_program(self):

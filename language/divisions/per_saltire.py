@@ -27,7 +27,7 @@ class PerSaltire(Blazon, ABC):
         comparison = get_comparison(self.chief)
         return f"If Variable{variable1} is {comparison} {variable2}, go to Branch{branch}."
 
-    def get_image(self):
+    def get_image(self, shape):
         pass
 
     def get_program(self):

@@ -26,7 +26,7 @@ class Blazon(ABC):
         pass
 
     @abstractmethod
-    def get_image(self):
+    def get_image(self, shape):
         pass
 
     @abstractmethod

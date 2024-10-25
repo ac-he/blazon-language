@@ -1,9 +1,9 @@
 # the trimmer takes in JSON
 # and outputs an IMAGE GUID
 import cairo
-from rendering.const import canvas
-from rendering.z_util_images import supply_guid, delete_image_path
-from rendering.compositor import make_parted_image
+from rendering._render_config import canvas
+from rendering._image_management import supply_guid, delete_image_path
+from rendering.legacy_pipeline.compositor import make_parted_image
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
 context = cairo.Context(surface)

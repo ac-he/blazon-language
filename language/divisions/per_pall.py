@@ -27,7 +27,7 @@ class PerPall(Blazon, ABC):
         else:
             return f"{operation} the value {value} {preposition} Variable{variable}."
 
-    def get_image(self):
+    def get_image(self, shape):
         pass
 
     def get_program(self):

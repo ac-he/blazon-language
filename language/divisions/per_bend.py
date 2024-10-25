@@ -2,6 +2,7 @@ from abc import ABC
 from language.divisions.blazon import Blazon
 from language._evaluation import get_int_value, is_metal
 from language.field import Field
+from rendering.charger import make_division_image
 
 
 class PerBend(Blazon, ABC):
@@ -24,7 +25,7 @@ class PerBend(Blazon, ABC):
         else:
             return f"Output Variable{variable} as a character."
 
-    def get_image(self):
+    def get_image(self, shape):
         pass
 
     def get_program(self):

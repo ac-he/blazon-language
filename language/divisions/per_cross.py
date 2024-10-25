@@ -27,7 +27,7 @@ class PerCross(Blazon, ABC):
         comparison = get_comparison(self.dexter_chief)
         return f"If Variable{variable1} is {comparison} Variable{variable2}, go to Branch{branch}."
 
-    def get_image(self):
+    def get_image(self, shape):
         pass
 
     def get_program(self):
