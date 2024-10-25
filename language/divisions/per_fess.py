@@ -11,8 +11,8 @@ class PerFess(Blazon, ABC):
         self.base = blazon_json.get("base")
         self.tinctures = blazon_json.get("tincture")
 
-        self.chief = Field(self.chief, self.tinctures[0])
-        self.base = Field(self.base, self.tinctures[1])
+        self.chief = Field(self.chief, self.tinctures[0], "per fess", "chief")
+        self.base = Field(self.base, self.tinctures[1], "per fess", "base")
 
         if len(self.tinctures) == 3:
             self.escutcheon = blazon_json.get("escutcheon")

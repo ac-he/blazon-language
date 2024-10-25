@@ -14,8 +14,8 @@ class PerBend(Blazon, ABC):
         if not self.chief:
             self.chief = {}
 
-        self.chief = Field(self.chief, self.tinctures[0])
-        self.base = Field(self.base, self.tinctures[1])
+        self.chief = Field(self.chief, self.tinctures[0], "per bend", "chief")
+        self.base = Field(self.base, self.tinctures[1], "per bend", "base")
 
     def get_pseudocode(self):
         variable = get_int_value(self.base)

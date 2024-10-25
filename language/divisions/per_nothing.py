@@ -9,7 +9,7 @@ class PerNothing(Blazon, ABC):
         self.field = blazon_json.get("field")
         self.tinctures = [blazon_json.get("tincture")]
 
-        self.field = Field(self.field, self.tinctures[0])
+        self.field = Field(self.field, self.tinctures[0], "per nothing", "field")
 
     def get_pseudocode(self):
         branch = get_int_value(self.field)

@@ -10,8 +10,8 @@ class PerPale(Blazon, ABC):
         self.sinister = blazon_json.get("sinister")
         self.tinctures = blazon_json.get("tincture")
 
-        self.dexter = Field(self.dexter, self.tinctures[0])
-        self.sinister = Field(self.sinister, self.tinctures[1])
+        self.dexter = Field(self.dexter, self.tinctures[0], "per pale", "dexter")
+        self.sinister = Field(self.sinister, self.tinctures[1], "per pale", "sinister")
 
     def get_pseudocode(self):
         value = get_int_value(self.sinister)

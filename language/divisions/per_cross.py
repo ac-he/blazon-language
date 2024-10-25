@@ -15,10 +15,10 @@ class PerCross(Blazon, ABC):
         if not self.dexter_chief:
             self.dexter_chief = {}
 
-        self.dexter_chief = Field(self.dexter_chief, self.tinctures[0])
-        self.sinister_chief = Field(self.sinister_chief, self.tinctures[1])
-        self.dexter_base = Field(self.dexter_base, self.tinctures[2])
-        self.sinister_base = Field(self.sinister_base, self.tinctures[3])
+        self.dexter_chief = Field(self.dexter_chief, self.tinctures[0], "per cross", "dexter chief")
+        self.sinister_chief = Field(self.sinister_chief, self.tinctures[1], "per cross", "sinister chief")
+        self.dexter_base = Field(self.dexter_base, self.tinctures[2], "per cross", "dexter base")
+        self.sinister_base = Field(self.sinister_base, self.tinctures[3], "per cross", "sinister base")
 
     def get_pseudocode(self):
         variable1 = get_int_value(self.sinister_chief)

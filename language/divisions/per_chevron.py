@@ -14,8 +14,8 @@ class PerChevron(Blazon, ABC):
         if not self.base:
             self.base = {}
 
-        self.chief = Field(self.chief, self.tinctures[0])
-        self.base = Field(self.base, self.tinctures[1])
+        self.chief = Field(self.chief, self.tinctures[0], "per chevron", "chief")
+        self.base = Field(self.base, self.tinctures[1], "per chevron", "base")
 
     def get_pseudocode(self):
         variable = get_int_value(self.chief)
