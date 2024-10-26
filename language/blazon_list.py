@@ -74,8 +74,9 @@ class BlazonList:
 
     # Interpret as image
     def interpret_as_image(self):
+        images = []
         for blazon in self.blazons:
-            blazon.get_image()
+            images.append(blazon.get_image())
 
     # Interpret as program
     def interpret_as_program(self):

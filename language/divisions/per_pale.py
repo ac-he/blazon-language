@@ -2,10 +2,14 @@ from abc import ABC
 from language.divisions.blazon import Blazon
 from language._evaluation import get_int_value
 from language.field import Field
+from rendering.draw_dof import make_dof_image
 
 
 class PerPale(Blazon, ABC):
     def __init__(self, blazon_json):
+        self.division = "per pale"
+        self.shape = "heater"
+
         self.dexter = blazon_json.get("dexter")
         self.sinister = blazon_json.get("sinister")
         self.tinctures = blazon_json.get("tincture")
@@ -17,9 +21,6 @@ class PerPale(Blazon, ABC):
         value = get_int_value(self.sinister)
         variable = get_int_value(self.dexter)
         return f"Save the value {value} to Variable{variable}."
-
-    def get_image(self, shape):
-        pass
 
     def get_program(self):
         pass

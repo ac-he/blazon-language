@@ -127,7 +127,9 @@ def make_charge_render_friendly(charge):
 
 
 def stringify_charge(charge):
-    return "".join(charge)
+    if isinstance(charge, list):
+        return "".join(charge)
+    return charge
 
 
 def integerify_quantity(quantity):

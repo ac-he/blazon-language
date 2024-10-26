@@ -2,11 +2,15 @@ from abc import ABC
 from language.divisions.blazon import Blazon
 from language._evaluation import get_int_value, get_operator_string
 from language.field import Field
+from rendering.draw_dof import make_dof_image
 
 
 class PerFess(Blazon, ABC):
 
     def __init__(self, blazon_json):
+        self.division = "per fess"
+        self.shape = "heater"
+
         self.chief = blazon_json.get("chief")
         self.base = blazon_json.get("base")
         self.tinctures = blazon_json.get("tincture")
@@ -15,6 +19,9 @@ class PerFess(Blazon, ABC):
         self.base = Field(self.base, self.tinctures[1], "per fess", "base")
 
         if len(self.tinctures) == 3:
+            self.division = "per fess escutcheon"
+            self.shape = "heater"
+
             self.escutcheon = blazon_json.get("escutcheon")
             if not self.escutcheon:
                 self.escutcheon = {}
@@ -33,9 +40,6 @@ class PerFess(Blazon, ABC):
             variable1 = get_int_value(self.chief)
             variable2 = get_int_value(self.base)
             return f"Save the value from {variable2} to Variable{variable1}."
-
-    def get_image(self, shape):
-        pass
 
     def get_program(self):
         pass

@@ -18,16 +18,18 @@ def make_division_image(field, shape="rect"):
 
     set_field_tincture(field.field_tincture)
 
-    charge_type = charges[field.get_render_friendly_charge()]["type"]
-    if charge_type == "cm" or charge_type == "agoprsv":
-        stamp_feature(field, shape, charge_type)
-    elif charge_type == "geo":
-        if field.charge == "alabelof":
-            draw_feature_label(field, shape)
-        if field.charge == "quarterlyofeight":
-            draw_feature_quarterly_of_eight(field, shape)
-    elif charge_type == "oversize":
-        draw_feature_oversize(field, shape)
+    qf_charge = charges.get(field.get_render_friendly_charge())
+    if qf_charge:
+        charge_type = qf_charge["type"]
+        if charge_type == "cm" or charge_type == "agoprsv":
+            stamp_feature(field, shape, charge_type)
+        elif charge_type == "geo":
+            if field.charge == "alabelof":
+                draw_feature_label(field, shape)
+            if field.charge == "quarterlyofeight":
+                draw_feature_quarterly_of_eight(field, shape)
+        elif charge_type == "oversize":
+            draw_feature_oversize(field, shape)
 
     guid = supply_guid()
     surface.write_to_png(guid)

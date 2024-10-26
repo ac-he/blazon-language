@@ -32,7 +32,7 @@ charge_size = {
 charge_detail = {
     "label": {
         "per bend": {
-            "dexter-base": {
+            "base": {
                 "banner": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.550,
@@ -64,7 +64,7 @@ charge_detail = {
                     "spacing": canvas['w'] * 0.200
                 }
             },
-            "sinister-chief": {
+            "chief": {
                 "banner": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.150,
@@ -98,7 +98,7 @@ charge_detail = {
             }
         },
         "per bend sinister": {
-            "dexter-chief": {
+            "chief": {
                 "banner": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.150,
@@ -130,7 +130,7 @@ charge_detail = {
                     "spacing": canvas['w'] * 0.200
                 }
             },
-            "sinister-base": {
+            "base": {
                 "banner": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.550,
@@ -1678,7 +1678,7 @@ charge_detail = {
 
 charge_loc = {
     "per bend": {
-        "dexter-base": {
+        "base": {
             "banner": {
                 1: {
                     "size": charge_size["l"],
@@ -1765,7 +1765,7 @@ charge_loc = {
                 }
             }
         },
-        "sinister-chief": {
+        "chief": {
             "banner": {
                 1: {
                     "size": charge_size["l"],
@@ -1854,7 +1854,7 @@ charge_loc = {
         }
     },
     "per bend sinister": {
-        "dexter-chief": {
+        "chief": {
             "banner": {
                 1: {
                     "size": charge_size["l"],
@@ -1941,7 +1941,7 @@ charge_loc = {
                 }
             }
         },
-        "sinister-base": {
+        "base": {
             "banner": {
                 1: {
                     "size": charge_size["l"],

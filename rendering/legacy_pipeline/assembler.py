@@ -175,32 +175,7 @@ def draw_crest(crest, x, y, w, h):
     delete_image_path(trimmed_guid)
 
 
-def draw_overlay(name, shape, x, y, w, h):
-    shape_dict = {
-        "shape": shape,
-        "field": {
-            "name": str(Path.joinpath(Path.cwd(), "presets", "../img", f"overlay_{name}.png"))
-        }
-    }
 
-    # fetch trimmed image
-    trimmed_guid = make_trimmed_image(shape_dict, True)
-
-    # scale image
-    image = Image.open(trimmed_guid).resize((w, h))
-    image.save(trimmed_guid)
-
-    # create surface
-    surf1 = surface.create_from_png(trimmed_guid)
-
-    # draw
-    context.set_source_surface(surf1, x, y)
-    context.rectangle(x, y, w, h)
-    context.close_path()
-    context.fill()
-
-    # cleanup
-    delete_image_path(trimmed_guid)
 
 
 def draw_single_flag_with_overlay(crest, overlay_name, save_to):

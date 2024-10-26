@@ -2,11 +2,15 @@ from abc import ABC
 from language.divisions.blazon import Blazon
 from language._evaluation import get_int_value, is_metal
 from language.field import Field
+from rendering.draw_dof import make_dof_image
 
 
 class PerBendSinister(Blazon, ABC):
 
     def __init__(self, blazon_json):
+        self.division = "per bend sinister"
+        self.shape = "heater"
+
         self.chief = blazon_json.get("chief")
         self.base = blazon_json.get("base")
         self.tinctures = blazon_json.get("tincture")
@@ -26,9 +30,6 @@ class PerBendSinister(Blazon, ABC):
                 return f"Output newline, the character value of {variable}."
             else:
                 return f"Output '{chr(variable)}', the character value of {variable}."
-
-    def get_image(self, shape):
-        pass
 
     def get_program(self):
         pass

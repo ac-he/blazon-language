@@ -2,10 +2,14 @@ from abc import ABC
 from language.divisions.blazon import Blazon
 from language._evaluation import get_int_value, get_comparison
 from language.field import Field
+from rendering.draw_dof import make_dof_image
 
 
 class PerSaltire(Blazon, ABC):
     def __init__(self, blazon_json):
+        self.division = "per saltire"
+        self.shape = "heater"
+
         self.dexter = blazon_json.get("dexter")
         self.sinister = blazon_json.get("sinister")
         self.chief = blazon_json.get("chief")
@@ -26,9 +30,6 @@ class PerSaltire(Blazon, ABC):
         branch = get_int_value(self.base)
         comparison = get_comparison(self.chief)
         return f"If Variable{variable1} is {comparison} {variable2}, go to Branch{branch}."
-
-    def get_image(self, shape):
-        pass
 
     def get_program(self):
         pass
