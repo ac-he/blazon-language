@@ -2,7 +2,6 @@ from abc import ABC
 from language.divisions.blazon import Blazon
 from language._evaluation import get_int_value
 from language.field import Field
-from rendering.draw_dof import make_dof_image
 
 
 class PerPale(Blazon, ABC):

@@ -143,4 +143,3 @@ class DrawBlazonList:
             self.context.rectangle(0, 0, self.settings.width, self.settings.height)
             self.context.close_path()
             self.context.fill()
-

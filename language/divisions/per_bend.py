@@ -2,8 +2,6 @@ from abc import ABC
 from language.divisions.blazon import Blazon
 from language._evaluation import get_int_value, is_metal
 from language.field import Field
-from rendering.draw_blazon import make_blazon_image
-from rendering.draw_dof import make_dof_image
 
 
 class PerBend(Blazon, ABC):
