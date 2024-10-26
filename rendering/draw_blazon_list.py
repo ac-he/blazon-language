@@ -5,7 +5,7 @@ from pathlib import Path
 import cairo
 from PIL import Image
 
-from rendering._image_management import delete_image_path, supply_guid
+from rendering._image_management import delete_image_path
 from rendering._render_config import canvas
 from rendering.draw_blazon import make_blazon_image
 
@@ -71,7 +71,7 @@ class DrawBlazonList:
 
         # If it doesn't fit on this line
         else:
-            y_limit = printbox.x + printbox.h
+            y_limit = printbox.y + printbox.h
             y_next = printbox.line_spacing + self.scale_h
 
             # If another line fits in this printbox
