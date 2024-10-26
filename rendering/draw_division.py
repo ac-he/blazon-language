@@ -3,7 +3,7 @@ from math import floor, ceil
 import cairo
 from pathlib import Path
 
-from language._evaluation import integerify_quantity, charges, make_charge_render_friendly
+from language._evaluation import integerify_quantity, charges, stringify_charge
 from rendering._image_management import supply_guid
 from rendering._render_config import canvas, tinctures, charge_loc, charge_size, charge_detail
 
@@ -24,9 +24,10 @@ def make_division_image(field, shape="rect"):
         if charge_type == "cm" or charge_type == "agoprsv":
             stamp_feature(field, shape, charge_type)
         elif charge_type == "geo":
-            if field.charge == "alabelof":
+            charge = stringify_charge(field.charge)
+            if charge == "alabelof":
                 draw_feature_label(field, shape)
-            if field.charge == "quarterlyofeight":
+            if charge == "quarterlyofeight":
                 draw_feature_quarterly_of_eight(field, shape)
         elif charge_type == "oversize":
             draw_feature_oversize(field, shape)
@@ -88,14 +89,14 @@ def draw_feature_quarterly_of_eight(field, shape):
     pales = [0, dexter_line, pale_line, sinister_line, canvas['w']]
 
     for quarter in range(8):
-        color = tinctures[quarter * 2]
+        tincture = tinctures.get(field.charge_tincture[quarter * 2])
 
         top = fesses[floor((quarter / 4) + 0.01)]
         bottom = fesses[ceil((quarter / 4) + 0.01)]
         left = pales[(quarter % 4) - 0]
         right = pales[(quarter % 4) + 1]
 
-        context.set_source_rgb(color["r"], color["g"], color["b"])
+        context.set_source_rgb(tincture["r"], tincture["g"], tincture["b"])
         context.move_to(left, top)
         context.line_to(right, top)
         context.line_to(right, bottom)
@@ -121,11 +122,12 @@ def draw_feature_label(field, shape):
     label_w = bar_h * 1.01
 
     label_centers = []
-    if field.charge_quantity == 1:
+    quantity = integerify_quantity(field.charge_quantity)
+    if quantity == 1:
         label_centers = [center]
-    elif field.charge_quantity == 2:
+    elif quantity == 2:
         label_centers = [center - spacing / 2, center + spacing / 2]
-    elif field.charge_quantity == 3:
+    elif quantity == 3:
         label_centers = [center - spacing, center, center + spacing]
 
     for label in label_centers:

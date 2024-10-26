@@ -817,7 +817,7 @@ charge_detail = {
                 }
             }
         },
-        "none": {
+        "per nothing": {
             "field": {
                 "banner": {
                     "bar_h": canvas['h'] * 0.100,
@@ -1639,7 +1639,7 @@ charge_detail = {
                 }
             }
         },
-        "none": {
+        "per nothing": {
             "field": {
                 "banner": {
                     "fess": canvas['h'] * 0.450,
