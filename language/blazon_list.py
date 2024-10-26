@@ -1,6 +1,3 @@
-import json
-from pathlib import Path
-
 from tatsu.util import asjson
 
 from language._parser import BlazonParser
@@ -13,34 +10,27 @@ from language.divisions.per_nothing import PerNothing
 from language.divisions.per_pale import PerPale
 from language.divisions.per_pall import PerPall
 from language.divisions.per_saltire import PerSaltire
+from language.settings.settings import Settings
+from rendering.draw_blazon_list import DrawBlazonList
 
 
 class BlazonList:
-    blazons = []
-    output_config = None
-
     def __init__(
         self,
-        blazon,
-        output_config="default"
+        blazon
     ):
+        self.settings = Settings("default")
+
         # read blazon file
         file = open(blazon, 'r')
         blazon_as_string = file.read()
-
-        # read output file
-        if output_config == "default":
-            self.output_config = Path.joinpath(Path.cwd(), 'presets', 'default_output_config.json')
-        else:
-            self.output_config = output_config
-        file = open(self.output_config, 'r')
-        self.output_config = json.load(file)
 
         # parse blazon
         parser = BlazonParser()
         ast = parser.parse(blazon_as_string, start='start')
         ast_json = asjson(ast)
 
+        self.blazons = []
         for blazon in ast_json.get("blazons"):
             division = list(blazon[0].keys())[0]
             this_blazon = blazon[0][division]
@@ -67,16 +57,30 @@ class BlazonList:
                 case _:
                     pass
 
+    def interpret(self):
+        if self.settings.pseudocode_mode:
+            self.interpret_as_pseudocode()
+        if self.settings.image_mode:
+            self.interpret_as_image()
+        if self.settings.program_mode:
+            self.interpret_as_program()
+
     # Interpret as pseudocode
     def interpret_as_pseudocode(self):
         for blazon in self.blazons:
             print(blazon.get_pseudocode())
 
+            if self.settings.pseudocode.space_between:
+                print()
+
     # Interpret as image
     def interpret_as_image(self):
-        images = []
-        for blazon in self.blazons:
-            images.append(blazon.get_image())
+        if self.settings.image.preserve_individual_images:
+            images = []
+            for blazon in self.blazons:
+                images.append(blazon.get_image(self.settings.image.image_overlay))
+
+        dbl = DrawBlazonList(self.blazons, self.settings.image)
 
     # Interpret as program
     def interpret_as_program(self):
