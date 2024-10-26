@@ -2,7 +2,6 @@ from abc import ABC
 from language.divisions.blazon import Blazon
 from language._evaluation import get_int_value, get_operator_string
 from language.field import Field
-from rendering.draw_dof import make_dof_image
 
 
 class PerFess(Blazon, ABC):
@@ -15,9 +14,6 @@ class PerFess(Blazon, ABC):
         self.base = blazon_json.get("base")
         self.tinctures = blazon_json.get("tincture")
 
-        self.chief = Field(self.chief, self.tinctures[0], "per fess", "chief")
-        self.base = Field(self.base, self.tinctures[1], "per fess", "base")
-
         if len(self.tinctures) == 3:
             self.division = "per fess escutcheon"
             self.shape = "heater"
@@ -26,6 +22,9 @@ class PerFess(Blazon, ABC):
             if not self.escutcheon:
                 self.escutcheon = {}
             self.escutcheon = Field(self.escutcheon, self.tinctures[2], "per fess escutcheon", "escutcheon")
+
+        self.chief = Field(self.chief, self.tinctures[0], self.division, "chief")
+        self.base = Field(self.base, self.tinctures[1], self.division, "base")
 
     def get_pseudocode(self):
         if self.escutcheon:
