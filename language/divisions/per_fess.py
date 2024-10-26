@@ -7,18 +7,24 @@ from language.field import Field
 class PerFess(Blazon, ABC):
 
     def __init__(self, blazon_json):
+        self.division = "per fess"
+        self.shape = "heater"
+
         self.chief = blazon_json.get("chief")
         self.base = blazon_json.get("base")
         self.tinctures = blazon_json.get("tincture")
 
-        self.chief = Field(self.chief, self.tinctures[0])
-        self.base = Field(self.base, self.tinctures[1])
-
         if len(self.tinctures) == 3:
+            self.division = "per fess escutcheon"
+            self.shape = "heater"
+
             self.escutcheon = blazon_json.get("escutcheon")
             if not self.escutcheon:
                 self.escutcheon = {}
-            self.escutcheon = Field(self.escutcheon, self.tinctures[2])
+            self.escutcheon = Field(self.escutcheon, self.tinctures[2], "per fess escutcheon", "escutcheon")
+
+        self.chief = Field(self.chief, self.tinctures[0], self.division, "chief")
+        self.base = Field(self.base, self.tinctures[1], self.division, "base")
 
     def get_pseudocode(self):
         if self.escutcheon:
@@ -33,9 +39,6 @@ class PerFess(Blazon, ABC):
             variable1 = get_int_value(self.chief)
             variable2 = get_int_value(self.base)
             return f"Save the value from {variable2} to Variable{variable1}."
-
-    def get_image(self):
-        pass
 
     def get_program(self):
         pass

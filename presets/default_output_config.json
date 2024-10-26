@@ -1,6 +1,39 @@
 {
-  "modes": [
-    "pseudocode",
-    "images"
-  ]
+  "modes": {
+    "pseudocode" : {
+      "space-between": false
+    },
+    "images" : {
+      "w": 800,
+      "h": 600,
+      "background-path": "builtins",
+      "background": "armorial-folio.png",
+      "crest-scale-width": 95,
+      "printboxes": [
+        {
+          "x": 55,
+          "y": 60,
+          "w": 340,
+          "h": 500,
+          "kerning": 10,
+          "line-spacing": 50
+        },
+        {
+          "x": 450,
+          "y": 65,
+          "w": 340,
+          "h": 500,
+          "kerning": 10,
+          "line-spacing": 50
+        }
+      ],
+      "randomize-shapes": false,
+      "shapes": [
+        "heater"
+      ],
+      "page-overlay": "armorial-folio",
+      "image-overlay": null,
+      "preserve-individual-images": false
+    }
+  }
 }

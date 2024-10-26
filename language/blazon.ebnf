@@ -250,4 +250,4 @@
         "to" "sinister" sinister:(charge_phrase) ","
         "in" "base" base:(charge_phrase);
 
-    per_nothing = field_tincture:(tincture_cap) "," field:(charge_phrase);
+    per_nothing = tincture:(tincture_cap) "," field:(charge_phrase);

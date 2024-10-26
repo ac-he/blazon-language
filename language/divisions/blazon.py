@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from rendering.draw_blazon import make_blazon_image
+
 
 class Blazon(ABC):
     division = None
@@ -25,9 +27,8 @@ class Blazon(ABC):
     def get_pseudocode(self):
         pass
 
-    @abstractmethod
-    def get_image(self):
-        pass
+    def get_image(self, overlay=None):
+        return make_blazon_image(self, overlay)
 
     @abstractmethod
     def get_program(self):

@@ -7,6 +7,9 @@ from language.field import Field
 class PerBendSinister(Blazon, ABC):
 
     def __init__(self, blazon_json):
+        self.division = "per bend sinister"
+        self.shape = "heater"
+
         self.chief = blazon_json.get("chief")
         self.base = blazon_json.get("base")
         self.tinctures = blazon_json.get("tincture")
@@ -14,8 +17,8 @@ class PerBendSinister(Blazon, ABC):
         if not self.chief:
             self.chief = {}
 
-        self.chief = Field(self.chief, self.tinctures[0])
-        self.base = Field(self.base, self.tinctures[1])
+        self.chief = Field(self.chief, self.tinctures[0], "per bend sinister", "chief")
+        self.base = Field(self.base, self.tinctures[1], "per bend sinister", "base")
 
     def get_pseudocode(self):
         variable = get_int_value(self.base)
@@ -26,10 +29,6 @@ class PerBendSinister(Blazon, ABC):
                 return f"Output newline, the character value of {variable}."
             else:
                 return f"Output '{chr(variable)}', the character value of {variable}."
-
-
-    def get_image(self):
-        pass
 
     def get_program(self):
         pass

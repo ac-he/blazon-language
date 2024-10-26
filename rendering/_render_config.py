@@ -1,11 +1,11 @@
 tinctures = {
-    "r": {"r": 243/255, "g": 243/255, "b": 243/255, "fullname": "argent", "type": "metal"},
-    "o": {"r": 241/255, "g": 194/255, "b": 50/255, "fullname": "or", "type": "metal"},
-    "g": {"r": 190/255, "g": 37/255, "b": 37/255, "fullname": "gules", "type": "colour"},
-    "v": {"r": 78/255, "g": 111/255, "b": 52/255, "fullname": "vert", "type": "colour"},
-    "a": {"r": 17/255, "g": 85/255, "b": 204/255, "fullname": "azure", "type": "colour"},
-    "s": {"r": 22/255, "g": 22/255, "b": 22/255, "fullname": "sable", "type": "colour"},
-    "p": {"r": 130/255, "g": 77/255, "b": 121/255, "fullname": "purpure", "type": "colour"},
+    "argent": {"r": 243/255, "g": 243/255, "b": 243/255, "initial": "r", "type": "metal"},
+    "or": {"r": 241/255, "g": 194/255, "b": 50/255, "initial": "o", "type": "metal"},
+    "gules": {"r": 190/255, "g": 37/255, "b": 37/255, "initial": "g", "type": "color"},
+    "vert": {"r": 78/255, "g": 111/255, "b": 52/255, "initial": "v", "type": "color"},
+    "azure": {"r": 17/255, "g": 85/255, "b": 204/255, "initial": "a", "type": "color"},
+    "sable": {"r": 22/255, "g": 22/255, "b": 22/255, "initial": "s", "type": "color"},
+    "purpure": {"r": 130/255, "g": 77/255, "b": 121/255, "initial": "p", "type": "color"},
 }
 
 canvas = {
@@ -29,71 +29,10 @@ charge_size = {
     "xs": canvas["w"] * 0.15     # x small
 }
 
-charges = {
-    "anchor": {"type": "cm"},
-    "annulet": {"type": "agoprsv"},
-    "bee": {"type": "cm"},
-    "billet": {"type": "agoprsv"},
-    "caltrap": {"type": "agoprsv"},
-    "castle": {"type": "cm"},
-    "chequy": {"type": "oversize"},
-    "clarion": {"type": "cm"},
-    "comet": {"type": "cm"},
-    "crescent": {"type": "agoprsv"},
-    "cross_moline": {"type": "agoprsv"},
-    "cross_pate": {"type": "agoprsv"},
-    "crown": {"type": "cm"},
-    "dolphin": {"type": "cm"},
-    "dragon": {"type": "cm"},
-    "eagle": {"type": "cm"},
-    "escallop": {"type": "cm"},
-    "escutcheon": {"type": "agoprsv"},
-    "fleur_de_lis": {"type": "agoprsv"},
-    "fret": {"type": "oversize"},
-    "fusil": {"type": "agoprsv"},
-    "fusily": {"type": "oversize"},
-    "gorge": {"type": "oversize"},
-    "griffin": {"type": "cm"},
-    "gyronny": {"type": "oversize"},
-    "harp": {"type": "cm"},
-    "keys": {"type": "cm"},
-    "label": {"type": "geo"},
-    "lamp": {"type": "cm"},
-    "lion_passant": {"type": "cm"},
-    "lion_rampant": {"type": "cm"},
-    "lozenge": {"type": "agoprsv"},
-    "lozengy": {"type": "oversize"},
-    "martlet": {"type": "agoprsv"},
-    "mascle": {"type": "agoprsv"},
-    "moon": {"type": "cm"},
-    "mullet": {"type": "agoprsv"},
-    "octofoil": {"type": "agoprsv"},
-    "owl": {"type": "cm"},
-    "phoenix": {"type": "cm"},
-    "portcullis": {"type": "cm"},
-    "quatrefoil": {"type": "cm"},
-    "quarterly_of_eight": {"type": "geo"},
-    "raven": {"type": "cm"},
-    "rose": {"type": "agoprsv"},
-    "roundel": {"type": "agoprsv"},
-    "rustre": {"type": "agoprsv"},
-    "ship": {"type": "cm"},
-    "snairald": {"type": "cm"},
-    "sun": {"type": "cm"},
-    "sword": {"type": "cm"},
-    "thistle": {"type": "cm"},
-    "unicorn": {"type": "cm"},
-    "ventmonster": {"type": "oversize"},
-    "wheel": {"type": "cm"},
-    "wolf": {"type": "cm"},
-    "yale": {"type": "cm"},
-    "zilant": {"type": "cm"},
-}
-
 charge_detail = {
     "label": {
         "per bend": {
-            "dexter-base": {
+            "base": {
                 "banner": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.550,
@@ -125,7 +64,7 @@ charge_detail = {
                     "spacing": canvas['w'] * 0.200
                 }
             },
-            "sinister-chief": {
+            "chief": {
                 "banner": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.150,
@@ -159,7 +98,7 @@ charge_detail = {
             }
         },
         "per bend sinister": {
-            "dexter-chief": {
+            "chief": {
                 "banner": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.150,
@@ -191,7 +130,7 @@ charge_detail = {
                     "spacing": canvas['w'] * 0.200
                 }
             },
-            "sinister-base": {
+            "base": {
                 "banner": {
                     "bar_h": canvas['h'] * 0.075,
                     "bar_y": canvas['h'] * 0.550,
@@ -878,7 +817,7 @@ charge_detail = {
                 }
             }
         },
-        "none": {
+        "per nothing": {
             "field": {
                 "banner": {
                     "bar_h": canvas['h'] * 0.100,
@@ -1700,7 +1639,7 @@ charge_detail = {
                 }
             }
         },
-        "none": {
+        "per nothing": {
             "field": {
                 "banner": {
                     "fess": canvas['h'] * 0.450,
@@ -1739,7 +1678,7 @@ charge_detail = {
 
 charge_loc = {
     "per bend": {
-        "dexter-base": {
+        "base": {
             "banner": {
                 1: {
                     "size": charge_size["l"],
@@ -1826,7 +1765,7 @@ charge_loc = {
                 }
             }
         },
-        "sinister-chief": {
+        "chief": {
             "banner": {
                 1: {
                     "size": charge_size["l"],
@@ -1915,7 +1854,7 @@ charge_loc = {
         }
     },
     "per bend sinister": {
-        "dexter-chief": {
+        "chief": {
             "banner": {
                 1: {
                     "size": charge_size["l"],
@@ -2002,7 +1941,7 @@ charge_loc = {
                 }
             }
         },
-        "sinister-base": {
+        "base": {
             "banner": {
                 1: {
                     "size": charge_size["l"],
@@ -3844,7 +3783,7 @@ charge_loc = {
             }
         }
     },
-    "none": {
+    "per nothing": {
         "field": {
             "banner": {
                 1: {
