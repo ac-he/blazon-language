@@ -27,5 +27,11 @@ class PerBend(Blazon, ABC):
         else:
             return f"Output Variable{variable} as a character."
 
-    def get_program(self):
-        pass
+    def get_program(self, vm, bm):
+        variable = get_int_value(self.base)
+        val = vm.retrieve(variable)
+
+        if is_metal(self.chief.field_tincture):
+            print(val, end="")
+        else:
+            print(chr(val), end="")

@@ -1,6 +1,6 @@
 from abc import ABC
 from language.divisions.blazon import Blazon
-from language._evaluation import get_int_value, get_operator_string
+from language._evaluation import get_int_value, do_operation, get_operator
 from language.field import Field
 
 
@@ -27,18 +27,43 @@ class PerFess(Blazon, ABC):
         self.base = Field(self.base, self.tinctures[1], self.division, "base")
 
     def get_pseudocode(self):
-        if self.escutcheon:
+        if self.division == "per fess escutcheon":
             variable1 = get_int_value(self.chief)
             variable2 = get_int_value(self.base)
-            operation, preposition = get_operator_string(self.escutcheon)
-            if operation == "root":
-                return f"Take the Variable{variable2}th root of Variable{variable1}."
-            else:
-                return f"{operation} Variable{variable1} {preposition} Variable{variable2}."
+            operation = get_operator(self.escutcheon)
+            match operation:
+                case "Add":
+                    return f"Add Variable{variable2} to Variable{variable1}."
+                case "Subtract":
+                    return f"Subtract Variable{variable2} from Variable{variable1}."
+                case "Multiply":
+                    return f"Multiply Variable{variable1} by Variable{variable2}."
+                case "Divide":
+                    return f"Divide Variable{variable1} by Variable{variable2}."
+                case "Mod":
+                    return f"Mod Variable{variable1} by Variable{variable2}."
+                case "Power":
+                    return f"Raise Variable{variable1} to the power of Variable{variable2}."
+                case "Root":
+                    return f"Take the Variable{variable2}th root of Variable{variable1}."
         else:
             variable1 = get_int_value(self.chief)
             variable2 = get_int_value(self.base)
             return f"Save the value from {variable2} to Variable{variable1}."
 
-    def get_program(self):
-        pass
+    def get_program(self, vm, bm):
+        if self.division == "per fess escutcheon":
+            variable1 = get_int_value(self.chief)
+            variable2 = get_int_value(self.base)
+
+            value1 = vm.retrieve(variable1)
+            value2 = vm.retrieve(variable2)
+            result = do_operation(self.escutcheon.field_tincture, value1, value2)
+
+            vm.store(variable1, result)
+
+        else:
+            variable1 = get_int_value(self.chief)
+            variable2 = get_int_value(self.base)
+
+            vm.store(variable1, vm.retrieve(variable2))

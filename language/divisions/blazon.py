@@ -4,24 +4,22 @@ from rendering.draw_blazon import make_blazon_image
 
 
 class Blazon(ABC):
-    division = None
-    shape = None
-    tinctures = None
-
-    base = None
-    chief = None
-    dexter = None
-    escutcheon = None
-    sinister = None
-    dexter_chief = None
-    sinister_chief = None
-    dexter_base = None
-    sinister_base = None
-    field = None
-
     @abstractmethod
     def __init__(self, blazon_json):
-        pass
+        self.division = None
+        self.shape = None
+        self.tinctures = None
+
+        self.base = None
+        self.chief = None
+        self.dexter = None
+        self.escutcheon = None
+        self.sinister = None
+        self.dexter_chief = None
+        self.sinister_chief = None
+        self.dexter_base = None
+        self.sinister_base = None
+        self.field = None
 
     @abstractmethod
     def get_pseudocode(self):
@@ -31,7 +29,7 @@ class Blazon(ABC):
         return make_blazon_image(self, overlay)
 
     @abstractmethod
-    def get_program(self):
+    def get_program(self, vm, bm):
         pass
 
 

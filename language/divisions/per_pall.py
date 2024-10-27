@@ -1,6 +1,6 @@
 from abc import ABC
 from language.divisions.blazon import Blazon
-from language._evaluation import get_int_value, get_operator_string
+from language._evaluation import get_int_value, do_operation, get_operator
 from language.field import Field
 
 
@@ -24,11 +24,28 @@ class PerPall(Blazon, ABC):
     def get_pseudocode(self):
         value = get_int_value(self.sinister)
         variable = get_int_value(self.dexter)
-        operation, preposition = get_operator_string(self.chief)
-        if operation == "root":
-            return f"Take the {value}th root of Variable{variable}."
-        else:
-            return f"{operation} the value {value} {preposition} Variable{variable}."
+        operation = get_operator(self.chief)
+        match operation:
+            case "Add":
+                return f"Add {value} to Variable{variable}."
+            case "Subtract":
+                return f"Subtract {value} from Variable{variable}."
+            case "Multiply":
+                return f"Multiply Variable{variable} by {value}."
+            case "Divide":
+                return f"Divide Variable{variable} by {value}."
+            case "Mod":
+                return f"Mod Variable{variable} by {value}."
+            case "Power":
+                return f"Raise Variable{variable} to the power of {value}."
+            case "Root":
+                return f"Take the Variable{value}th root of Variable{variable}."
 
-    def get_program(self):
-        pass
+    def get_program(self, vm, bm):
+        value = get_int_value(self.sinister)
+        variable = get_int_value(self.dexter)
+
+        var_value = vm.retrieve(variable)
+        result = do_operation(self.chief.field_tincture, var_value, value)
+
+        vm.store(variable, result)

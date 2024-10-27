@@ -1,6 +1,6 @@
 from abc import ABC
 from language.divisions.blazon import Blazon
-from language._evaluation import get_int_value, get_comparison
+from language._evaluation import get_int_value, get_comparison, do_comparison
 from language.field import Field
 
 
@@ -34,5 +34,15 @@ class PerCross(Blazon, ABC):
         comparison = get_comparison(self.dexter_chief)
         return f"If Variable{variable1} is {comparison} Variable{variable2}, go to Branch{branch}."
 
-    def get_program(self):
-        pass
+    def get_program(self, vm, bm):
+        variable1 = get_int_value(self.sinister_chief)
+        variable2 = get_int_value(self.dexter_base)
+        value1 = vm.retrieve(variable1)
+        value2 = vm.retrieve(variable2)
+
+        branch = get_int_value(self.sinister_base)
+        operator = self.dexter_chief.field_tincture
+
+        comparison = do_comparison(operator, value1, value2)
+        if comparison:
+            return bm.branches.get(branch)
