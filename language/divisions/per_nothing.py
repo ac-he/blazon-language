@@ -18,5 +18,5 @@ class PerNothing(Blazon, ABC):
         branch = get_int_value(self.field)
         return f"Begin Branch{branch}."
 
-    def get_program(self):
+    def get_program(self, vm, bm):
         pass

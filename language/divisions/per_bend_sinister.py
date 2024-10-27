@@ -21,14 +21,19 @@ class PerBendSinister(Blazon, ABC):
         self.base = Field(self.base, self.tinctures[1], "per bend sinister", "base")
 
     def get_pseudocode(self):
-        variable = get_int_value(self.base)
+        value = get_int_value(self.base)
         if is_metal(self.chief.field_tincture):
-            return f"Output '{variable}'."
+            return f"Output '{value}'."
         else:
-            if variable == 32:
-                return f"Output newline, the character value of {variable}."
+            if value == 32:
+                return f"Output newline, the character value of {value}."
             else:
-                return f"Output '{chr(variable)}', the character value of {variable}."
+                return f"Output '{chr(value)}', the character value of {value}."
 
-    def get_program(self):
-        pass
+    def get_program(self, vm, bm):
+        value = get_int_value(self.base)
+
+        if is_metal(self.chief.field_tincture):
+            print(value, end="")
+        else:
+            print(chr(value), end="")

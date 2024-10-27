@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 from language.settings.image_settings import ImageSettings
+from language.settings.program_settings import ProgramSettings
 from language.settings.pseudocode_settings import PseudocodeSettings
 
 
@@ -18,7 +19,9 @@ class Settings:
         self.image_mode = not not self.output_config.get("modes").get("images")
         self.program_mode = not not self.output_config.get("modes").get("program")
 
-        self.pseudocode = PseudocodeSettings(self.output_config.get("modes").get("pseudocode"))
-        self.image = ImageSettings(self.output_config.get("modes").get("images"))
-
-        # read output file
+        if self.pseudocode_mode:
+            self.pseudocode = PseudocodeSettings(self.output_config.get("modes").get("pseudocode"))
+        if self.image_mode:
+            self.image = ImageSettings(self.output_config.get("modes").get("images"))
+        if self.program_mode:
+            self.program = ProgramSettings(self.output_config.get("modes").get("program"))

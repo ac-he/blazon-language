@@ -10,6 +10,8 @@ from language.divisions.per_nothing import PerNothing
 from language.divisions.per_pale import PerPale
 from language.divisions.per_pall import PerPall
 from language.divisions.per_saltire import PerSaltire
+from language.program_data.branch_manager import BranchManager
+from language.program_data.variable_manager import VariableManager
 from language.settings.settings import Settings
 from rendering.draw_blazon_list import DrawBlazonList
 
@@ -80,9 +82,30 @@ class BlazonList:
             for blazon in self.blazons:
                 images.append(blazon.get_image(self.settings.image.image_overlay))
 
-        dbl = DrawBlazonList(self.blazons, self.settings.image)
+        DrawBlazonList(self.blazons, self.settings.image)
 
     # Interpret as program
     def interpret_as_program(self):
-        for blazon in self.blazons:
-            blazon.get_program()
+        vm = VariableManager()
+        bm = BranchManager(self.blazons)
+
+        instruction = 0
+        instructions = len(self.blazons)
+
+        while instruction < instructions:
+            blazon = self.blazons[instruction]
+
+            if self.settings.program.debug:
+                print(blazon.get_pseudocode())
+
+            branch = blazon.get_program(vm, bm)
+
+            if self.settings.program.debug:
+                print("Variables:", vm.variables)
+                print("Branches:", bm.branches)
+                print()
+
+            if branch:
+                instruction = branch
+            else:
+                instruction += 1

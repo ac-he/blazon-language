@@ -180,15 +180,33 @@ def is_metal(tincture):
     return False
 
 
-def get_operator_string(field):
+def get_operator(field):
     match field.field_tincture:
-        case "argent": return "Add", "to"
-        case "or": return "Subtract", "from"
-        case "sable": return "Multiply", "by"
-        case "gules": return "Divide", "by"
-        case "purpure": return "Mod", "by"
-        case "azure": return "Raise", "to the power of"
-        case "vert": return "root", None
+        case "argent": return "Add"
+        case "or": return "Subtract"
+        case "sable": return "Multiply"
+        case "gules": return "Divide"
+        case "purpure": return "Mod"
+        case "azure": return "Power"
+        case "vert": return "Root"
+
+
+def do_operation(tincture, home, modifier):
+    match tincture:
+        case "argent":
+            return home + modifier
+        case "or":
+            return home - modifier
+        case "sable":
+            return home * modifier
+        case "gules":
+            return math.floor(home / modifier)
+        case "purpure":
+            return home % modifier
+        case "azure":
+            return math.pow(home, modifier)
+        case "vert":
+            return math.pow(home, 1 / modifier)
 
 
 def get_comparison(field):
@@ -200,3 +218,14 @@ def get_comparison(field):
         case "purpure": return "less than or equal to"
         case "azure": return "greater than or equal to"
         case "vert": return "equal to"
+
+
+def do_comparison(operator, value1, value2):
+    match operator:
+        case "argent": return value1 < value2
+        case "or": return value1 > value2
+        case "sable": return value1 == value2
+        case "gules": return value1 != value2
+        case "purpure": return value1 <= value2
+        case "azure": return value1 >= value2
+        case "vert": return value1 == value2

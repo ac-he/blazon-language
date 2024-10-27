@@ -21,5 +21,7 @@ class PerPale(Blazon, ABC):
         variable = get_int_value(self.dexter)
         return f"Save the value {value} to Variable{variable}."
 
-    def get_program(self):
-        pass
+    def get_program(self, vm, bm):
+        value = get_int_value(self.sinister)
+        variable = get_int_value(self.dexter)
+        vm.store(variable, value)
