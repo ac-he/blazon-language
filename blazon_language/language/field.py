@@ -1,4 +1,4 @@
-from language._evaluation import stringify_charge, make_charge_render_friendly
+from blazon_language.language._evaluation import stringify_charge, make_charge_render_friendly
 
 
 class Field:

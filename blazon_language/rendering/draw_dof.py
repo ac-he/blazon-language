@@ -1,7 +1,7 @@
 import cairo
-from rendering._render_config import canvas
-from rendering.draw_division import make_division_image
-from rendering._image_management import supply_guid, delete_image_path
+from blazon_language.rendering._render_config import canvas
+from blazon_language.rendering.draw_division import make_division_image
+from blazon_language.rendering._image_management import supply_guid, delete_image_path
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
 context = cairo.Context(surface)

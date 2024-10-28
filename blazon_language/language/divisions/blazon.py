@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from rendering.draw_blazon import make_blazon_image
+from blazon_language.rendering.draw_blazon import make_blazon_image
 
 
 class Blazon(ABC):

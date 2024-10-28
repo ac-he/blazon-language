@@ -5,9 +5,9 @@ from pathlib import Path
 import cairo
 from PIL import Image
 
-from rendering._image_management import delete_image_path
-from rendering._render_config import canvas
-from rendering.draw_blazon import make_blazon_image
+from blazon_language.rendering._image_management import delete_image_path
+from blazon_language.rendering._render_config import canvas
+from blazon_language.rendering.draw_blazon import make_blazon_image
 
 
 class DrawBlazonList:
@@ -27,7 +27,7 @@ class DrawBlazonList:
         self.y = self.settings.printboxes[self.cur_printbox].y
 
         if self.settings.background_path == "builtins":
-            background_str = str(Path.joinpath(Path.cwd(), "presets", "img", self.settings.background))
+            background_str = str(Path.joinpath(Path.cwd(), "blazon_language", "presets", "img", self.settings.background))
         else:
             background_str = self.settings.background_path
         self.background = self.surface.create_from_png(background_str)
@@ -35,7 +35,7 @@ class DrawBlazonList:
         self.scale_w = int(self.settings.crest_scale_width)
         self.scale_h = int(self.scale_w * canvas.get("h") / canvas.get("w"))
 
-        self.print_path = str(Path.joinpath(Path.cwd(), "rendering", "img", "blazon_as_image-page"))
+        self.print_path = str(Path.joinpath(Path(self.settings.output_destination), "blazon_as_image-page"))
 
         self.new_page = True
         self.pages = 0
@@ -128,7 +128,7 @@ class DrawBlazonList:
 
     def draw_page_overlay(self):
         if self.settings.page_overlay:
-            overlay = str(Path.joinpath(Path.cwd(), "presets", "img",
+            overlay = str(Path.joinpath(Path.cwd(), "blazon_language", "presets", "img",
                                         f"overlay_{self.settings.page_overlay}.png"))
 
             # scale image

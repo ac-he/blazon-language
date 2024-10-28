@@ -33,10 +33,11 @@
       ],
       "page-overlay": "armorial-folio",
       "image-overlay": null,
-      "preserve-individual-images": true
+      "preserve-individual-images": false
     },
     "program": {
-      "debug": false
+      "debug": false,
+      "step-thru": false
     }
   }
 }

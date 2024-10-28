@@ -1,4 +1,4 @@
-from language._evaluation import get_int_value
+from blazon_language.language._evaluation import get_int_value
 
 
 class BranchManager():

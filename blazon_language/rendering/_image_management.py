@@ -2,11 +2,11 @@ import os
 from random import random
 from pathlib import Path
 from PIL import Image
-from rendering._render_config import charge_size
+from blazon_language.rendering._render_config import charge_size
 
 
 def supply_guid():
-    return Path.joinpath(Path.cwd(), 'rendering', 'img', str(random()) + ".png")
+    return Path.joinpath(Path.cwd(), "blazon_language", 'rendering', 'img', str(random()) + ".png")
 
 
 def delete_image_path(path):
@@ -15,7 +15,7 @@ def delete_image_path(path):
 
 
 def delete_all_images():
-    path = Path.joinpath(Path.cwd(), 'rendering', 'img')
+    path = Path.joinpath(Path.cwd(), "blazon_language", 'rendering', 'img')
     for i in os.listdir(path):
         delete_image_path(path.joinpath(i))
 
@@ -26,11 +26,11 @@ def configure_svg_assets():
 
     for img_set in img_sets:
         for size in scaling_sizes:
-            path = Path.joinpath(Path.cwd(), 'rendering', 'assets', img_set, size)
+            path = Path.joinpath(Path.cwd(), "blazon_language", 'rendering', 'assets', img_set, size)
             for i in os.listdir(path):
                 delete_image_path(path.joinpath(i))
 
-        png_path = Path.joinpath(Path.cwd(), 'rendering', 'assets', img_set)
+        png_path = Path.joinpath(Path.cwd(), "blazon_language", 'rendering', 'assets', img_set)
         f_path = png_path.joinpath("f")
         for f_image in os.listdir(f_path):
             for size in scaling_sizes:

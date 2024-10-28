@@ -2,9 +2,9 @@ import random
 import re
 from abc import ABC
 
-from language.divisions.blazon import Blazon
-from language._evaluation import get_int_value, is_metal
-from language.field import Field
+from blazon_language.language.divisions.blazon import Blazon
+from blazon_language.language._evaluation import get_int_value, is_metal
+from blazon_language.language.field import Field
 
 
 class PerChevron(Blazon, ABC):

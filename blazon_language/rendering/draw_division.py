@@ -3,9 +3,9 @@ from math import floor, ceil
 import cairo
 from pathlib import Path
 
-from language._evaluation import integerify_quantity, charges, stringify_charge
-from rendering._image_management import supply_guid
-from rendering._render_config import canvas, tinctures, charge_loc, charge_size, charge_detail
+from blazon_language.language._evaluation import integerify_quantity, charges, stringify_charge
+from blazon_language.rendering._image_management import supply_guid
+from blazon_language.rendering._render_config import canvas, tinctures, charge_loc, charge_size, charge_detail
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
 context = cairo.Context(surface)
@@ -63,7 +63,7 @@ def stamp_feature(field, shape, charge_type):
         if size is value:
             size_d = letter
 
-    path = Path.joinpath(Path.cwd(), "rendering", "assets", charge_type, size_d,
+    path = Path.joinpath(Path.cwd(), "blazon_language", "rendering", "assets", charge_type, size_d,
                          field.get_render_friendly_charge() + suffix)
 
     for stamp in range(0, quantity):
@@ -142,7 +142,7 @@ def draw_feature_label(field, shape):
 
 def draw_feature_oversize(field, shape):
     tincture = tinctures[field.charge_tincture]["initial"]
-    path = Path.joinpath(Path.cwd(), "rendering", "assets", "oversize",
+    path = Path.joinpath(Path.cwd(), "blazon_language", "rendering", "assets", "oversize",
                          f"{field.charge}_{tincture}.png")
     midpoint = charge_loc[field.dof][field.division][shape][1]["size"] / 2
     loc_x = charge_loc[field.dof][field.division][shape][1]["loc_x"][0] + midpoint - 500

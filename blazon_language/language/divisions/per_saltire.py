@@ -1,7 +1,7 @@
 from abc import ABC
-from language.divisions.blazon import Blazon
-from language._evaluation import get_int_value, get_comparison, do_comparison
-from language.field import Field
+from blazon_language.language.divisions.blazon import Blazon
+from blazon_language.language._evaluation import get_int_value, get_comparison, do_comparison
+from blazon_language.language.field import Field
 
 
 class PerSaltire(Blazon, ABC):

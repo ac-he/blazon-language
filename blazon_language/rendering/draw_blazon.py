@@ -2,9 +2,9 @@ from pathlib import Path
 
 import cairo
 
-from rendering._render_config import canvas
-from rendering._image_management import supply_guid, delete_image_path
-from rendering.draw_dof import make_dof_image
+from blazon_language.rendering._render_config import canvas
+from blazon_language.rendering._image_management import supply_guid, delete_image_path
+from blazon_language.rendering.draw_dof import make_dof_image
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
 context = cairo.Context(surface)
@@ -84,7 +84,7 @@ def trim_to_shield():
 
 
 def draw_overlay(shape, overlay):
-    overlay_guid = str(Path.joinpath(Path.cwd(), "presets", "img", f"overlay_{overlay}.png"))
+    overlay_guid = str(Path.joinpath(Path.cwd(), "blazon_language", "presets", "img", f"overlay_{overlay}.png"))
 
     surface2 = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
     surf1 = surface2.create_from_png(overlay_guid)

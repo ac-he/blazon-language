@@ -1,27 +1,28 @@
 from tatsu.util import asjson
 
-from language._parser import BlazonParser
-from language.divisions.per_bend import PerBend
-from language.divisions.per_bend_sinister import PerBendSinister
-from language.divisions.per_chevron import PerChevron
-from language.divisions.per_cross import PerCross
-from language.divisions.per_fess import PerFess
-from language.divisions.per_nothing import PerNothing
-from language.divisions.per_pale import PerPale
-from language.divisions.per_pall import PerPall
-from language.divisions.per_saltire import PerSaltire
-from language.program_data.branch_manager import BranchManager
-from language.program_data.variable_manager import VariableManager
-from language.settings.settings import Settings
-from rendering.draw_blazon_list import DrawBlazonList
+from blazon_language.language._parser import BlazonParser
+from blazon_language.language.divisions.per_bend import PerBend
+from blazon_language.language.divisions.per_bend_sinister import PerBendSinister
+from blazon_language.language.divisions.per_chevron import PerChevron
+from blazon_language.language.divisions.per_cross import PerCross
+from blazon_language.language.divisions.per_fess import PerFess
+from blazon_language.language.divisions.per_nothing import PerNothing
+from blazon_language.language.divisions.per_pale import PerPale
+from blazon_language.language.divisions.per_pall import PerPall
+from blazon_language.language.divisions.per_saltire import PerSaltire
+from blazon_language.language.program_data.branch_manager import BranchManager
+from blazon_language.language.program_data.variable_manager import VariableManager
+from blazon_language.language.settings.settings import Settings
+from blazon_language.rendering.draw_blazon_list import DrawBlazonList
 
 
 class BlazonList:
     def __init__(
         self,
-        blazon
+        blazon,
+        output_config
     ):
-        self.settings = Settings("default")
+        self.settings = Settings(output_config)
 
         # read blazon file
         file = open(blazon, 'r')
@@ -82,7 +83,8 @@ class BlazonList:
             for blazon in self.blazons:
                 images.append(blazon.get_image(self.settings.image.image_overlay))
 
-        DrawBlazonList(self.blazons, self.settings.image)
+        dbl = DrawBlazonList(self.blazons, self.settings.image)
+        print(f"Output {dbl.pages} page(s) of blazon renders to {self.settings.image.output_destination}")
 
     # Interpret as program
     def interpret_as_program(self):
@@ -101,8 +103,12 @@ class BlazonList:
             branch = blazon.get_program(vm, bm)
 
             if self.settings.program.debug:
+                print()
                 print("Variables:", vm.variables)
                 print("Branches:", bm.branches)
+                if self.settings.program.step_thru:
+                    print("[hit enter to continue]", end="")
+                    input()
                 print()
 
             if branch:
