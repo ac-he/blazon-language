@@ -19,9 +19,10 @@ from blazon_language.rendering.draw_blazon_list import DrawBlazonList
 class BlazonList:
     def __init__(
         self,
-        blazon
+        blazon,
+        output_config
     ):
-        self.settings = Settings("default")
+        self.settings = Settings(output_config)
 
         # read blazon file
         file = open(blazon, 'r')
@@ -82,7 +83,8 @@ class BlazonList:
             for blazon in self.blazons:
                 images.append(blazon.get_image(self.settings.image.image_overlay))
 
-        DrawBlazonList(self.blazons, self.settings.image)
+        dbl = DrawBlazonList(self.blazons, self.settings.image)
+        print(f"Output {dbl.pages} page(s) of blazon renders to {self.settings.image.output_destination}")
 
     # Interpret as program
     def interpret_as_program(self):
@@ -101,8 +103,12 @@ class BlazonList:
             branch = blazon.get_program(vm, bm)
 
             if self.settings.program.debug:
+                print()
                 print("Variables:", vm.variables)
                 print("Branches:", bm.branches)
+                if self.settings.program.step_thru:
+                    print("[hit enter to continue]", end="")
+                    input()
                 print()
 
             if branch:

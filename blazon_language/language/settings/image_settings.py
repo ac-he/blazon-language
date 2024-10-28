@@ -1,8 +1,12 @@
+from pathlib import Path
+
 from blazon_language.language.settings.printbox import Printbox
 
 
 class ImageSettings:
     def __init__(self, config_json):
+        self.output_destination = str(Path.cwd())
+
         self.width = config_json.get("w")
         self.height = config_json.get("h")
 

@@ -35,7 +35,7 @@ class DrawBlazonList:
         self.scale_w = int(self.settings.crest_scale_width)
         self.scale_h = int(self.scale_w * canvas.get("h") / canvas.get("w"))
 
-        self.print_path = str(Path.joinpath(Path.cwd(), "blazon_language", "rendering", "img", "blazon_as_image-page"))
+        self.print_path = str(Path.joinpath(Path(self.settings.output_destination), "blazon_as_image-page"))
 
         self.new_page = True
         self.pages = 0
