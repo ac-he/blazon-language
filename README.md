@@ -56,4 +56,4 @@ Step-through mode (prompts for import before moving to the next step)
 
 <h6>Regenerate Parser (you shouldn't need to do this)</h6>
 
-    tatsu --outfile language/_parser.py --generate-parser language/blazon.ebnf
+    tatsu --outfile blazon_language/language/_parser.py --generate-parser blazon_language/language/blazon.ebnf
