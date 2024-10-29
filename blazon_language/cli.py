@@ -1,4 +1,4 @@
-from language.blazon_list import BlazonList
+from blazon_language.language.blazon_list import BlazonList
 
 import click
 
