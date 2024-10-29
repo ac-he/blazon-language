@@ -1,4 +1,5 @@
 <h1>Blazon Language</h1>
+
 <h2>Dependencies</h2>
 <ul>
 <li>Python 3.12</li>
@@ -9,7 +10,7 @@
 </ul>
 
 <h2>Documentation</h2>
-[Found here.](https://ac-he.github.io/blazon-docs/)
+<a href="https://ac-he.github.io/blazon-docs">Found here</a>
 
 <h2>Run your programs</h2>
 <h3>Run</h3>
