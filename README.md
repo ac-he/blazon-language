@@ -22,7 +22,12 @@ Change output directory (for images and pseudocode)
     --output-destination <directory>
     -o <directory>
 
-Generate psuedocode
+Change output configuration file (controls graphics settings, etc.)
+    
+    --output-config <file.json>
+    -c <file.json>
+
+Generate pseudocode
 
     --pseudocode
 
