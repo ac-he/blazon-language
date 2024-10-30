@@ -1,3 +1,6 @@
+import os
+from pathlib import Path
+
 from tatsu.util import asjson
 
 from blazon_language.language._parser import BlazonParser
@@ -13,6 +16,7 @@ from blazon_language.language.divisions.per_saltire import PerSaltire
 from blazon_language.language.program_data.branch_manager import BranchManager
 from blazon_language.language.program_data.variable_manager import VariableManager
 from blazon_language.language.settings.settings import Settings
+from blazon_language.rendering._image_management import delete_all_images
 from blazon_language.rendering.draw_blazon_list import DrawBlazonList
 
 
@@ -70,12 +74,12 @@ class BlazonList:
 
     # Interpret as pseudocode
     def interpret_as_pseudocode(self):
-        file = ""
+        file = Path.joinpath(Path(self.settings.image.output_destination), f"blazon_as_pseudocode.txt")
         if self.settings.pseudocode.output_to_file:
             try:
-                file = open("blazon_as_pseudocode.txt", "x")
+                file = open(file, "x")
             except FileExistsError as ex:
-                file = open("blazon_as_pseudocode.txt", "w")
+                file = open(file, "w")
 
         for blazon in self.blazons:
             pc = blazon.get_pseudocode()
@@ -93,10 +97,22 @@ class BlazonList:
 
     # Interpret as image
     def interpret_as_image(self):
+        delete_all_images()
         if self.settings.image.preserve_individual_images:
             images = []
+            i = 0
             for blazon in self.blazons:
-                images.append(blazon.get_image(self.settings.image.image_overlay))
+                i += 1
+                new_image = Path.joinpath(Path.cwd(), f"blazon_as_image-{i}.png")
+                b = blazon.get_image(self.settings.image.image_overlay)
+                images.append(b)
+                try:
+                    os.remove(new_image)
+                except FileNotFoundError:
+                    pass
+                os.rename(b, new_image)
+
+            print(f"Output {i} individual blazon renders to {self.settings.image.output_destination}")
 
         dbl = DrawBlazonList(self.blazons, self.settings.image)
         print(f"Output {dbl.pages} page(s) of blazon renders to {self.settings.image.output_destination}")
