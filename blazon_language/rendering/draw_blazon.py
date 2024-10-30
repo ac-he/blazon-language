@@ -2,8 +2,9 @@ from pathlib import Path
 
 import cairo
 
-from blazon_language.rendering._render_config import canvas
+from blazon_language.rendering._render_config import canvas, tinctures
 from blazon_language.rendering._image_management import supply_guid, delete_image_path
+from blazon_language.rendering._render_config import shape_points
 from blazon_language.rendering.draw_dof import make_dof_image
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
@@ -20,12 +21,7 @@ def make_blazon_image(blazon, overlay=None):
     context.set_source_surface(surf1)
     delete_image_path(blazon_guid)
 
-    match blazon.shape:
-        case "banner": trim_to_banner()
-        case "heater": trim_to_heater()
-        case "pennant": trim_to_pennant()
-        case "rect": trim_to_rect()
-        case "shield": trim_to_shield()
+    draw_shape(blazon.shape)
     context.fill()
 
     if overlay:
@@ -37,49 +33,24 @@ def make_blazon_image(blazon, overlay=None):
     return guid
 
 
-def trim_to_banner():
-    context.move_to(0, 0)
-    context.line_to(0, canvas["h"])
-    context.line_to(canvas["w"] / 2, canvas["h"] * 3 / 4)
-    context.line_to(canvas["w"], canvas["h"])
-    context.line_to(canvas["w"], 0)
-    context.close_path()
-
-
-def trim_to_heater():
-    context.move_to(0, 0)
-    context.line_to(0, canvas["h"] * 5 / 8)
-    context.curve_to(0, canvas["h"] * 7 / 8,
-                     canvas["w"] / 3, canvas["h"] * 7.5 / 8,
-                     canvas["w"] / 2, canvas["h"])
-    context.curve_to(canvas["w"] * 2 / 3, canvas["h"] * 7.5 / 8,
-                     canvas["w"], canvas["h"] * 7 / 8,
-                     canvas["w"], canvas["h"] * 5 / 8)
-    context.line_to(canvas["w"], 0)
-    context.close_path()
-
-
-def trim_to_pennant():
-    context.move_to(0, 0)
-    context.line_to(canvas["w"]/2, canvas["h"])
-    context.line_to(canvas["w"], 0)
-    context.close_path()
-
-
-def trim_to_rect():
-    context.rectangle(0, 0, canvas["w"], canvas["h"])
-
-
-def trim_to_shield():
-    context.move_to(0, 0)
-    context.line_to(canvas["w"] * 0 / 6, canvas["h"] * 6 / 8)
-    context.curve_to(canvas["w"] * 0 / 6, canvas["h"] * 7 / 8,
-                     canvas["w"] * 3 / 6, canvas["h"] * 7 / 8,
-                     canvas["w"] * 3 / 6, canvas["h"] * 8 / 8)
-    context.curve_to(canvas["w"] * 3 / 6, canvas["h"] * 7 / 8,
-                     canvas["w"] * 6 / 6, canvas["h"] * 7 / 8,
-                     canvas["w"] * 6 / 6, canvas["h"] * 6 / 8)
-    context.line_to(canvas["w"], 0)
+def draw_shape(shape, this_context=None, x_scale=1, y_scale=1, x_offset=0, y_offset=0):
+    if not this_context:
+        this_context = context
+    points = shape_points[shape]
+    for point in points:
+        if point[0] == "m":
+            this_context.move_to(canvas["w"] * point[1] * x_scale + x_offset,
+                                 canvas["h"] * point[2] * y_scale + y_offset)
+        if point[0] == "l":
+            this_context.line_to(canvas["w"] * point[1] * x_scale + x_offset,
+                                 canvas["h"] * point[2] * y_scale + y_offset)
+        if point[0] == "c":
+            this_context.curve_to(canvas["w"] * point[1][0] * x_scale + x_offset,
+                                  canvas["h"] * point[1][1] * y_scale + y_offset,
+                                  canvas["w"] * point[2][0] * x_scale + x_offset,
+                                  canvas["h"] * point[2][1] * y_scale + y_offset,
+                                  canvas["w"] * point[3][0] * x_scale + x_offset,
+                                  canvas["h"] * point[3][1] * y_scale + y_offset)
     context.close_path()
 
 
@@ -91,10 +62,5 @@ def draw_overlay(shape, overlay):
     context.set_source_surface(surf1)
 
     # draw
-    match shape:
-        case "banner": trim_to_banner()
-        case "heater": trim_to_heater()
-        case "pennant": trim_to_pennant()
-        case "rect": trim_to_rect()
-        case "shield": trim_to_shield()
+    draw_shape(shape)
     context.fill()

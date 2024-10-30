@@ -5,7 +5,7 @@ from blazon_language.rendering.draw_blazon import make_blazon_image
 
 class Blazon(ABC):
     @abstractmethod
-    def __init__(self, blazon_json):
+    def __init__(self):
         self.division = None
         self.shape = None
         self.tinctures = None
@@ -20,6 +20,8 @@ class Blazon(ABC):
         self.dexter_base = None
         self.sinister_base = None
         self.field = None
+
+        self.settings = None
 
     @abstractmethod
     def get_pseudocode(self):

@@ -35,6 +35,8 @@
       ],
       "page-overlay": "armorial-folio",
       "image-overlay": null,
+      "image-outline-width": 20,
+      "image-outline-tincture": "sable",
       "preserve-individual-images": false
     },
     "program": {

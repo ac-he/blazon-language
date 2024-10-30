@@ -1,5 +1,5 @@
 import cairo
-from blazon_language.rendering._render_config import canvas
+from blazon_language.rendering._render_config import canvas, tinctures
 from blazon_language.rendering.draw_division import make_division_image
 from blazon_language.rendering._image_management import supply_guid, delete_image_path
 
@@ -57,6 +57,14 @@ def per_bend(blazon):
     context.fill()
     delete_image_path(sc_guid)
 
+    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.set_line_width(blazon.settings.image.image_outline_width)
+    context.set_line_cap(cairo.LINE_CAP_ROUND)
+    context.move_to(0, 0)
+    context.line_to(canvas["w"], side_intersect)
+    context.stroke()
+
 
 def per_bend_sinister(blazon):
     side_intersect = canvas["h"]
@@ -83,6 +91,14 @@ def per_bend_sinister(blazon):
     context.close_path()
     context.fill()
     delete_image_path(sb_guid)
+
+    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.set_line_width(blazon.settings.image.image_outline_width)
+    context.set_line_cap(cairo.LINE_CAP_ROUND)
+    context.move_to(canvas["w"], 0)
+    context.line_to(0, side_intersect)
+    context.stroke()
 
 
 def per_chevron(blazon):
@@ -115,6 +131,15 @@ def per_chevron(blazon):
     context.close_path()
     context.fill()
     delete_image_path(base_guid)
+
+    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.set_line_width(blazon.settings.image.image_outline_width)
+    context.set_line_cap(cairo.LINE_CAP_ROUND)
+    context.move_to(canvas["w"] * 0 / 6, middle_side_h)
+    context.line_to(canvas["w"] * 3 / 6, middle_middle_h)
+    context.line_to(canvas["w"] * 6 / 6, middle_side_h)
+    context.stroke()
 
 
 def per_cross(blazon):
@@ -153,6 +178,17 @@ def per_cross(blazon):
     context.fill()
     delete_image_path(db_guid)
 
+    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.set_line_width(blazon.settings.image.image_outline_width)
+    context.set_line_cap(cairo.LINE_CAP_ROUND)
+    context.move_to(center_w, 0)
+    context.line_to(center_w, canvas["h"])
+    context.stroke()
+    context.move_to(0, center_h)
+    context.line_to(canvas["w"], center_h)
+    context.stroke()
+
 
 def per_fess(blazon):
     fess = canvas["h"] / 2
@@ -174,6 +210,14 @@ def per_fess(blazon):
     context.rectangle(0, fess, canvas["w"], canvas["h"] - fess)
     context.fill()
     delete_image_path(base_guid)
+
+    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.set_line_width(blazon.settings.image.image_outline_width)
+    context.set_line_cap(cairo.LINE_CAP_ROUND)
+    context.move_to(0, fess)
+    context.line_to(canvas["w"], fess)
+    context.stroke()
 
 
 def per_fess_escutcheon(blazon):
@@ -205,6 +249,14 @@ def per_fess_escutcheon(blazon):
     context.fill()
     delete_image_path(base_guid)
 
+    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.set_line_width(blazon.settings.image.image_outline_width)
+    context.set_line_cap(cairo.LINE_CAP_ROUND)
+    context.move_to(0, fess)
+    context.line_to(canvas["w"], fess)
+    context.stroke()
+
     escutcheon_guid = make_division_image(blazon.escutcheon, blazon.shape)
     surf3 = surface.create_from_png(escutcheon_guid)
     context.set_source_surface(surf3)
@@ -221,6 +273,19 @@ def per_fess_escutcheon(blazon):
     context.fill()
     delete_image_path(escutcheon_guid)
 
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.move_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.000 * esc_scale_h)
+    context.line_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.625 * esc_scale_h)
+    context.curve_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.875 * esc_scale_h,
+                     esc_w + 0.333 * esc_scale_w, esc_h + 0.938 * esc_scale_h,
+                     esc_w + 0.500 * esc_scale_w, esc_h + 1.000 * esc_scale_h)
+    context.curve_to(esc_w + 0.667 * esc_scale_w, esc_h + 0.938 * esc_scale_h,
+                     esc_w + 1.000 * esc_scale_w, esc_h + 0.875 * esc_scale_h,
+                     esc_w + 1.000 * esc_scale_w, esc_h + 0.625 * esc_scale_h)
+    context.line_to(esc_w + 1.000 * esc_scale_w, esc_h + 0.000 * esc_scale_h)
+    context.close_path()
+    context.stroke()
+
 
 def per_pale(blazon):
     dexter_guid = make_division_image(blazon.dexter, blazon.shape)
@@ -236,6 +301,14 @@ def per_pale(blazon):
     context.rectangle(canvas["w"] / 2, 0, canvas["w"] / 2, canvas["h"])
     context.fill()
     delete_image_path(sinister_guid)
+
+    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.set_line_width(blazon.settings.image.image_outline_width)
+    context.set_line_cap(cairo.LINE_CAP_ROUND)
+    context.move_to(canvas["w"] / 2, 0)
+    context.line_to(canvas["w"] / 2, canvas["h"])
+    context.stroke()
 
 
 def per_pall(blazon):
@@ -275,6 +348,17 @@ def per_pall(blazon):
     context.close_path()
     context.fill()
     delete_image_path(sinister_guid)
+
+    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.set_line_width(blazon.settings.image.image_outline_width)
+    context.set_line_cap(cairo.LINE_CAP_ROUND)
+    context.move_to(0, 0)
+    context.line_to(center_x, center_y)
+    context.line_to(canvas["w"], 0)
+    context.move_to(center_x, center_y)
+    context.line_to(center_x, canvas["h"])
+    context.stroke()
 
 
 def per_saltire(blazon):
@@ -324,3 +408,15 @@ def per_saltire(blazon):
     context.fill()
     delete_image_path(dexter_guid)
 
+    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.set_line_width(blazon.settings.image.image_outline_width)
+    context.set_line_cap(cairo.LINE_CAP_ROUND)
+    context.move_to(0, 0)
+    context.line_to(center_w, center_h)
+    context.line_to(canvas["w"], side_intersect)
+    context.stroke()
+    context.move_to(0, side_intersect)
+    context.line_to(center_w, center_h)
+    context.line_to(canvas["w"], 0)
+    context.stroke()

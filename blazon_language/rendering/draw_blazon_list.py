@@ -6,7 +6,7 @@ import cairo
 from PIL import Image
 
 from blazon_language.rendering._image_management import delete_image_path
-from blazon_language.rendering._render_config import canvas
+from blazon_language.rendering._render_config import canvas, tinctures, shape_points
 from blazon_language.rendering.draw_blazon import make_blazon_image
 
 
@@ -123,6 +123,8 @@ class DrawBlazonList:
         self.context.close_path()
         self.context.fill()
 
+        self.draw_shape(blazon.shape)
+
         # cleanup
         delete_image_path(blazon_guid)
 
@@ -143,3 +145,26 @@ class DrawBlazonList:
             self.context.rectangle(0, 0, self.settings.width, self.settings.height)
             self.context.close_path()
             self.context.fill()
+
+    def draw_shape(self, shape):
+        tincture = tinctures[self.settings.image_outline_tincture]
+        self.context.set_source_rgb(tincture["r"], tincture["g"], tincture["b"])
+        self.context.set_line_width(self.settings.image_outline_width * self.scale_w / canvas["w"])
+        self.context.set_line_cap(cairo.LINE_CAP_BUTT)
+        points = shape_points[shape]
+        for point in points:
+            if point[0] == "m":
+                self.context.move_to(point[1] * self.scale_w + self.x,
+                                     point[2] * self.scale_h + self.y)
+            if point[0] == "l":
+                self.context.line_to(point[1] * self.scale_w + self.x,
+                                     point[2] * self.scale_h + self.y)
+            if point[0] == "c":
+                self.context.curve_to(point[1][0] * self.scale_w + self.x,
+                                      point[1][1] * self.scale_h + self.y,
+                                      point[2][0] * self.scale_w + self.x,
+                                      point[2][1] * self.scale_h + self.y,
+                                      point[3][0] * self.scale_w + self.x,
+                                      point[3][1] * self.scale_h + self.y)
+        self.context.close_path()
+        self.context.stroke()

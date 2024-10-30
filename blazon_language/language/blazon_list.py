@@ -42,27 +42,29 @@ class BlazonList:
             division = list(blazon[0].keys())[0]
             this_blazon = blazon[0][division]
 
+            b = None
             match division:
                 case "per_bend":
-                    self.blazons.append(PerBend(this_blazon))
+                    b = PerBend(this_blazon)
                 case "per_bend_sinister":
-                    self.blazons.append(PerBendSinister(this_blazon))
+                    b = PerBendSinister(this_blazon)
                 case "per_chevron":
-                    self.blazons.append(PerChevron(this_blazon))
+                    b = PerChevron(this_blazon)
                 case "per_cross":
-                    self.blazons.append(PerCross(this_blazon))
+                    b = PerCross(this_blazon)
                 case "per_fess":
-                    self.blazons.append(PerFess(this_blazon))
+                    b = PerFess(this_blazon)
                 case "per_pale":
-                    self.blazons.append(PerPale(this_blazon))
+                    b = PerPale(this_blazon)
                 case "per_pall":
-                    self.blazons.append(PerPall(this_blazon))
+                    b = PerPall(this_blazon)
                 case "per_saltire":
-                    self.blazons.append(PerSaltire(this_blazon))
+                    b = PerSaltire(this_blazon)
                 case "per_nothing":
-                    self.blazons.append(PerNothing(this_blazon))
-                case _:
-                    pass
+                    b = PerNothing(this_blazon)
+
+            b.settings = self.settings
+            self.blazons.append(b)
 
     def interpret(self):
         if self.settings.pseudocode_mode:

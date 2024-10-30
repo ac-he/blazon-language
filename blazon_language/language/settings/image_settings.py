@@ -26,4 +26,7 @@ class ImageSettings:
         self.page_overlay = config_json.get("page-overlay")
         self.image_overlay = config_json.get("image-overlay")
 
+        self.image_outline_width = config_json.get("image-outline-width")
+        self.image_outline_tincture = config_json.get("image-outline-tincture")
+
         self.preserve_individual_images = config_json.get("preserve-individual-images")
