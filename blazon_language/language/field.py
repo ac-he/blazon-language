@@ -1,4 +1,4 @@
-from blazon_language.language._evaluation import stringify_charge, make_charge_render_friendly
+from blazon_language.language._evaluation import stringify_charge, make_charge_render_friendly, is_metal
 
 
 class Field:
@@ -21,6 +21,11 @@ class Field:
 
         self.dof = dof
         self.division = division
+
+        if self.charge_tincture:
+            if ((is_metal(self.charge_tincture) and is_metal(self.field_tincture)) or
+                    (not is_metal(self.field_tincture) and not is_metal(self.charge_tincture))):
+                raise Exception
 
     def get_render_friendly_charge(self):
         if not self.rf_charge:
