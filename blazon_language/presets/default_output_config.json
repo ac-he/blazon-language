@@ -1,7 +1,9 @@
 {
   "modes": {
     "pseudocode" : {
-      "space-between": false
+      "output-destination": false,
+      "output-to-console": false,
+      "output-to-file": true
     },
     "images" : {
       "w": 800,

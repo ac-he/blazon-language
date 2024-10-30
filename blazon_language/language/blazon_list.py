@@ -70,11 +70,26 @@ class BlazonList:
 
     # Interpret as pseudocode
     def interpret_as_pseudocode(self):
-        for blazon in self.blazons:
-            print(blazon.get_pseudocode())
+        file = ""
+        if self.settings.pseudocode.output_to_file:
+            try:
+                file = open("blazon_as_pseudocode.txt", "x")
+            except FileExistsError as ex:
+                file = open("blazon_as_pseudocode.txt", "w")
 
-            if self.settings.pseudocode.space_between:
-                print()
+        for blazon in self.blazons:
+            pc = blazon.get_pseudocode()
+
+            if self.settings.pseudocode.output_to_file:
+                file.write(pc)
+                file.write("\n")
+
+            if self.settings.pseudocode.output_to_console:
+                print(pc)
+
+        if self.settings.pseudocode.output_to_file:
+            file.close()
+            print(f"Output pseudocode to {self.settings.pseudocode.output_destination}")
 
     # Interpret as image
     def interpret_as_image(self):

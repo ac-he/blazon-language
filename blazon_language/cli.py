@@ -18,11 +18,11 @@ def main():
 @click.option(
     "--output-destination", "-o",
     default="here",
-    help="Output configuration file. See docs for specification."
+    help="Output destination path."
 )
 @click.option("--pseudocode", is_flag=True, default=False, help="Print pseudocode.")
-@click.option("--no-images", is_flag=True, default=True, help="Render images.")
-@click.option("--no-program", is_flag=True, default=True, help="Run program.")
+@click.option("--no-images", is_flag=True, default=True, help="Do not render images.")
+@click.option("--no-program", is_flag=True, default=True, help="Do not run program.")
 def run(file, output_config, output_destination, pseudocode, no_images, no_program):
     b = BlazonList(file, output_config)
 
@@ -38,8 +38,11 @@ def run(file, output_config, output_destination, pseudocode, no_images, no_progr
         b.interpret_as_program()
         print()
         print()
+        print()
     if no_images:
         b.interpret_as_image()
+        print()
+        print()
 
 
 @main.command()
