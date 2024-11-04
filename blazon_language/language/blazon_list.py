@@ -76,7 +76,7 @@ class BlazonList:
 
     # Interpret as pseudocode
     def interpret_as_pseudocode(self):
-        file = Path.joinpath(Path(self.settings.image.output_destination), f"blazon_as_pseudocode.txt")
+        file = Path.joinpath(Path(self.settings.pseudocode.output_destination), f"blazon_as_pseudocode.txt")
         if self.settings.pseudocode.output_to_file:
             try:
                 file = open(file, "x")
@@ -105,7 +105,7 @@ class BlazonList:
             i = 0
             for blazon in self.blazons:
                 i += 1
-                new_image = Path.joinpath(Path.cwd(), f"blazon_as_image-{i}.png")
+                new_image = Path.joinpath(Path(self.settings.image.output_destination), f"blazon_as_image-{i}.png")
                 b = blazon.get_image(self.settings.image.image_overlay)
                 images.append(b)
                 try:

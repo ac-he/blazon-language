@@ -39,7 +39,7 @@ class PerPall(Blazon, ABC):
             case "Power":
                 return f"Raise Variable{variable} to the power of {value}."
             case "Root":
-                return f"Take the Variable{value}th root of Variable{variable}."
+                return f"Take the {value}th root of Variable{variable}."
 
     def get_program(self, vm, bm):
         value = get_int_value(self.sinister)

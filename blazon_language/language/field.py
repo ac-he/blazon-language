@@ -22,7 +22,7 @@ class Field:
         self.dof = dof
         self.division = division
 
-        if self.charge_tincture:
+        if self.charge_tincture and not isinstance(self.charge_tincture, list):
             if ((is_metal(self.charge_tincture) and is_metal(self.field_tincture)) or
                     (not is_metal(self.field_tincture) and not is_metal(self.charge_tincture))):
                 raise Exception
