@@ -58,7 +58,8 @@ class DrawBlazonList:
             # get new crest position
             self.get_new_position()
 
-        self.print_page()
+        if not self.new_page:
+            self.print_page()
 
     def get_new_position(self):
         printbox = self.settings.printboxes[self.cur_printbox]
@@ -99,6 +100,7 @@ class DrawBlazonList:
         self.new_page = True
 
     def create_new_page(self):
+        print("----Creating new page")
         self.new_page = False
         self.pages += 1
 
@@ -107,6 +109,7 @@ class DrawBlazonList:
         self.context.fill()
 
     def draw_blazon_in_image(self, blazon):
+        print("Draw Blazon")
         blazon.shape = self.settings.shapes[self.shape_index]
         blazon_guid = make_blazon_image(blazon, self.settings.image_overlay)
 
@@ -129,6 +132,7 @@ class DrawBlazonList:
         delete_image_path(blazon_guid)
 
     def draw_page_overlay(self):
+        print("Draw Overlay")
         if self.settings.page_overlay:
             overlay = str(Path.joinpath(Path.cwd(), "blazon_language", "presets", "img",
                                         f"overlay_{self.settings.page_overlay}.png"))
