@@ -15,6 +15,7 @@ from blazon_language.language.divisions.per_nothing import PerNothing
 from blazon_language.language.divisions.per_pale import PerPale
 from blazon_language.language.divisions.per_pall import PerPall
 from blazon_language.language.divisions.per_saltire import PerSaltire
+from blazon_language.language.divisions.saltire import Saltire
 from blazon_language.language.program_data.branch_manager import BranchManager
 from blazon_language.language.program_data.variable_manager import VariableManager
 from blazon_language.language.settings.settings import Settings
@@ -50,6 +51,8 @@ class BlazonList:
                     b = Cross(this_blazon)
                 case "escutcheon":
                     b = Escutcheon(this_blazon)
+                case "saltire":
+                    b = Saltire(this_blazon)
                 case "per_bend":
                     b = PerBend(this_blazon)
                 case "per_bend_sinister":

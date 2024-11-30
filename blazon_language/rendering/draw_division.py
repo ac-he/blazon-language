@@ -144,12 +144,20 @@ def draw_feature_oversize(field, shape):
     tincture = tinctures[field.charge_tincture]["initial"]
     path = Path.joinpath(Path.cwd(), "blazon_language", "rendering", "assets", "oversize",
                          f"{field.charge}_{tincture}.png")
-    midpoint = charge_loc[field.dof][field.division][shape][1]["size"] / 2
-    loc_x = charge_loc[field.dof][field.division][shape][1]["loc_x"][0] + midpoint - 500
-    loc_y = charge_loc[field.dof][field.division][shape][1]["loc_y"][0] + midpoint - 500
 
     surf1 = surface.create_from_png(str(path))
-    context.set_source_surface(surf1, loc_x, loc_y)
-    context.rectangle(loc_x, loc_y, 1000, 1000)
+    if field.charge == "gorge" or field.charge == "fret" or field.charge == "gyronny":
+        if field.charge != "fret" and field.dof == "saltire":
+            loc_x = charge_detail["qoe"][field.dof][field.division][shape]["pale"] - 500
+            loc_y = charge_detail["qoe"][field.dof][field.division][shape]["fess"] - 500
+        else:
+            midpoint = charge_loc[field.dof][field.division][shape][1]["size"] / 2
+            loc_x = charge_loc[field.dof][field.division][shape][1]["loc_x"][0] + midpoint - 500
+            loc_y = charge_loc[field.dof][field.division][shape][1]["loc_y"][0] + midpoint - 500
+        context.set_source_surface(surf1, loc_x, loc_y)
+        context.rectangle(loc_x, loc_y, 1000, 1000)
+    else:
+        context.set_source_surface(surf1)
+        context.rectangle(0, 0, 1000, 1000)
     context.close_path()
     context.fill()

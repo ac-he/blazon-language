@@ -8,6 +8,7 @@
     division =
         escutcheon:(escutcheon) |
         cross:(cross) |
+        saltire:(saltire) |
         per_bend:(per_bend) |
         per_bend_sinister:(per_bend_sinister) |
         per_chevron:(per_chevron) |
@@ -84,7 +85,9 @@
     charge_large =
         "gorge" |
         "fret" ;
-    tq_charge_large = quantity:(quantity_a) charge:(charge_large) tincture:(tincture) ;
+    tq_charge_large = quantity:(quantity_singular) charge:(charge_large) tincture:(tincture) ;
+    tq_gorge = quantity:(quantity_singular) charge:("gorge") tincture:(tincture) ;
+    tq_fret = quantity:(quantity_singular) charge:("fret") tincture:(tincture) ;
 
     charge_label = "a" "label" "of" ;
     tq_label_singular = quantity_one "point" ;
@@ -185,6 +188,21 @@
         tq_charge_label |
         tq_charge_quarterly;
 
+    singular_charge_phrase =
+        tq_charge_auto_singular |
+        tq_charge_tincturable_singular |
+        tq_fret |
+        tq_charge_label ;
+
+    plural_charge_phrase =
+        tq_charge_auto_plural |
+        tq_charge_tincturable_plural ;
+
+    pattern_charge_phrase =
+        tq_charge_quarterly |
+        tq_charge_pattern |
+        tq_gorge;
+
     cross = tincture:(tincture_cap) "," "a" "cross" tincture:(tincture) ;
 
     escutcheon =
@@ -197,6 +215,18 @@
         (
             ("on" "an" "escutcheon" tincture:(tincture) escutcheon:(charge_phrase)) |
             ("an" "escutcheon" tincture:(tincture))
+        ) ;
+
+    saltire =
+        tincture:(tincture_cap) ","
+        (
+            ( "a" "saltire" tincture:(tincture )
+                (
+                    ( "above" field:(singular_charge_phrase) ) |
+                    ( "between" field:(plural_charge_phrase) )
+                )
+            ) |
+            (  field:(pattern_charge_phrase) ";" "a" "saltire" tincture:(tincture) )
         ) ;
 
     per_bend =
