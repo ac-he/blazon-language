@@ -9,6 +9,7 @@ from blazon_language.language.divisions.per_bend_sinister import PerBendSinister
 from blazon_language.language.divisions.per_chevron import PerChevron
 from blazon_language.language.divisions.per_cross import PerCross
 from blazon_language.language.divisions.per_fess import PerFess
+from blazon_language.language.divisions.escutcheon import Escutcheon
 from blazon_language.language.divisions.per_nothing import PerNothing
 from blazon_language.language.divisions.per_pale import PerPale
 from blazon_language.language.divisions.per_pall import PerPall
@@ -44,6 +45,8 @@ class BlazonList:
 
             b = None
             match division:
+                case "escutcheon":
+                    b = Escutcheon(this_blazon)
                 case "per_bend":
                     b = PerBend(this_blazon)
                 case "per_bend_sinister":

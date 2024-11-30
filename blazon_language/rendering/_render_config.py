@@ -14,7 +14,7 @@ canvas = {
 }
 
 shapes = ["banner", "heater", "pennant", "rect", "shield"]
-divisions = ["per bend", "per bend sinister", "per chevron", "per cross", "per fess", "per fess escutcheon",
+divisions = ["per bend", "per bend sinister", "per chevron", "per cross", "per fess", "escutcheon",
              "per pale", "per pall", "per saltire", "none"]
 
 colors = ["g", "s", "v", "a", "p"]
@@ -480,7 +480,7 @@ charge_detail = {
                 }
             }
         },
-        "per fess escutcheon": {
+        "escutcheon": {
             "chief": {
                 "banner": {
                     "bar_h": canvas['h'] * 0.050,
@@ -1302,7 +1302,7 @@ charge_detail = {
                 }
             }
         },
-        "per fess escutcheon": {
+        "escutcheon": {
             "chief": {
                 "banner": {
                     "fess": canvas['h'] * 0.100,
@@ -2786,7 +2786,7 @@ charge_loc = {
             }
         }
     },
-    "per fess escutcheon": {
+    "escutcheon": {
         "chief": {
             "banner": {
                 1: {

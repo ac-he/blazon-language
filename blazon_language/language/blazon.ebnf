@@ -6,6 +6,7 @@
     blazon = division "." (/[\n]+/ | $);
 
     division =
+        escutcheon:(escutcheon) |
         per_bend:(per_bend) |
         per_bend_sinister:(per_bend_sinister) |
         per_chevron:(per_chevron) |
@@ -202,7 +203,7 @@
         tincture:(tincture) "and"
         tincture:(tincture) ";"
         "in" "chief" chief:(charge_phrase)
-        [ "," "in" "base" base:(charge_phrase) ] ;
+        [ "," "in" "base" base:(charge_phrase) ];
 
     per_cross =
         "Quarterly" ";"
@@ -216,12 +217,19 @@
         tincture:(tincture) "and"
         tincture:(tincture) ";"
         "in" "chief" chief:(charge_phrase) ","
-        "in" "base" base:(charge_phrase)
-        [";" "in" "the" "center"
+        "in" "base" base:(charge_phrase) ;
+
+    escutcheon =
+        "Per" "fess"
+        tincture:(tincture) "and"
+        tincture:(tincture) ";"
+        "in" "chief" chief:(charge_phrase) ","
+        "in" "base" base:(charge_phrase) ";"
+        "in" "the" "center"
         (
             ("on" "an" "escutcheon" tincture:(tincture) escutcheon:(charge_phrase)) |
             ("an" "escutcheon" tincture:(tincture))
-        )] ;
+        ) ;
 
     per_pale =
         "Per" "pale"
@@ -248,6 +256,6 @@
         ["in" "chief" chief:(charge_phrase) ","]
         "to" "dexter" dexter:(charge_phrase) ","
         "to" "sinister" sinister:(charge_phrase) ","
-        "in" "base" base:(charge_phrase);
+        "in" "base" base:(charge_phrase) ;
 
-    per_nothing = tincture:(tincture_cap) "," field:(charge_phrase);
+    per_nothing = tincture:(tincture_cap) "," field:(charge_phrase) ;

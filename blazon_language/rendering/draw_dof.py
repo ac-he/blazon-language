@@ -13,13 +13,13 @@ def make_dof_image(blazon):
     context = cairo.Context(surface)
 
     match blazon.division:
+        case "escutcheon": per_fess_escutcheon(blazon)
         case "per nothing": return make_division_image(blazon.field, blazon.shape)
         case "per bend": per_bend(blazon)
         case "per bend sinister": per_bend_sinister(blazon)
         case "per chevron": per_chevron(blazon)
         case "per cross": per_cross(blazon)
         case "per fess": per_fess(blazon)
-        case "per fess escutcheon": per_fess_escutcheon(blazon)
         case "per pale": per_pale(blazon)
         case "per pall": per_pall(blazon)
         case "per saltire": per_saltire(blazon)
