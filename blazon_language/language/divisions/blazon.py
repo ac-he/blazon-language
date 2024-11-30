@@ -20,6 +20,7 @@ class Blazon(ABC):
         self.dexter_base = None
         self.sinister_base = None
         self.field = None
+        self.ordinary = None
 
         self.settings = None
 

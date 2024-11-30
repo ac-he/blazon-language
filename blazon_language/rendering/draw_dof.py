@@ -13,7 +13,8 @@ def make_dof_image(blazon):
     context = cairo.Context(surface)
 
     match blazon.division:
-        case "escutcheon": per_fess_escutcheon(blazon)
+        case "cross": cross(blazon)
+        case "escutcheon": escutcheon(blazon)
         case "per nothing": return make_division_image(blazon.field, blazon.shape)
         case "per bend": per_bend(blazon)
         case "per bend sinister": per_bend_sinister(blazon)
@@ -29,6 +30,122 @@ def make_dof_image(blazon):
     surface.write_to_png(guid)
 
     return guid
+
+
+def cross(blazon):
+    thickness = canvas["w"] * 0.150
+    center_w = canvas["w"] / 2
+    center_h = canvas["h"] / 2
+    if blazon.shape == "pennant":
+        center_h = canvas["h"] * 2.5 / 8
+        thickness = canvas["w"] * 0.100
+    elif blazon.shape == "banner" or blazon.shape == "shield" or blazon.shape == "heater":
+        center_h = canvas["h"] * 3.5 / 8
+
+    fi_guid = make_division_image(blazon.field, blazon.shape)
+    surf1 = surface.create_from_png(fi_guid)
+    context.set_source_surface(surf1)
+    context.rectangle(0, 0, canvas["w"], canvas["h"])
+    context.fill()
+    delete_image_path(fi_guid)
+
+    or_guid = make_division_image(blazon.ordinary, blazon.shape)
+    surf2 = surface.create_from_png(or_guid)
+    context.set_source_surface(surf2)
+    context.rectangle(center_w - thickness, 0, thickness * 2, canvas["h"])
+    context.fill()
+    context.rectangle(0, center_h - thickness, canvas["w"], thickness * 2)
+    context.fill()
+    delete_image_path(or_guid)
+
+    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.set_line_width(blazon.settings.image.image_outline_width)
+    context.set_line_cap(cairo.LINE_CAP_ROUND)
+    # I
+    context.move_to(0, center_h - thickness)
+    context.line_to(center_w - thickness, center_h - thickness)
+    context.line_to(center_w - thickness, 0)
+    # II
+    context.move_to(center_w + thickness, 0)
+    context.line_to(center_w + thickness, center_h - thickness)
+    context.line_to(canvas["w"], center_h - thickness)
+    # III
+    context.move_to(canvas["w"], center_h + thickness)
+    context.line_to(center_w + thickness, center_h + thickness)
+    context.line_to(center_w + thickness, canvas["h"])
+    # IV
+    context.move_to(center_w - thickness, canvas["h"])
+    context.line_to(center_w - thickness, center_h + thickness)
+    context.line_to(0, center_h + thickness)
+    context.stroke()
+
+
+def escutcheon(blazon):
+    escutcheon_scale = 0.5
+    fess = canvas["h"] / 2
+
+    if blazon.shape == "pennant":
+        fess = canvas["h"] * 3 / 8
+        escutcheon_scale = 0.375
+    elif blazon.shape == "banner" or blazon.shape == "shield" or blazon.shape == "heater":
+        fess = canvas["h"] * 3.5 / 8
+
+    esc_scale_w = canvas["w"] * escutcheon_scale
+    esc_scale_h = canvas["h"] * escutcheon_scale
+    esc_w = (canvas["w"] - esc_scale_w) / 2
+    esc_h = fess - esc_scale_h / 2
+
+    chief_guid = make_division_image(blazon.chief, blazon.shape)
+    surf1 = surface.create_from_png(chief_guid)
+    context.set_source_surface(surf1)
+    context.rectangle(0, 0, canvas["w"], fess)
+    context.fill()
+    delete_image_path(chief_guid)
+
+    base_guid = make_division_image(blazon.base, blazon.shape)
+    surf2 = surface.create_from_png(base_guid)
+    context.set_source_surface(surf2)
+    context.rectangle(0, fess, canvas["w"], canvas["h"] - fess)
+    context.fill()
+    delete_image_path(base_guid)
+
+    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.set_line_width(blazon.settings.image.image_outline_width)
+    context.set_line_cap(cairo.LINE_CAP_ROUND)
+    context.move_to(0, fess)
+    context.line_to(canvas["w"], fess)
+    context.stroke()
+
+    escutcheon_guid = make_division_image(blazon.escutcheon, blazon.shape)
+    surf3 = surface.create_from_png(escutcheon_guid)
+    context.set_source_surface(surf3)
+    context.move_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.000 * esc_scale_h)
+    context.line_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.625 * esc_scale_h)
+    context.curve_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.875 * esc_scale_h,
+                     esc_w + 0.333 * esc_scale_w, esc_h + 0.938 * esc_scale_h,
+                     esc_w + 0.500 * esc_scale_w, esc_h + 1.000 * esc_scale_h)
+    context.curve_to(esc_w + 0.667 * esc_scale_w, esc_h + 0.938 * esc_scale_h,
+                     esc_w + 1.000 * esc_scale_w, esc_h + 0.875 * esc_scale_h,
+                     esc_w + 1.000 * esc_scale_w, esc_h + 0.625 * esc_scale_h)
+    context.line_to(esc_w + 1.000 * esc_scale_w, esc_h + 0.000 * esc_scale_h)
+    context.close_path()
+    context.fill()
+    delete_image_path(escutcheon_guid)
+
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.move_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.000 * esc_scale_h)
+    context.line_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.625 * esc_scale_h)
+    context.curve_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.875 * esc_scale_h,
+                     esc_w + 0.333 * esc_scale_w, esc_h + 0.938 * esc_scale_h,
+                     esc_w + 0.500 * esc_scale_w, esc_h + 1.000 * esc_scale_h)
+    context.curve_to(esc_w + 0.667 * esc_scale_w, esc_h + 0.938 * esc_scale_h,
+                     esc_w + 1.000 * esc_scale_w, esc_h + 0.875 * esc_scale_h,
+                     esc_w + 1.000 * esc_scale_w, esc_h + 0.625 * esc_scale_h)
+    context.line_to(esc_w + 1.000 * esc_scale_w, esc_h + 0.000 * esc_scale_h)
+    context.close_path()
+    context.stroke()
 
 
 def per_bend(blazon):
@@ -217,73 +334,6 @@ def per_fess(blazon):
     context.set_line_cap(cairo.LINE_CAP_ROUND)
     context.move_to(0, fess)
     context.line_to(canvas["w"], fess)
-    context.stroke()
-
-
-def per_fess_escutcheon(blazon):
-    escutcheon_scale = 0.5
-    fess = canvas["h"] / 2
-
-    if blazon.shape == "pennant":
-        fess = canvas["h"] * 3 / 8
-        escutcheon_scale = 0.375
-    elif blazon.shape == "banner" or blazon.shape == "shield" or blazon.shape == "heater":
-        fess = canvas["h"] * 3.5 / 8
-
-    esc_scale_w = canvas["w"] * escutcheon_scale
-    esc_scale_h = canvas["h"] * escutcheon_scale
-    esc_w = (canvas["w"] - esc_scale_w) / 2
-    esc_h = fess - esc_scale_h / 2
-
-    chief_guid = make_division_image(blazon.chief, blazon.shape)
-    surf1 = surface.create_from_png(chief_guid)
-    context.set_source_surface(surf1)
-    context.rectangle(0, 0, canvas["w"], fess)
-    context.fill()
-    delete_image_path(chief_guid)
-
-    base_guid = make_division_image(blazon.base, blazon.shape)
-    surf2 = surface.create_from_png(base_guid)
-    context.set_source_surface(surf2)
-    context.rectangle(0, fess, canvas["w"], canvas["h"] - fess)
-    context.fill()
-    delete_image_path(base_guid)
-
-    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
-    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
-    context.set_line_width(blazon.settings.image.image_outline_width)
-    context.set_line_cap(cairo.LINE_CAP_ROUND)
-    context.move_to(0, fess)
-    context.line_to(canvas["w"], fess)
-    context.stroke()
-
-    escutcheon_guid = make_division_image(blazon.escutcheon, blazon.shape)
-    surf3 = surface.create_from_png(escutcheon_guid)
-    context.set_source_surface(surf3)
-    context.move_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.000 * esc_scale_h)
-    context.line_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.625 * esc_scale_h)
-    context.curve_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.875 * esc_scale_h,
-                     esc_w + 0.333 * esc_scale_w, esc_h + 0.938 * esc_scale_h,
-                     esc_w + 0.500 * esc_scale_w, esc_h + 1.000 * esc_scale_h)
-    context.curve_to(esc_w + 0.667 * esc_scale_w, esc_h + 0.938 * esc_scale_h,
-                     esc_w + 1.000 * esc_scale_w, esc_h + 0.875 * esc_scale_h,
-                     esc_w + 1.000 * esc_scale_w, esc_h + 0.625 * esc_scale_h)
-    context.line_to(esc_w + 1.000 * esc_scale_w, esc_h + 0.000 * esc_scale_h)
-    context.close_path()
-    context.fill()
-    delete_image_path(escutcheon_guid)
-
-    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
-    context.move_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.000 * esc_scale_h)
-    context.line_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.625 * esc_scale_h)
-    context.curve_to(esc_w + 0.000 * esc_scale_w, esc_h + 0.875 * esc_scale_h,
-                     esc_w + 0.333 * esc_scale_w, esc_h + 0.938 * esc_scale_h,
-                     esc_w + 0.500 * esc_scale_w, esc_h + 1.000 * esc_scale_h)
-    context.curve_to(esc_w + 0.667 * esc_scale_w, esc_h + 0.938 * esc_scale_h,
-                     esc_w + 1.000 * esc_scale_w, esc_h + 0.875 * esc_scale_h,
-                     esc_w + 1.000 * esc_scale_w, esc_h + 0.625 * esc_scale_h)
-    context.line_to(esc_w + 1.000 * esc_scale_w, esc_h + 0.000 * esc_scale_h)
-    context.close_path()
     context.stroke()
 
 

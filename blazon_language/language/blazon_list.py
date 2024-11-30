@@ -4,6 +4,7 @@ from pathlib import Path
 from tatsu.util import asjson
 
 from blazon_language.language._parser import BlazonParser
+from blazon_language.language.divisions.cross import Cross
 from blazon_language.language.divisions.per_bend import PerBend
 from blazon_language.language.divisions.per_bend_sinister import PerBendSinister
 from blazon_language.language.divisions.per_chevron import PerChevron
@@ -45,6 +46,8 @@ class BlazonList:
 
             b = None
             match division:
+                case "cross":
+                    b = Cross(this_blazon)
                 case "escutcheon":
                     b = Escutcheon(this_blazon)
                 case "per_bend":

@@ -7,6 +7,7 @@
 
     division =
         escutcheon:(escutcheon) |
+        cross:(cross) |
         per_bend:(per_bend) |
         per_bend_sinister:(per_bend_sinister) |
         per_chevron:(per_chevron) |
@@ -184,6 +185,20 @@
         tq_charge_label |
         tq_charge_quarterly;
 
+    cross = tincture:(tincture_cap) "," "a" "cross" tincture:(tincture) ;
+
+    escutcheon =
+        "Per" "fess"
+        tincture:(tincture) "and"
+        tincture:(tincture) ";"
+        "in" "chief" chief:(charge_phrase) ","
+        "in" "base" base:(charge_phrase) ";"
+        "in" "the" "center"
+        (
+            ("on" "an" "escutcheon" tincture:(tincture) escutcheon:(charge_phrase)) |
+            ("an" "escutcheon" tincture:(tincture))
+        ) ;
+
     per_bend =
         "Per" "bend"
         tincture:(tincture) "and"
@@ -218,18 +233,6 @@
         tincture:(tincture) ";"
         "in" "chief" chief:(charge_phrase) ","
         "in" "base" base:(charge_phrase) ;
-
-    escutcheon =
-        "Per" "fess"
-        tincture:(tincture) "and"
-        tincture:(tincture) ";"
-        "in" "chief" chief:(charge_phrase) ","
-        "in" "base" base:(charge_phrase) ";"
-        "in" "the" "center"
-        (
-            ("on" "an" "escutcheon" tincture:(tincture) escutcheon:(charge_phrase)) |
-            ("an" "escutcheon" tincture:(tincture))
-        ) ;
 
     per_pale =
         "Per" "pale"

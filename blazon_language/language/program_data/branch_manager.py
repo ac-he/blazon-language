@@ -11,3 +11,5 @@ class BranchManager():
                 value = get_int_value(blazon.field)
                 self.branches[value] = i
             i += 1
+
+        self.end = i
