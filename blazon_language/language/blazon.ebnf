@@ -7,6 +7,7 @@
 
     division =
         bend:(bend) |
+        bend_sinister:(bend_sinister) |
         escutcheon:(escutcheon) |
         cross:(cross) |
         saltire:(saltire) |
@@ -216,6 +217,18 @@
                 )
             ) |
             (  field:(pattern_charge_phrase) ";" "a" "bend" tincture:(tincture) )
+        ) ;
+
+    bend_sinister =
+        tincture:(tincture_cap) ","
+        (
+            ( "a" "bend" "sinister" tincture:(tincture )
+                (
+                    ( "above" field:(singular_charge_phrase) ) |
+                    ( "between" field:(plural_charge_phrase) )
+                )
+            ) |
+            (  field:(pattern_charge_phrase) ";" "a" "bend" "sinister" tincture:(tincture) )
         ) ;
 
     escutcheon =
