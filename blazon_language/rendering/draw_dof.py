@@ -15,6 +15,7 @@ def make_dof_image(blazon):
     context = cairo.Context(surface)
 
     match blazon.division:
+        case "bend": bend(blazon)
         case "cross": cross(blazon)
         case "escutcheon": escutcheon(blazon)
         case "saltire": saltire(blazon)
@@ -33,6 +34,48 @@ def make_dof_image(blazon):
     surface.write_to_png(guid)
 
     return guid
+
+
+def bend(blazon):
+    thickness = canvas["w"] * 0.225
+    side_intersect = canvas["h"]
+    if blazon.shape == "pennant":
+        thickness = canvas["w"] * 0.150
+        side_intersect = canvas["h"] * 0.600
+    elif blazon.shape == "banner" or blazon.shape == "shield" or blazon.shape == "heater":
+        thickness = canvas["w"] * 0.200
+        side_intersect = canvas["h"] * 0.800
+
+    fi_guid = make_division_image(blazon.field, blazon.shape)
+    surf1 = surface.create_from_png(fi_guid)
+    context.set_source_surface(surf1)
+    context.rectangle(0, 0, canvas["w"], canvas["h"])
+    context.fill()
+    delete_image_path(fi_guid)
+
+    or_guid = make_division_image(blazon.ordinary, blazon.shape)
+    surf2 = surface.create_from_png(or_guid)
+    context.set_source_surface(surf2)
+    context.move_to(0, - thickness)
+    context.line_to(canvas["w"], side_intersect - thickness)
+    context.line_to(canvas["w"], side_intersect + thickness)
+    context.line_to(0, thickness)
+    context.close_path()
+    context.fill()
+    delete_image_path(or_guid)
+
+    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.set_line_width(blazon.settings.image.image_outline_width)
+    context.set_line_cap(cairo.LINE_CAP_ROUND)
+
+    context.move_to(0, - thickness)
+    context.line_to(canvas["w"], side_intersect - thickness)
+    context.stroke()
+    context.move_to(0, thickness)
+    context.line_to(canvas["w"], side_intersect + thickness)
+    context.stroke()
+
 
 
 def cross(blazon):

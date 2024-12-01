@@ -95,6 +95,10 @@ class BlazonParser(Parser):
         with self._choice():
             with self._option():
                 with self._group():
+                    self._bend_()
+                self.name_last_node('bend')
+            with self._option():
+                with self._group():
                     self._escutcheon_()
                 self.name_last_node('escutcheon')
             with self._option():
@@ -145,7 +149,7 @@ class BlazonParser(Parser):
                 'expecting one of: '
                 "'Argent' 'Azure' 'Gules' 'Or' 'Per'"
                 "'Purpure' 'Quarterly' 'Sable' 'Vert'"
-                '<cross> <escutcheon> <per_bend>'
+                '<bend> <cross> <escutcheon> <per_bend>'
                 '<per_bend_sinister> <per_chevron>'
                 '<per_cross> <per_fess> <per_nothing>'
                 '<per_pale> <per_pall> <per_saltire>'
@@ -836,6 +840,60 @@ class BlazonParser(Parser):
         self._define(['tincture'], [])
 
     @tatsumasu()
+    def _bend_(self):
+        with self._group():
+            self._tincture_cap_()
+        self.name_last_node('tincture')
+        self._token(',')
+        with self._group():
+            with self._choice():
+                with self._option():
+                    with self._group():
+                        self._token('a')
+                        self._token('bend')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        with self._group():
+                            with self._choice():
+                                with self._option():
+                                    with self._group():
+                                        self._token('above')
+                                        with self._group():
+                                            self._singular_charge_phrase_()
+                                        self.name_last_node('field')
+                                        self._define(['field'], [])
+                                with self._option():
+                                    with self._group():
+                                        self._token('between')
+                                        with self._group():
+                                            self._plural_charge_phrase_()
+                                        self.name_last_node('field')
+                                        self._define(['field'], [])
+                                self._error(
+                                    'expecting one of: '
+                                    "'above' 'between'"
+                                )
+                        self._define(['field', 'tincture'], [])
+                with self._option():
+                    with self._group():
+                        with self._group():
+                            self._pattern_charge_phrase_()
+                        self.name_last_node('field')
+                        self._token(';')
+                        self._token('a')
+                        self._token('bend')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        self._define(['field', 'tincture'], [])
+                self._error(
+                    'expecting one of: '
+                    "'a' <pattern_charge_phrase>"
+                )
+        self._define(['field', 'tincture'], [])
+
+    @tatsumasu()
     def _escutcheon_(self):
         self._token('Per')
         self._token('fess')
@@ -909,7 +967,7 @@ class BlazonParser(Parser):
                             with self._choice():
                                 with self._option():
                                     with self._group():
-                                        self._token('above')
+                                        self._token('below')
                                         with self._group():
                                             self._singular_charge_phrase_()
                                         self.name_last_node('field')
@@ -923,7 +981,7 @@ class BlazonParser(Parser):
                                         self._define(['field'], [])
                                 self._error(
                                     'expecting one of: '
-                                    "'above' 'between'"
+                                    "'below' 'between'"
                                 )
                         self._define(['field', 'tincture'], [])
                 with self._option():

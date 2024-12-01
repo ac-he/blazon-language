@@ -147,7 +147,8 @@ def draw_feature_oversize(field, shape):
 
     surf1 = surface.create_from_png(str(path))
     if field.charge == "gorge" or field.charge == "fret" or field.charge == "gyronny":
-        if field.charge != "fret" and field.dof == "saltire":
+        if field.charge != "fret" and (
+                field.dof == "saltire" or field.dof == "bend" or field.dof == "bend sinister"):
             loc_x = charge_detail["qoe"][field.dof][field.division][shape]["pale"] - 500
             loc_y = charge_detail["qoe"][field.dof][field.division][shape]["fess"] - 500
         else:
