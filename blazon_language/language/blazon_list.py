@@ -43,6 +43,7 @@ class BlazonList:
         ast_json = asjson(ast)
 
         self.blazons = []
+        i = 0
         for blazon in ast_json.get("blazons"):
             division = list(blazon[0].keys())[0]
             this_blazon = blazon[0][division]
@@ -79,7 +80,11 @@ class BlazonList:
                     b = PerNothing(this_blazon)
 
             b.settings = self.settings
+            b.index = i
+
             self.blazons.append(b)
+
+            i += 1
 
     def interpret(self):
         if self.settings.pseudocode_mode:
@@ -152,8 +157,12 @@ class BlazonList:
 
             if self.settings.program.debug:
                 print()
+                print("---- INSTRUCTION", instruction, "----")
                 print("Variables:", vm.variables)
                 print("Branches:", bm.branches)
+                print("Functions:", bm.functions)
+                print("Callstack:", bm.callstack)
+                print("Will proceed to instruction:", branch)
                 if self.settings.program.step_thru:
                     print("[hit enter to continue]", end="")
                     input()

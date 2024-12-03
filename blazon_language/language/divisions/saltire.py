@@ -20,5 +20,5 @@ class Saltire(Blazon, ABC):
         return f"Call Function{function}."
 
     def get_program(self, vm, bm):
-        pass
-        # TODO FM here
+        function = get_int_value(self.field)
+        return bm.push_callstack(function, self.index)

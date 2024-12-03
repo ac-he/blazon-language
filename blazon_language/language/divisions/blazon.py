@@ -23,6 +23,7 @@ class Blazon(ABC):
         self.ordinary = None
 
         self.settings = None
+        self.index = -1
 
     @abstractmethod
     def get_pseudocode(self):

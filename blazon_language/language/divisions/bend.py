@@ -21,4 +21,3 @@ class Bend(Blazon, ABC):
 
     def get_program(self, vm, bm):
         pass
-        # TODO FM here

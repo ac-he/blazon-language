@@ -20,5 +20,5 @@ class BendSinister(Blazon, ABC):
         return f"Return from Function{function}."
 
     def get_program(self, vm, bm):
-        pass
-        # TODO FM here
+        function = get_int_value(self.field)
+        return bm.pop_callstack(function)
