@@ -107,6 +107,10 @@ class BlazonParser(Parser):
                 self.name_last_node('escutcheon')
             with self._option():
                 with self._group():
+                    self._chevron_()
+                self.name_last_node('chevron')
+            with self._option():
+                with self._group():
                     self._cross_()
                 self.name_last_node('cross')
             with self._option():
@@ -153,7 +157,7 @@ class BlazonParser(Parser):
                 'expecting one of: '
                 "'Argent' 'Azure' 'Gules' 'Or' 'Per'"
                 "'Purpure' 'Quarterly' 'Sable' 'Vert'"
-                '<bend> <bend_sinister> <cross>'
+                '<bend> <bend_sinister> <chevron> <cross>'
                 '<escutcheon> <per_bend>'
                 '<per_bend_sinister> <per_chevron>'
                 '<per_cross> <per_fess> <per_nothing>'
@@ -832,19 +836,6 @@ class BlazonParser(Parser):
             )
 
     @tatsumasu()
-    def _cross_(self):
-        with self._group():
-            self._tincture_cap_()
-        self.name_last_node('tincture')
-        self._token(',')
-        self._token('a')
-        self._token('cross')
-        with self._group():
-            self._tincture_()
-        self.name_last_node('tincture')
-        self._define(['tincture'], [])
-
-    @tatsumasu()
     def _bend_(self):
         with self._group():
             self._tincture_cap_()
@@ -953,6 +944,74 @@ class BlazonParser(Parser):
                     "'a' <pattern_charge_phrase>"
                 )
         self._define(['field', 'tincture'], [])
+
+    @tatsumasu()
+    def _chevron_(self):
+        self._token('Per')
+        self._token('chevron')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._token('and')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._token(';')
+        self._token('in')
+        self._token('chief')
+        with self._group():
+            self._charge_phrase_()
+        self.name_last_node('chief')
+        self._token(',')
+        self._token('in')
+        self._token('base')
+        with self._group():
+            self._charge_phrase_()
+        self.name_last_node('base')
+        self._token(';')
+        self._token('in')
+        self._token('the')
+        self._token('center')
+        with self._group():
+            with self._choice():
+                with self._option():
+                    with self._group():
+                        self._token('on')
+                        self._token('a')
+                        self._token('chevron')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        with self._group():
+                            self._charge_phrase_()
+                        self.name_last_node('ordinary')
+                        self._define(['ordinary', 'tincture'], [])
+                with self._option():
+                    with self._group():
+                        self._token('a')
+                        self._token('chevron')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        self._define(['tincture'], [])
+                self._error(
+                    'expecting one of: '
+                    "'a' 'on'"
+                )
+        self._define(['base', 'chief', 'ordinary', 'tincture'], [])
+
+    @tatsumasu()
+    def _cross_(self):
+        with self._group():
+            self._tincture_cap_()
+        self.name_last_node('tincture')
+        self._token(',')
+        self._token('a')
+        self._token('cross')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._define(['tincture'], [])
 
     @tatsumasu()
     def _escutcheon_(self):

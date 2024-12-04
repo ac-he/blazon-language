@@ -6,6 +6,7 @@ from tatsu.util import asjson
 from blazon_language.language._parser import BlazonParser
 from blazon_language.language.divisions.bend import Bend
 from blazon_language.language.divisions.bend_sinister import BendSinister
+from blazon_language.language.divisions.chevron import Chevron
 from blazon_language.language.divisions.cross import Cross
 from blazon_language.language.divisions.per_bend import PerBend
 from blazon_language.language.divisions.per_bend_sinister import PerBendSinister
@@ -54,6 +55,8 @@ class BlazonList:
                     b = Bend(this_blazon)
                 case "bend_sinister":
                     b = BendSinister(this_blazon)
+                case "chevron":
+                    b = Chevron(this_blazon)
                 case "cross":
                     b = Cross(this_blazon)
                 case "escutcheon":

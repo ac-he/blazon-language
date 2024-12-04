@@ -17,6 +17,7 @@ def make_dof_image(blazon):
     match blazon.division:
         case "bend": bend(blazon)
         case "bend sinister": bend_sinister(blazon)
+        case "chevron": chevron(blazon)
         case "cross": cross(blazon)
         case "escutcheon": escutcheon(blazon)
         case "saltire": saltire(blazon)
@@ -116,6 +117,69 @@ def bend_sinister(blazon):
     context.stroke()
     context.move_to(canvas["w"], thickness)
     context.line_to(0, side_intersect + thickness)
+    context.stroke()
+
+
+def chevron(blazon):
+    thickness = canvas["h"] * 1 / 8
+    middle_side_h = canvas["h"] * 5 / 8
+    middle_middle_h = canvas["h"] * 3 / 8
+    if blazon.shape == "banner" or blazon.shape == "shield" or blazon.shape == "pennant":
+        middle_side_h = canvas["h"] * 4.5 / 8
+        middle_middle_h = canvas["h"] * 2.5 / 8
+    if blazon.shape == "pennant":
+        thickness = canvas["h"] * 0.85 / 8
+
+    chief_guid = make_division_image(blazon.chief, blazon.shape)
+    surf1 = surface.create_from_png(chief_guid)
+    context.set_source_surface(surf1)
+    context.move_to(canvas["w"] * 0 / 6, canvas["h"] * 0 / 8)
+    context.line_to(canvas["w"] * 0 / 6, middle_side_h - thickness)
+    context.line_to(canvas["w"] * 3 / 6, middle_middle_h - thickness)
+    context.line_to(canvas["w"] * 6 / 6, middle_side_h - thickness)
+    context.line_to(canvas["w"] * 6 / 6, canvas["h"] * 0 / 8)
+    context.close_path()
+    context.fill()
+    delete_image_path(chief_guid)
+
+    base_guid = make_division_image(blazon.base, blazon.shape)
+    surf2 = surface.create_from_png(base_guid)
+    context.set_source_surface(surf2)
+    context.move_to(canvas["w"] * 0 / 6, middle_side_h + thickness)
+    context.line_to(canvas["w"] * 0 / 6, canvas["h"] * 8 / 8)
+    context.line_to(canvas["w"] * 6 / 6, canvas["h"] * 8 / 8)
+    context.line_to(canvas["w"] * 6 / 6, middle_side_h + thickness)
+    context.line_to(canvas["w"] * 3 / 6, middle_middle_h + thickness)
+    context.close_path()
+    context.fill()
+    delete_image_path(base_guid)
+
+    ord_guid = make_division_image(blazon.ordinary, blazon.shape)
+    surf3 = surface.create_from_png(ord_guid)
+    context.set_source_surface(surf3)
+    context.move_to(canvas["w"] * 0 / 6, middle_side_h - thickness)
+    context.line_to(canvas["w"] * 3 / 6, middle_middle_h - thickness)
+    context.line_to(canvas["w"] * 6 / 6, middle_side_h - thickness)
+    context.line_to(canvas["w"] * 6 / 6, middle_side_h + thickness)
+    context.line_to(canvas["w"] * 3 / 6, middle_middle_h + thickness)
+    context.line_to(canvas["w"] * 0 / 6, middle_side_h + thickness)
+    context.close_path()
+    context.fill()
+    delete_image_path(ord_guid)
+
+    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.set_line_width(blazon.settings.image.image_outline_width)
+    context.set_line_cap(cairo.LINE_CAP_ROUND)
+
+    context.move_to(canvas["w"] * 0 / 6, middle_side_h - thickness)
+    context.line_to(canvas["w"] * 3 / 6, middle_middle_h - thickness)
+    context.line_to(canvas["w"] * 6 / 6, middle_side_h - thickness)
+    context.stroke()
+
+    context.move_to(canvas["w"] * 0 / 6, middle_side_h + thickness)
+    context.line_to(canvas["w"] * 3 / 6, middle_middle_h + thickness)
+    context.line_to(canvas["w"] * 6 / 6, middle_side_h + thickness)
     context.stroke()
 
 

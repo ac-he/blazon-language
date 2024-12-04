@@ -9,6 +9,7 @@
         bend:(bend) |
         bend_sinister:(bend_sinister) |
         escutcheon:(escutcheon) |
+        chevron:(chevron) |
         cross:(cross) |
         saltire:(saltire) |
         per_bend:(per_bend) |
@@ -205,8 +206,6 @@
         tq_charge_pattern |
         tq_gorge;
 
-    cross = tincture:(tincture_cap) "," "a" "cross" tincture:(tincture) ;
-
     bend =
         tincture:(tincture_cap) ","
         (
@@ -230,6 +229,19 @@
             ) |
             (  field:(pattern_charge_phrase) ";" "a" "bend" "sinister" tincture:(tincture) )
         ) ;
+
+    chevron = "Per" "chevron"
+        tincture:(tincture) "and"
+        tincture:(tincture) ";"
+        "in" "chief" chief:(charge_phrase) ","
+        "in" "base" base:(charge_phrase) ";"
+        "in" "the" "center"
+        (
+            ("on" "a" "chevron" tincture:(tincture) ordinary:(charge_phrase)) |
+            ("a" "chevron" tincture:(tincture))
+        ) ;
+
+    cross = tincture:(tincture_cap) "," "a" "cross" tincture:(tincture) ;
 
     escutcheon =
         "Per" "fess"
