@@ -115,6 +115,10 @@ class BlazonParser(Parser):
                 self.name_last_node('cross')
             with self._option():
                 with self._group():
+                    self._fess_()
+                self.name_last_node('fess')
+            with self._option():
+                with self._group():
                     self._saltire_()
                 self.name_last_node('saltire')
             with self._option():
@@ -158,7 +162,7 @@ class BlazonParser(Parser):
                 "'Argent' 'Azure' 'Gules' 'Or' 'Per'"
                 "'Purpure' 'Quarterly' 'Sable' 'Vert'"
                 '<bend> <bend_sinister> <chevron> <cross>'
-                '<escutcheon> <per_bend>'
+                '<escutcheon> <fess> <per_bend>'
                 '<per_bend_sinister> <per_chevron>'
                 '<per_cross> <per_fess> <per_nothing>'
                 '<per_pale> <per_pall> <per_saltire>'
@@ -1067,6 +1071,61 @@ class BlazonParser(Parser):
                     "'an' 'on'"
                 )
         self._define(['base', 'chief', 'escutcheon', 'tincture'], [])
+
+    @tatsumasu()
+    def _fess_(self):
+        self._token('Per')
+        self._token('fess')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._token('and')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._token(';')
+        self._token('in')
+        self._token('chief')
+        with self._group():
+            self._charge_phrase_()
+        self.name_last_node('chief')
+        self._token(',')
+        self._token('in')
+        self._token('base')
+        with self._group():
+            self._charge_phrase_()
+        self.name_last_node('base')
+        self._token(';')
+        self._token('in')
+        self._token('the')
+        self._token('center')
+        with self._group():
+            with self._choice():
+                with self._option():
+                    with self._group():
+                        self._token('on')
+                        self._token('a')
+                        self._token('fess')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        with self._group():
+                            self._charge_phrase_()
+                        self.name_last_node('ordinary')
+                        self._define(['ordinary', 'tincture'], [])
+                with self._option():
+                    with self._group():
+                        self._token('a')
+                        self._token('fess')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        self._define(['tincture'], [])
+                self._error(
+                    'expecting one of: '
+                    "'a' 'on'"
+                )
+        self._define(['base', 'chief', 'ordinary', 'tincture'], [])
 
     @tatsumasu()
     def _saltire_(self):

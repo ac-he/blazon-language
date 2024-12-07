@@ -11,6 +11,7 @@
         escutcheon:(escutcheon) |
         chevron:(chevron) |
         cross:(cross) |
+        fess:(fess) |
         saltire:(saltire) |
         per_bend:(per_bend) |
         per_bend_sinister:(per_bend_sinister) |
@@ -253,6 +254,18 @@
         (
             ("on" "an" "escutcheon" tincture:(tincture) escutcheon:(charge_phrase)) |
             ("an" "escutcheon" tincture:(tincture))
+        ) ;
+
+    fess =
+        "Per" "fess"
+        tincture:(tincture) "and"
+        tincture:(tincture) ";"
+        "in" "chief" chief:(charge_phrase) ","
+        "in" "base" base:(charge_phrase) ";"
+        "in" "the" "center"
+        (
+            ("on" "a" "fess" tincture:(tincture) ordinary:(charge_phrase)) |
+            ("a" "fess" tincture:(tincture))
         ) ;
 
     saltire =

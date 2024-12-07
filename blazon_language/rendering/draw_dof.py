@@ -20,6 +20,7 @@ def make_dof_image(blazon):
         case "chevron": chevron(blazon)
         case "cross": cross(blazon)
         case "escutcheon": escutcheon(blazon)
+        case "fess": fess(blazon)
         case "saltire": saltire(blazon)
         case "per nothing": return make_division_image(blazon.field, blazon.shape)
         case "per bend": per_bend(blazon)
@@ -296,6 +297,51 @@ def escutcheon(blazon):
                      esc_w + 1.000 * esc_scale_w, esc_h + 0.625 * esc_scale_h)
     context.line_to(esc_w + 1.000 * esc_scale_w, esc_h + 0.000 * esc_scale_h)
     context.close_path()
+    context.stroke()
+
+
+def fess(blazon):
+    fess_line = canvas["h"] * 4 / 8
+    thickness = canvas["h"] * 1.25 / 8
+    if blazon.shape == "pennant":
+        fess_line = canvas["h"] * 3 / 8
+        thickness = canvas["h"] * 1 / 8
+    elif blazon.shape == "banner" or blazon.shape == "shield" or blazon.shape == "heater":
+        fess_line = canvas["h"] * 3.5 / 8
+        thickness = canvas["h"] * 1.17 / 8
+
+    chief_guid = make_division_image(blazon.chief, blazon.shape)
+    surf1 = surface.create_from_png(chief_guid)
+    context.set_source_surface(surf1)
+    context.rectangle(0, 0, canvas["w"], fess_line - thickness)
+    context.fill()
+    delete_image_path(chief_guid)
+
+    ord_guid = make_division_image(blazon.ordinary, blazon.shape)
+    surf2 = surface.create_from_png(ord_guid)
+    context.set_source_surface(surf2)
+    context.rectangle(0, fess_line - thickness, canvas["w"], thickness * 2)
+    context.fill()
+    delete_image_path(ord_guid)
+
+    base_guid = make_division_image(blazon.base, blazon.shape)
+    surf3 = surface.create_from_png(base_guid)
+    context.set_source_surface(surf3)
+    context.rectangle(0, fess_line + thickness, canvas["w"], canvas["h"] - fess_line - thickness)
+    context.fill()
+    delete_image_path(base_guid)
+
+    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.set_line_width(blazon.settings.image.image_outline_width)
+    context.set_line_cap(cairo.LINE_CAP_ROUND)
+
+    context.move_to(0, fess_line - thickness)
+    context.line_to(canvas["w"], fess_line - thickness)
+    context.stroke()
+
+    context.move_to(0, fess_line + thickness)
+    context.line_to(canvas["w"], fess_line + thickness)
     context.stroke()
 
 
