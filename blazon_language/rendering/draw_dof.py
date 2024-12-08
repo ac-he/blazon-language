@@ -21,6 +21,7 @@ def make_dof_image(blazon):
         case "cross": cross(blazon)
         case "escutcheon": escutcheon(blazon)
         case "fess": fess(blazon)
+        case "pale": pale(blazon)
         case "saltire": saltire(blazon)
         case "per nothing": return make_division_image(blazon.field, blazon.shape)
         case "per bend": per_bend(blazon)
@@ -342,6 +343,47 @@ def fess(blazon):
 
     context.move_to(0, fess_line + thickness)
     context.line_to(canvas["w"], fess_line + thickness)
+    context.stroke()
+
+
+def pale(blazon):
+    pale_thickness = canvas["w"] * 1 / 3
+    if blazon.shape == "pennant":
+        pale_thickness = canvas["w"] * 1 / 5
+    field_thickness = (canvas["w"] - pale_thickness) / 2
+
+    dexter_guid = make_division_image(blazon.dexter, blazon.shape)
+    surf1 = surface.create_from_png(dexter_guid)
+    context.set_source_surface(surf1)
+    context.rectangle(0, 0, field_thickness, canvas["h"])
+    context.fill()
+    delete_image_path(dexter_guid)
+
+    ordinary_guid = make_division_image(blazon.ordinary, blazon.shape)
+    surf2 = surface.create_from_png(ordinary_guid)
+    context.set_source_surface(surf2)
+    context.rectangle(field_thickness, 0, pale_thickness, canvas["h"])
+    context.fill()
+    delete_image_path(ordinary_guid)
+
+    sinister_guid = make_division_image(blazon.sinister, blazon.shape)
+    surf3 = surface.create_from_png(sinister_guid)
+    context.set_source_surface(surf3)
+    context.rectangle(field_thickness + pale_thickness, 0, field_thickness, canvas["h"])
+    context.fill()
+    delete_image_path(sinister_guid)
+
+    t_outline = tinctures[blazon.settings.image.image_outline_tincture]
+    context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
+    context.set_line_width(blazon.settings.image.image_outline_width)
+    context.set_line_cap(cairo.LINE_CAP_ROUND)
+
+    context.move_to(field_thickness, 0)
+    context.line_to(field_thickness, canvas["h"])
+    context.stroke()
+
+    context.move_to(field_thickness + pale_thickness, 0)
+    context.line_to(field_thickness + pale_thickness, canvas["h"])
     context.stroke()
 
 

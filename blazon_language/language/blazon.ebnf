@@ -12,6 +12,7 @@
         chevron:(chevron) |
         cross:(cross) |
         fess:(fess) |
+        pale:(pale) |
         saltire:(saltire) |
         per_bend:(per_bend) |
         per_bend_sinister:(per_bend_sinister) |
@@ -266,6 +267,18 @@
         (
             ("on" "a" "fess" tincture:(tincture) ordinary:(charge_phrase)) |
             ("a" "fess" tincture:(tincture))
+        ) ;
+
+    pale =
+        "Per" "pale"
+        tincture:(tincture) "and"
+        tincture:(tincture) ";"
+        "to" "dexter" dexter:(charge_phrase) ","
+        "to" "sinister" sinister:(charge_phrase) ";"
+        "in" "the" "center"
+        (
+            ("on" "a" "pale" tincture:(tincture) ordinary:(charge_phrase)) |
+            ("a" "pale" tincture:(tincture))
         ) ;
 
     saltire =

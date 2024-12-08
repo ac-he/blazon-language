@@ -28,7 +28,10 @@ def make_division_image(field, shape="rect"):
             if charge == "alabelof":
                 draw_feature_label(field, shape)
             if charge == "quarterlyofeight":
-                draw_feature_quarterly_of_eight(field, shape)
+                if field.dof == "pale":
+                    draw_feature_quarterly_of_eight_vertical(field, shape)
+                else:
+                    draw_feature_quarterly_of_eight(field, shape)
         elif charge_type == "oversize":
             draw_feature_oversize(field, shape)
 
@@ -73,6 +76,35 @@ def stamp_feature(field, shape, charge_type):
         surf1 = surface.create_from_png(str(path))
         context.set_source_surface(surf1, loc_x, loc_y)
         context.rectangle(loc_x, loc_y, size, size)
+        context.close_path()
+        context.fill()
+
+
+def draw_feature_quarterly_of_eight_vertical(field, shape):
+    global surface, context
+    line = charge_detail["qoe"][field.dof][field.division][shape]
+    chief_line = line["chief"]
+    fess_line = line["fess"]
+    base_line = line["base"]
+    pale_line = line["pale"]
+
+    fesses = [0, chief_line, fess_line, base_line, canvas['h']]
+    pales = [0, pale_line, canvas['w']]
+
+    for quarter in range(8):
+        tincture = tinctures.get(field.charge_tincture[quarter * 2])
+
+        top = fesses[floor((quarter / 2) + 0.01)]
+        bottom = fesses[ceil((quarter / 2) + 0.01)]
+        left = pales[(quarter % 2) - 0]
+        right = pales[(quarter % 2) + 1]
+
+        context.set_source_rgb(tincture["r"], tincture["g"], tincture["b"])
+        context.move_to(left, top)
+        context.line_to(right, top)
+        context.line_to(right, bottom)
+        context.line_to(left, bottom)
+
         context.close_path()
         context.fill()
 

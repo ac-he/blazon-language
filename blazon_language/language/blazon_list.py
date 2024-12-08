@@ -9,6 +9,7 @@ from blazon_language.language.divisions.bend_sinister import BendSinister
 from blazon_language.language.divisions.chevron import Chevron
 from blazon_language.language.divisions.cross import Cross
 from blazon_language.language.divisions.fess import Fess
+from blazon_language.language.divisions.pale import Pale
 from blazon_language.language.divisions.per_bend import PerBend
 from blazon_language.language.divisions.per_bend_sinister import PerBendSinister
 from blazon_language.language.divisions.per_chevron import PerChevron
@@ -58,12 +59,14 @@ class BlazonList:
                     b = BendSinister(this_blazon)
                 case "chevron":
                     b = Chevron(this_blazon)
-                case "fess":
-                    b = Fess(this_blazon)
                 case "cross":
                     b = Cross(this_blazon)
                 case "escutcheon":
                     b = Escutcheon(this_blazon)
+                case "fess":
+                    b = Fess(this_blazon)
+                case "pale":
+                    b = Pale(this_blazon)
                 case "saltire":
                     b = Saltire(this_blazon)
                 case "per_bend":
