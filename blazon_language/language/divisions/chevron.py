@@ -35,5 +35,12 @@ class Chevron(Blazon, ABC):
         return f"{operation} from Stack{stack} and store it to Variable{variable}."
 
     def get_program(self, vm, bm):
-        pass
-        # TODO implement stacks
+        variable = get_int_value(self.chief)
+        stack = get_int_value(self.base)
+
+        if is_metal(self.ordinary.field_tincture):
+            value = vm.pop_stack(stack)
+        else:
+            value = vm.peek_stack(stack)
+
+        vm.store(variable, value)

@@ -168,6 +168,7 @@ class BlazonList:
                 print()
                 print("---- INSTRUCTION", instruction, "----")
                 print("Variables:", vm.variables)
+                print("Stacks:", vm.stacks)
                 print("Branches:", bm.branches)
                 print("Functions:", bm.functions)
                 print("Callstack:", bm.callstack)

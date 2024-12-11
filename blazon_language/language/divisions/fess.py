@@ -32,5 +32,8 @@ class Fess(Blazon, ABC):
         return f"Push Variable{variable} to Stack{stack}."
 
     def get_program(self, vm, bm):
-        pass
-        # TODO implement stacks
+        stack = get_int_value(self.chief)
+        variable = get_int_value(self.base)
+        value = vm.retrieve(variable)
+
+        vm.push_stack(stack, value)

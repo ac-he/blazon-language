@@ -32,5 +32,7 @@ class Pale(Blazon, ABC):
         return f"Push {value} to Stack{stack}."
 
     def get_program(self, vm, bm):
-        pass
-        # TODO implement stacks
+        stack = get_int_value(self.dexter)
+        value = get_int_value(self.sinister)
+
+        vm.push_stack(stack, value)
