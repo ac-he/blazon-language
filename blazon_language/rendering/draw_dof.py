@@ -1,9 +1,7 @@
-import math
-
 import cairo
 from blazon_language.rendering._render_config import canvas, tinctures
 from blazon_language.rendering.draw_division import make_division_image
-from blazon_language.rendering._image_management import supply_guid, delete_image_path
+from blazon_language.rendering.image_management import supply_guid, delete_image_path
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
 context = cairo.Context(surface)
@@ -236,30 +234,30 @@ def cross(blazon):
 
 def escutcheon(blazon):
     escutcheon_scale = 0.5
-    fess = canvas["h"] / 2
+    fess_line = canvas["h"] / 2
 
     if blazon.shape == "pennant":
-        fess = canvas["h"] * 3 / 8
+        fess_line = canvas["h"] * 3 / 8
         escutcheon_scale = 0.375
     elif blazon.shape == "banner" or blazon.shape == "shield" or blazon.shape == "heater":
-        fess = canvas["h"] * 3.5 / 8
+        fess_line = canvas["h"] * 3.5 / 8
 
     esc_scale_w = canvas["w"] * escutcheon_scale
     esc_scale_h = canvas["h"] * escutcheon_scale
     esc_w = (canvas["w"] - esc_scale_w) / 2
-    esc_h = fess - esc_scale_h / 2
+    esc_h = fess_line - esc_scale_h / 2
 
     chief_guid = make_division_image(blazon.chief, blazon.shape)
     surf1 = surface.create_from_png(chief_guid)
     context.set_source_surface(surf1)
-    context.rectangle(0, 0, canvas["w"], fess)
+    context.rectangle(0, 0, canvas["w"], fess_line)
     context.fill()
     delete_image_path(chief_guid)
 
     base_guid = make_division_image(blazon.base, blazon.shape)
     surf2 = surface.create_from_png(base_guid)
     context.set_source_surface(surf2)
-    context.rectangle(0, fess, canvas["w"], canvas["h"] - fess)
+    context.rectangle(0, fess_line, canvas["w"], canvas["h"] - fess_line)
     context.fill()
     delete_image_path(base_guid)
 
@@ -267,8 +265,8 @@ def escutcheon(blazon):
     context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
     context.set_line_width(blazon.settings.image.image_outline_width)
     context.set_line_cap(cairo.LINE_CAP_ROUND)
-    context.move_to(0, fess)
-    context.line_to(canvas["w"], fess)
+    context.move_to(0, fess_line)
+    context.line_to(canvas["w"], fess_line)
     context.stroke()
 
     escutcheon_guid = make_division_image(blazon.escutcheon, blazon.shape)
@@ -608,23 +606,23 @@ def per_cross(blazon):
 
 
 def per_fess(blazon):
-    fess = canvas["h"] / 2
+    fess_line = canvas["h"] / 2
     if blazon.shape == "pennant":
-        fess = canvas["h"] * 3 / 8
+        fess_line = canvas["h"] * 3 / 8
     elif blazon.shape == "banner" or blazon.shape == "shield" or blazon.shape == "heater":
-        fess = canvas["h"] * 3.5 / 8
+        fess_line = canvas["h"] * 3.5 / 8
 
     chief_guid = make_division_image(blazon.chief, blazon.shape)
     surf1 = surface.create_from_png(chief_guid)
     context.set_source_surface(surf1)
-    context.rectangle(0, 0, canvas["w"], fess)
+    context.rectangle(0, 0, canvas["w"], fess_line)
     context.fill()
     delete_image_path(chief_guid)
 
     base_guid = make_division_image(blazon.base, blazon.shape)
     surf2 = surface.create_from_png(base_guid)
     context.set_source_surface(surf2)
-    context.rectangle(0, fess, canvas["w"], canvas["h"] - fess)
+    context.rectangle(0, fess_line, canvas["w"], canvas["h"] - fess_line)
     context.fill()
     delete_image_path(base_guid)
 
@@ -632,8 +630,8 @@ def per_fess(blazon):
     context.set_source_rgb(t_outline["r"], t_outline["g"], t_outline["b"])
     context.set_line_width(blazon.settings.image.image_outline_width)
     context.set_line_cap(cairo.LINE_CAP_ROUND)
-    context.move_to(0, fess)
-    context.line_to(canvas["w"], fess)
+    context.move_to(0, fess_line)
+    context.line_to(canvas["w"], fess_line)
     context.stroke()
 
 

@@ -24,7 +24,7 @@ from blazon_language.language.divisions.saltire import Saltire
 from blazon_language.language.program_data.branch_manager import BranchManager
 from blazon_language.language.program_data.variable_manager import VariableManager
 from blazon_language.language.settings.settings import Settings
-from blazon_language.rendering._image_management import delete_all_images
+from blazon_language.rendering.image_management import delete_all_images
 from blazon_language.rendering.draw_blazon_list import DrawBlazonList
 
 
@@ -109,7 +109,7 @@ class BlazonList:
         if self.settings.pseudocode.output_to_file:
             try:
                 file = open(file, "x")
-            except FileExistsError as ex:
+            except FileExistsError:
                 file = open(file, "w")
 
         for blazon in self.blazons:

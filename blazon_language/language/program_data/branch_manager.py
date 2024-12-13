@@ -1,7 +1,7 @@
-from blazon_language.language._evaluation import get_int_value
+from blazon_language.language.evaluation import get_int_value
 
 
-class BranchManager():
+class BranchManager:
     def __init__(self, blazons):
         self.branches = {}
         self.functions = {}

@@ -27,4 +27,3 @@ class VariableManager:
             return -1
         else:
             return self.stacks[stack_label][s_len - 1]
-

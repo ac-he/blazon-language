@@ -3,8 +3,8 @@ from math import floor, ceil
 import cairo
 from pathlib import Path
 
-from blazon_language.language._evaluation import integerify_quantity, charges, stringify_charge
-from blazon_language.rendering._image_management import supply_guid
+from blazon_language.language.evaluation import integerify_quantity, charges, stringify_charge
+from blazon_language.rendering.image_management import supply_guid
 from blazon_language.rendering._render_config import canvas, tinctures, charge_loc, charge_size, charge_detail
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])

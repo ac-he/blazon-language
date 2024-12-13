@@ -5,7 +5,7 @@ from pathlib import Path
 import cairo
 from PIL import Image
 
-from blazon_language.rendering._image_management import delete_image_path
+from blazon_language.rendering.image_management import delete_image_path
 from blazon_language.rendering._render_config import canvas, tinctures, shape_points
 from blazon_language.rendering.draw_blazon import make_blazon_image
 

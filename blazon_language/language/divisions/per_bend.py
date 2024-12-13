@@ -1,6 +1,6 @@
 from abc import ABC
 from blazon_language.language.divisions.blazon import Blazon
-from blazon_language.language._evaluation import get_int_value, is_metal
+from blazon_language.language.evaluation import get_int_value, is_metal
 from blazon_language.language.field import Field
 
 
