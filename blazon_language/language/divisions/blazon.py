@@ -20,8 +20,10 @@ class Blazon(ABC):
         self.dexter_base = None
         self.sinister_base = None
         self.field = None
+        self.ordinary = None
 
         self.settings = None
+        self.index = -1
 
     @abstractmethod
     def get_pseudocode(self):

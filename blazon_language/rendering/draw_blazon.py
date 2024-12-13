@@ -2,8 +2,8 @@ from pathlib import Path
 
 import cairo
 
-from blazon_language.rendering._render_config import canvas, tinctures
-from blazon_language.rendering._image_management import supply_guid, delete_image_path
+from blazon_language.rendering._render_config import canvas
+from blazon_language.rendering.image_management import supply_guid, delete_image_path
 from blazon_language.rendering._render_config import shape_points
 from blazon_language.rendering.draw_dof import make_dof_image
 

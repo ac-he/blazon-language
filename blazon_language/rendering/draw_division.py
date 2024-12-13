@@ -3,8 +3,8 @@ from math import floor, ceil
 import cairo
 from pathlib import Path
 
-from blazon_language.language._evaluation import integerify_quantity, charges, stringify_charge
-from blazon_language.rendering._image_management import supply_guid
+from blazon_language.language.evaluation import integerify_quantity, charges, stringify_charge
+from blazon_language.rendering.image_management import supply_guid
 from blazon_language.rendering._render_config import canvas, tinctures, charge_loc, charge_size, charge_detail
 
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, canvas["w"], canvas["h"])
@@ -28,7 +28,10 @@ def make_division_image(field, shape="rect"):
             if charge == "alabelof":
                 draw_feature_label(field, shape)
             if charge == "quarterlyofeight":
-                draw_feature_quarterly_of_eight(field, shape)
+                if field.dof == "pale":
+                    draw_feature_quarterly_of_eight_vertical(field, shape)
+                else:
+                    draw_feature_quarterly_of_eight(field, shape)
         elif charge_type == "oversize":
             draw_feature_oversize(field, shape)
 
@@ -73,6 +76,35 @@ def stamp_feature(field, shape, charge_type):
         surf1 = surface.create_from_png(str(path))
         context.set_source_surface(surf1, loc_x, loc_y)
         context.rectangle(loc_x, loc_y, size, size)
+        context.close_path()
+        context.fill()
+
+
+def draw_feature_quarterly_of_eight_vertical(field, shape):
+    global surface, context
+    line = charge_detail["qoe"][field.dof][field.division][shape]
+    chief_line = line["chief"]
+    fess_line = line["fess"]
+    base_line = line["base"]
+    pale_line = line["pale"]
+
+    fesses = [0, chief_line, fess_line, base_line, canvas['h']]
+    pales = [0, pale_line, canvas['w']]
+
+    for quarter in range(8):
+        tincture = tinctures.get(field.charge_tincture[quarter * 2])
+
+        top = fesses[floor((quarter / 2) + 0.01)]
+        bottom = fesses[ceil((quarter / 2) + 0.01)]
+        left = pales[(quarter % 2) - 0]
+        right = pales[(quarter % 2) + 1]
+
+        context.set_source_rgb(tincture["r"], tincture["g"], tincture["b"])
+        context.move_to(left, top)
+        context.line_to(right, top)
+        context.line_to(right, bottom)
+        context.line_to(left, bottom)
+
         context.close_path()
         context.fill()
 
@@ -144,12 +176,21 @@ def draw_feature_oversize(field, shape):
     tincture = tinctures[field.charge_tincture]["initial"]
     path = Path.joinpath(Path.cwd(), "blazon_language", "rendering", "assets", "oversize",
                          f"{field.charge}_{tincture}.png")
-    midpoint = charge_loc[field.dof][field.division][shape][1]["size"] / 2
-    loc_x = charge_loc[field.dof][field.division][shape][1]["loc_x"][0] + midpoint - 500
-    loc_y = charge_loc[field.dof][field.division][shape][1]["loc_y"][0] + midpoint - 500
 
     surf1 = surface.create_from_png(str(path))
-    context.set_source_surface(surf1, loc_x, loc_y)
-    context.rectangle(loc_x, loc_y, 1000, 1000)
+    if field.charge == "gorge" or field.charge == "fret" or field.charge == "gyronny":
+        if field.charge != "fret" and (
+                field.dof == "saltire" or field.dof == "bend" or field.dof == "bend sinister"):
+            loc_x = charge_detail["qoe"][field.dof][field.division][shape]["pale"] - 500
+            loc_y = charge_detail["qoe"][field.dof][field.division][shape]["fess"] - 500
+        else:
+            midpoint = charge_loc[field.dof][field.division][shape][1]["size"] / 2
+            loc_x = charge_loc[field.dof][field.division][shape][1]["loc_x"][0] + midpoint - 500
+            loc_y = charge_loc[field.dof][field.division][shape][1]["loc_y"][0] + midpoint - 500
+        context.set_source_surface(surf1, loc_x, loc_y)
+        context.rectangle(loc_x, loc_y, 1000, 1000)
+    else:
+        context.set_source_surface(surf1)
+        context.rectangle(0, 0, 1000, 1000)
     context.close_path()
     context.fill()

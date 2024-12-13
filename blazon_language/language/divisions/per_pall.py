@@ -1,6 +1,6 @@
 from abc import ABC
 from blazon_language.language.divisions.blazon import Blazon
-from blazon_language.language._evaluation import get_int_value, do_operation, get_operator
+from blazon_language.language.evaluation import get_int_value, do_operation, get_operator
 from blazon_language.language.field import Field
 
 

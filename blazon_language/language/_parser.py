@@ -95,6 +95,38 @@ class BlazonParser(Parser):
         with self._choice():
             with self._option():
                 with self._group():
+                    self._bend_()
+                self.name_last_node('bend')
+            with self._option():
+                with self._group():
+                    self._bend_sinister_()
+                self.name_last_node('bend_sinister')
+            with self._option():
+                with self._group():
+                    self._escutcheon_()
+                self.name_last_node('escutcheon')
+            with self._option():
+                with self._group():
+                    self._chevron_()
+                self.name_last_node('chevron')
+            with self._option():
+                with self._group():
+                    self._cross_()
+                self.name_last_node('cross')
+            with self._option():
+                with self._group():
+                    self._fess_()
+                self.name_last_node('fess')
+            with self._option():
+                with self._group():
+                    self._pale_()
+                self.name_last_node('pale')
+            with self._option():
+                with self._group():
+                    self._saltire_()
+                self.name_last_node('saltire')
+            with self._option():
+                with self._group():
                     self._per_bend_()
                 self.name_last_node('per_bend')
             with self._option():
@@ -133,10 +165,12 @@ class BlazonParser(Parser):
                 'expecting one of: '
                 "'Argent' 'Azure' 'Gules' 'Or' 'Per'"
                 "'Purpure' 'Quarterly' 'Sable' 'Vert'"
-                '<per_bend> <per_bend_sinister>'
-                '<per_chevron> <per_cross> <per_fess>'
-                '<per_nothing> <per_pale> <per_pall>'
-                '<per_saltire> <tincture_cap>'
+                '<bend> <bend_sinister> <chevron> <cross>'
+                '<escutcheon> <fess> <pale> <per_bend>'
+                '<per_bend_sinister> <per_chevron>'
+                '<per_cross> <per_fess> <per_nothing>'
+                '<per_pale> <per_pall> <per_saltire>'
+                '<saltire> <tincture_cap>'
             )
 
     @tatsumasu()
@@ -405,10 +439,36 @@ class BlazonParser(Parser):
     @tatsumasu()
     def _tq_charge_large_(self):
         with self._group():
-            self._quantity_a_()
+            self._quantity_singular_()
         self.name_last_node('quantity')
         with self._group():
             self._charge_large_()
+        self.name_last_node('charge')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._define(['charge', 'quantity', 'tincture'], [])
+
+    @tatsumasu()
+    def _tq_gorge_(self):
+        with self._group():
+            self._quantity_singular_()
+        self.name_last_node('quantity')
+        with self._group():
+            self._token('gorge')
+        self.name_last_node('charge')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._define(['charge', 'quantity', 'tincture'], [])
+
+    @tatsumasu()
+    def _tq_fret_(self):
+        with self._group():
+            self._quantity_singular_()
+        self.name_last_node('quantity')
+        with self._group():
+            self._token('fret')
         self.name_last_node('charge')
         with self._group():
             self._tincture_()
@@ -729,6 +789,458 @@ class BlazonParser(Parser):
             )
 
     @tatsumasu()
+    def _singular_charge_phrase_(self):
+        with self._choice():
+            with self._option():
+                self._tq_charge_auto_singular_()
+            with self._option():
+                self._tq_charge_tincturable_singular_()
+            with self._option():
+                self._tq_fret_()
+            with self._option():
+                self._tq_charge_label_()
+            self._error(
+                'expecting one of: '
+                "'a' 'an' 'one' <charge_label>"
+                '<quantity_a> <quantity_one>'
+                '<quantity_singular>'
+                '<tq_charge_auto_singular>'
+                '<tq_charge_label>'
+                '<tq_charge_tincturable_singular>'
+                '<tq_fret>'
+            )
+
+    @tatsumasu()
+    def _plural_charge_phrase_(self):
+        with self._choice():
+            with self._option():
+                self._tq_charge_auto_plural_()
+            with self._option():
+                self._tq_charge_tincturable_plural_()
+            self._error(
+                'expecting one of: '
+                "'three' 'two' <quantity_plural>"
+                '<tq_charge_auto_plural>'
+                '<tq_charge_tincturable_plural>'
+            )
+
+    @tatsumasu()
+    def _pattern_charge_phrase_(self):
+        with self._choice():
+            with self._option():
+                self._tq_charge_quarterly_()
+            with self._option():
+                self._tq_charge_pattern_()
+            with self._option():
+                self._tq_gorge_()
+            self._error(
+                'expecting one of: '
+                "'a' 'an' 'chequy' 'fusily' 'gyronny'"
+                "'lozengy' 'one' 'quarterly'"
+                '<charge_pattern> <quantity_a>'
+                '<quantity_one> <quantity_singular>'
+                '<tq_charge_pattern>'
+                '<tq_charge_quarterly> <tq_gorge>'
+            )
+
+    @tatsumasu()
+    def _bend_(self):
+        with self._group():
+            self._tincture_cap_()
+        self.name_last_node('tincture')
+        self._token(',')
+        with self._group():
+            with self._choice():
+                with self._option():
+                    with self._group():
+                        self._token('a')
+                        self._token('bend')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        with self._group():
+                            with self._choice():
+                                with self._option():
+                                    with self._group():
+                                        self._token('above')
+                                        with self._group():
+                                            self._singular_charge_phrase_()
+                                        self.name_last_node('field')
+                                        self._define(['field'], [])
+                                with self._option():
+                                    with self._group():
+                                        self._token('between')
+                                        with self._group():
+                                            self._plural_charge_phrase_()
+                                        self.name_last_node('field')
+                                        self._define(['field'], [])
+                                self._error(
+                                    'expecting one of: '
+                                    "'above' 'between'"
+                                )
+                        self._define(['field', 'tincture'], [])
+                with self._option():
+                    with self._group():
+                        with self._group():
+                            self._pattern_charge_phrase_()
+                        self.name_last_node('field')
+                        self._token(';')
+                        self._token('a')
+                        self._token('bend')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        self._define(['field', 'tincture'], [])
+                self._error(
+                    'expecting one of: '
+                    "'a' <pattern_charge_phrase>"
+                )
+        self._define(['field', 'tincture'], [])
+
+    @tatsumasu()
+    def _bend_sinister_(self):
+        with self._group():
+            self._tincture_cap_()
+        self.name_last_node('tincture')
+        self._token(',')
+        with self._group():
+            with self._choice():
+                with self._option():
+                    with self._group():
+                        self._token('a')
+                        self._token('bend')
+                        self._token('sinister')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        with self._group():
+                            with self._choice():
+                                with self._option():
+                                    with self._group():
+                                        self._token('above')
+                                        with self._group():
+                                            self._singular_charge_phrase_()
+                                        self.name_last_node('field')
+                                        self._define(['field'], [])
+                                with self._option():
+                                    with self._group():
+                                        self._token('between')
+                                        with self._group():
+                                            self._plural_charge_phrase_()
+                                        self.name_last_node('field')
+                                        self._define(['field'], [])
+                                self._error(
+                                    'expecting one of: '
+                                    "'above' 'between'"
+                                )
+                        self._define(['field', 'tincture'], [])
+                with self._option():
+                    with self._group():
+                        with self._group():
+                            self._pattern_charge_phrase_()
+                        self.name_last_node('field')
+                        self._token(';')
+                        self._token('a')
+                        self._token('bend')
+                        self._token('sinister')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        self._define(['field', 'tincture'], [])
+                self._error(
+                    'expecting one of: '
+                    "'a' <pattern_charge_phrase>"
+                )
+        self._define(['field', 'tincture'], [])
+
+    @tatsumasu()
+    def _chevron_(self):
+        self._token('Per')
+        self._token('chevron')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._token('and')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._token(';')
+        self._token('in')
+        self._token('chief')
+        with self._group():
+            self._charge_phrase_()
+        self.name_last_node('chief')
+        self._token(',')
+        self._token('in')
+        self._token('base')
+        with self._group():
+            self._charge_phrase_()
+        self.name_last_node('base')
+        self._token(';')
+        self._token('in')
+        self._token('the')
+        self._token('center')
+        with self._group():
+            with self._choice():
+                with self._option():
+                    with self._group():
+                        self._token('on')
+                        self._token('a')
+                        self._token('chevron')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        with self._group():
+                            self._charge_phrase_()
+                        self.name_last_node('ordinary')
+                        self._define(['ordinary', 'tincture'], [])
+                with self._option():
+                    with self._group():
+                        self._token('a')
+                        self._token('chevron')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        self._define(['tincture'], [])
+                self._error(
+                    'expecting one of: '
+                    "'a' 'on'"
+                )
+        self._define(['base', 'chief', 'ordinary', 'tincture'], [])
+
+    @tatsumasu()
+    def _cross_(self):
+        with self._group():
+            self._tincture_cap_()
+        self.name_last_node('tincture')
+        self._token(',')
+        self._token('a')
+        self._token('cross')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._define(['tincture'], [])
+
+    @tatsumasu()
+    def _escutcheon_(self):
+        self._token('Per')
+        self._token('fess')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._token('and')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._token(';')
+        self._token('in')
+        self._token('chief')
+        with self._group():
+            self._charge_phrase_()
+        self.name_last_node('chief')
+        self._token(',')
+        self._token('in')
+        self._token('base')
+        with self._group():
+            self._charge_phrase_()
+        self.name_last_node('base')
+        self._token(';')
+        self._token('in')
+        self._token('the')
+        self._token('center')
+        with self._group():
+            with self._choice():
+                with self._option():
+                    with self._group():
+                        self._token('on')
+                        self._token('an')
+                        self._token('escutcheon')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        with self._group():
+                            self._charge_phrase_()
+                        self.name_last_node('escutcheon')
+                        self._define(['escutcheon', 'tincture'], [])
+                with self._option():
+                    with self._group():
+                        self._token('an')
+                        self._token('escutcheon')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        self._define(['tincture'], [])
+                self._error(
+                    'expecting one of: '
+                    "'an' 'on'"
+                )
+        self._define(['base', 'chief', 'escutcheon', 'tincture'], [])
+
+    @tatsumasu()
+    def _fess_(self):
+        self._token('Per')
+        self._token('fess')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._token('and')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._token(';')
+        self._token('in')
+        self._token('chief')
+        with self._group():
+            self._charge_phrase_()
+        self.name_last_node('chief')
+        self._token(',')
+        self._token('in')
+        self._token('base')
+        with self._group():
+            self._charge_phrase_()
+        self.name_last_node('base')
+        self._token(';')
+        self._token('in')
+        self._token('the')
+        self._token('center')
+        with self._group():
+            with self._choice():
+                with self._option():
+                    with self._group():
+                        self._token('on')
+                        self._token('a')
+                        self._token('fess')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        with self._group():
+                            self._charge_phrase_()
+                        self.name_last_node('ordinary')
+                        self._define(['ordinary', 'tincture'], [])
+                with self._option():
+                    with self._group():
+                        self._token('a')
+                        self._token('fess')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        self._define(['tincture'], [])
+                self._error(
+                    'expecting one of: '
+                    "'a' 'on'"
+                )
+        self._define(['base', 'chief', 'ordinary', 'tincture'], [])
+
+    @tatsumasu()
+    def _pale_(self):
+        self._token('Per')
+        self._token('pale')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._token('and')
+        with self._group():
+            self._tincture_()
+        self.name_last_node('tincture')
+        self._token(';')
+        self._token('to')
+        self._token('dexter')
+        with self._group():
+            self._charge_phrase_()
+        self.name_last_node('dexter')
+        self._token(',')
+        self._token('to')
+        self._token('sinister')
+        with self._group():
+            self._charge_phrase_()
+        self.name_last_node('sinister')
+        self._token(';')
+        self._token('in')
+        self._token('the')
+        self._token('center')
+        with self._group():
+            with self._choice():
+                with self._option():
+                    with self._group():
+                        self._token('on')
+                        self._token('a')
+                        self._token('pale')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        with self._group():
+                            self._charge_phrase_()
+                        self.name_last_node('ordinary')
+                        self._define(['ordinary', 'tincture'], [])
+                with self._option():
+                    with self._group():
+                        self._token('a')
+                        self._token('pale')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        self._define(['tincture'], [])
+                self._error(
+                    'expecting one of: '
+                    "'a' 'on'"
+                )
+        self._define(['dexter', 'ordinary', 'sinister', 'tincture'], [])
+
+    @tatsumasu()
+    def _saltire_(self):
+        with self._group():
+            self._tincture_cap_()
+        self.name_last_node('tincture')
+        self._token(',')
+        with self._group():
+            with self._choice():
+                with self._option():
+                    with self._group():
+                        self._token('a')
+                        self._token('saltire')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        with self._group():
+                            with self._choice():
+                                with self._option():
+                                    with self._group():
+                                        self._token('below')
+                                        with self._group():
+                                            self._singular_charge_phrase_()
+                                        self.name_last_node('field')
+                                        self._define(['field'], [])
+                                with self._option():
+                                    with self._group():
+                                        self._token('between')
+                                        with self._group():
+                                            self._plural_charge_phrase_()
+                                        self.name_last_node('field')
+                                        self._define(['field'], [])
+                                self._error(
+                                    'expecting one of: '
+                                    "'below' 'between'"
+                                )
+                        self._define(['field', 'tincture'], [])
+                with self._option():
+                    with self._group():
+                        with self._group():
+                            self._pattern_charge_phrase_()
+                        self.name_last_node('field')
+                        self._token(';')
+                        self._token('a')
+                        self._token('saltire')
+                        with self._group():
+                            self._tincture_()
+                        self.name_last_node('tincture')
+                        self._define(['field', 'tincture'], [])
+                self._error(
+                    'expecting one of: '
+                    "'a' <pattern_charge_phrase>"
+                )
+        self._define(['field', 'tincture'], [])
+
+    @tatsumasu()
     def _per_bend_(self):
         self._token('Per')
         self._token('bend')
@@ -876,39 +1388,7 @@ class BlazonParser(Parser):
         with self._group():
             self._charge_phrase_()
         self.name_last_node('base')
-        with self._optional():
-            self._token(';')
-            self._token('in')
-            self._token('the')
-            self._token('center')
-            with self._group():
-                with self._choice():
-                    with self._option():
-                        with self._group():
-                            self._token('on')
-                            self._token('an')
-                            self._token('escutcheon')
-                            with self._group():
-                                self._tincture_()
-                            self.name_last_node('tincture')
-                            with self._group():
-                                self._charge_phrase_()
-                            self.name_last_node('escutcheon')
-                            self._define(['escutcheon', 'tincture'], [])
-                    with self._option():
-                        with self._group():
-                            self._token('an')
-                            self._token('escutcheon')
-                            with self._group():
-                                self._tincture_()
-                            self.name_last_node('tincture')
-                            self._define(['tincture'], [])
-                    self._error(
-                        'expecting one of: '
-                        "'an' 'on'"
-                    )
-            self._define(['escutcheon', 'tincture'], [])
-        self._define(['base', 'chief', 'escutcheon', 'tincture'], [])
+        self._define(['base', 'chief', 'tincture'], [])
 
     @tatsumasu()
     def _per_pale_(self):

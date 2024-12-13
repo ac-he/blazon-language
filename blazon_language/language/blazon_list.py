@@ -4,19 +4,27 @@ from pathlib import Path
 from tatsu.util import asjson
 
 from blazon_language.language._parser import BlazonParser
+from blazon_language.language.divisions.bend import Bend
+from blazon_language.language.divisions.bend_sinister import BendSinister
+from blazon_language.language.divisions.chevron import Chevron
+from blazon_language.language.divisions.cross import Cross
+from blazon_language.language.divisions.fess import Fess
+from blazon_language.language.divisions.pale import Pale
 from blazon_language.language.divisions.per_bend import PerBend
 from blazon_language.language.divisions.per_bend_sinister import PerBendSinister
 from blazon_language.language.divisions.per_chevron import PerChevron
 from blazon_language.language.divisions.per_cross import PerCross
 from blazon_language.language.divisions.per_fess import PerFess
+from blazon_language.language.divisions.escutcheon import Escutcheon
 from blazon_language.language.divisions.per_nothing import PerNothing
 from blazon_language.language.divisions.per_pale import PerPale
 from blazon_language.language.divisions.per_pall import PerPall
 from blazon_language.language.divisions.per_saltire import PerSaltire
+from blazon_language.language.divisions.saltire import Saltire
 from blazon_language.language.program_data.branch_manager import BranchManager
 from blazon_language.language.program_data.variable_manager import VariableManager
 from blazon_language.language.settings.settings import Settings
-from blazon_language.rendering._image_management import delete_all_images
+from blazon_language.rendering.image_management import delete_all_images
 from blazon_language.rendering.draw_blazon_list import DrawBlazonList
 
 
@@ -38,12 +46,29 @@ class BlazonList:
         ast_json = asjson(ast)
 
         self.blazons = []
+        i = 0
         for blazon in ast_json.get("blazons"):
             division = list(blazon[0].keys())[0]
             this_blazon = blazon[0][division]
 
             b = None
             match division:
+                case "bend":
+                    b = Bend(this_blazon)
+                case "bend_sinister":
+                    b = BendSinister(this_blazon)
+                case "chevron":
+                    b = Chevron(this_blazon)
+                case "cross":
+                    b = Cross(this_blazon)
+                case "escutcheon":
+                    b = Escutcheon(this_blazon)
+                case "fess":
+                    b = Fess(this_blazon)
+                case "pale":
+                    b = Pale(this_blazon)
+                case "saltire":
+                    b = Saltire(this_blazon)
                 case "per_bend":
                     b = PerBend(this_blazon)
                 case "per_bend_sinister":
@@ -64,7 +89,11 @@ class BlazonList:
                     b = PerNothing(this_blazon)
 
             b.settings = self.settings
+            b.index = i
+
             self.blazons.append(b)
+
+            i += 1
 
     def interpret(self):
         if self.settings.pseudocode_mode:
@@ -80,7 +109,7 @@ class BlazonList:
         if self.settings.pseudocode.output_to_file:
             try:
                 file = open(file, "x")
-            except FileExistsError as ex:
+            except FileExistsError:
                 file = open(file, "w")
 
         for blazon in self.blazons:
@@ -137,8 +166,13 @@ class BlazonList:
 
             if self.settings.program.debug:
                 print()
+                print("---- INSTRUCTION", instruction, "----")
                 print("Variables:", vm.variables)
+                print("Stacks:", vm.stacks)
                 print("Branches:", bm.branches)
+                print("Functions:", bm.functions)
+                print("Callstack:", bm.callstack)
+                print("Will proceed to instruction:", branch)
                 if self.settings.program.step_thru:
                     print("[hit enter to continue]", end="")
                     input()
