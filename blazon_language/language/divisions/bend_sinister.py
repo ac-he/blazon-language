@@ -15,6 +15,8 @@ class BendSinister(Blazon, ABC):
         self.field = Field(self.field, self.tinctures[0].lower(), self.division, "field")
         self.ordinary = Field({}, self.tinctures[1], self.division, "ordinary")
 
+        self.field.enforce_rule_of_tincture(self.ordinary.field_tincture)
+
     def get_pseudocode(self):
         function = get_int_value(self.field)
         return f"Return from Function{function}."
