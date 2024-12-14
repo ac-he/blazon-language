@@ -15,6 +15,8 @@ class Cross(Blazon, ABC):
         self.field = Field({}, self.tinctures[0].lower(), "cross", "field")
         self.ordinary = Field({}, self.tinctures[1], "cross", "ordinary")
 
+        self.field.enforce_rule_of_tincture(self.ordinary.field_tincture)
+
     def get_pseudocode(self):
         return "Halt the program."
 

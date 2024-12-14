@@ -22,10 +22,14 @@ class Field:
         self.dof = dof
         self.division = division
 
-        if self.charge_tincture and not isinstance(self.charge_tincture, list):
-            if ((is_metal(self.charge_tincture) and is_metal(self.field_tincture)) or
-                    (not is_metal(self.field_tincture) and not is_metal(self.charge_tincture))):
-                raise Exception
+        self.enforce_rule_of_tincture(self.charge_tincture)
+
+    def enforce_rule_of_tincture(self, charge_tincture):
+        if not charge_tincture or not self.field_tincture:
+            return
+        if ((is_metal(charge_tincture) and is_metal(self.field_tincture)) or
+                (not is_metal(self.field_tincture) and not is_metal(charge_tincture))):
+            raise Exception(f"Cannot have a {charge_tincture} charge on a {self.field_tincture} field.")
 
     def get_render_friendly_charge(self):
         if not self.rf_charge:
